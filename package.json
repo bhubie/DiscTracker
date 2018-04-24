@@ -1,0 +1,35 @@
+{
+  "name": "disctrack",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.12.1",
+    "immutability-helper": "^2.6.6",
+    "material-ui": "^0.20.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-color": "^2.14.0",
+    "react-dom": "^16.3.0",
+    "react-scripts": "1.1.1",
+    "react-select": "^1.2.1",
+    "react-swipeable-bottom-sheet": "^1.1.1",
+    "sinon": "^4.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "jest-canvas-mock": "^1.0.2"
+  }
+}

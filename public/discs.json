@@ -1,0 +1,64 @@
+{
+    "discs": [
+        {
+            "discID": 1,
+            "Manufacturer": "Inova",
+            "Name": "Rat",
+            "Type": "Driver",
+            "HighSpeedTurn": -2,
+            "LowSpeedFade": 76,
+            "NetStability": 74,
+            "Distance": 428,
+            "Stability": "Stable",
+            "Difficulty": "Beginner"
+        },
+        {
+            "discID": 2,
+            "Manufacturer": "Discmania",
+            "Name": "CD2",
+            "Type": "Driver",
+            "HighSpeedTurn": -12,
+            "LowSpeedFade": 41,
+            "NetStability": 29,
+            "Distance": 382,
+            "Stability": "Stable",
+            "Difficulty": "Beginner"
+        },
+        {
+            "discID": 3,
+            "Manufacturer": "Discmania",
+            "Name": "FD3",
+            "Type": "Fairway",
+            "HighSpeedTurn": 0,
+            "LowSpeedFade": 62,
+            "NetStability": 62,
+            "Distance": 356,
+            "Stability": "Stable",
+            "Difficulty": "Beginner"
+        },
+        {
+            "discID": 4,
+            "Manufacturer": "Discraft",
+            "Name": "Buzz",
+            "Type": "Midrange",
+            "HighSpeedTurn": -2,
+            "LowSpeedFade": 76,
+            "NetStability": 74,
+            "Distance": 428,
+            "Stability": "Stable",
+            "Difficulty": "Beginner"
+        },
+        {
+            "discID": 5,
+            "Manufacturer": "Gateway",
+            "Name": "Wizzard",
+            "Type": "Putter",
+            "HighSpeedTurn": -2,
+            "LowSpeedFade": 76,
+            "NetStability": 74,
+            "Distance": 428,
+            "Stability": "Stable",
+            "Difficulty": "Beginner"
+        }
+    ]
+}
