@@ -59,11 +59,11 @@ export default class FlightPath extends React.Component {
 
     this.props.discs.forEach((disc) => {
       this.drawDiscPath(
-        `${disc.Manufacturer} ${disc.Name}`,
-        disc.Distance,
-        disc.HighSpeedTurn,
-        disc.LowSpeedFade,
-        disc.NetStability,
+        `${disc.manufacturer} ${disc.name}`,
+        disc.distance,
+        disc.hst,
+        disc.lsf,
+        disc.ns,
         1,
         disc.wear,
         disc.color,

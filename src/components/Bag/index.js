@@ -44,17 +44,17 @@ const renderDisc = (
 const Bag = ({
   discs, handleRemoveDisc, handleSelectedStateChange, handleDiscColorChange,
 }) => {
-  const drivers = discs.filter(disc => disc.Type === 'Driver')
-    .map(disc => renderDisc(`${disc.Manufacturer} ${disc.Name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
+  const drivers = discs.filter(disc => disc.type === 'Distance Driver')
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
 
-  const fairwayDrivers = discs.filter(disc => disc.Type === 'Fairway')
-    .map(disc => renderDisc(`${disc.Manufacturer} ${disc.Name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
+  const fairwayDrivers = discs.filter(disc => disc.type === 'Fairway Driver')
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
 
-  const midranges = discs.filter(disc => disc.Type === 'Midrange')
-    .map(disc => renderDisc(`${disc.Manufacturer} ${disc.Name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
+  const midranges = discs.filter(disc => disc.type === 'Mid-Range')
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
 
-  const putters = discs.filter(disc => disc.Type === 'Putter')
-    .map(disc => renderDisc(`${disc.Manufacturer} ${disc.Name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, disc.discID));
+  const putters = discs.filter(disc => disc.type === 'Putt & Approach')
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange));
 
   return (
     <Div id="selectedBag" css={styleSelectedBag}>

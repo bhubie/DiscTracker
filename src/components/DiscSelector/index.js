@@ -49,9 +49,10 @@ export default class DiscSelector extends React.Component {
     }
 
     handleClick = () => {
-      const disc = this.props.discs.filter(d => d.discID === this.state.selectedOption.value)[0];
+      const disc = this.props.discs.filter(d => d._id === this.state.selectedOption.value)[0];
 
       if (disc !== undefined) {
+        disc.discID = disc._id;
         disc.selected = true;
         disc.color = this.state.discColor;
         disc.weight = this.state.discWeight;
@@ -65,10 +66,10 @@ export default class DiscSelector extends React.Component {
       const value = selectedOption && selectedOption.value;
 
 
-      const values = this.props.discs.map(disc => ({
-        value: disc.discID,
-        label: `${disc.Manufacturer} ${disc.Name}`,
-      }));
+      const values = this.props.discs !== undefined ? this.props.discs.map(disc => ({
+        value: disc._id,
+        label: `${disc.manufacturer} ${disc.name}`,
+      })) : [];
 
       return (
         <Div id="discSelector" css={discSelectorStyle}>
