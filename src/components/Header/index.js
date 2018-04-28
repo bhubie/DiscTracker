@@ -2,6 +2,7 @@ import React from 'react';
 import { Header as GlamHeader, H1, Nav } from 'glamorous';
 import AppTheme from '../../AppTheme';
 import IconGitHub from '../Icons/IconGitHub';
+import Link from '../Link/index';
 
 const headerStyle = {
   left: 0,
@@ -39,14 +40,14 @@ const Header = () => (
       Disc Tracker
     </H1>
     <Nav id="headerNav" css={styleNav}>
-      <a
+      <Link
         href="https://github.com/bhubie/DiscTracker"
         target="_blank"
         rel="noopener noreferrer"
         title="Contribute on Github"
       >
         <IconGitHub id="githubIcon" style={styleIcon} />
-      </a>
+      </Link>
     </Nav>
   </GlamHeader>
 );
