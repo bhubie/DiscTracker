@@ -12,6 +12,7 @@ import { mediaQueries } from '../../Utils/MediaQueries';
 import AppTheme from '../../AppTheme';
 
 const { Div } = glamorous;
+const apiUrl = process.env.NODE_ENV === 'production' ? 'http://localhost:1234' : process.env.REACT_APP_DEV_API_URL;
 
 
 const styleApp = {
@@ -65,13 +66,12 @@ class AppContentsContainer extends Component {
     }
 
     componentDidMount() {
-      /*
-      fetch('discs.json')
+      fetch(apiUrl, { mode: 'cors' })
         .then(res => res.json())
         .then((j) => {
-          this.setState({ discs: j.discs });
+          this.setState({ discs: j }, () => {
+          });
         });
-      */
     }
 
     handleStyleChange = (selectedOptions) => {
@@ -86,7 +86,7 @@ class AppContentsContainer extends Component {
 
     handleRemoveDisc = (discID) => {
       this.setState(prevState => ({
-        currentBag: prevState.currentBag.filter(_ => _.discID != discID),
+        currentBag: prevState.currentBag.filter(_ => _.discID !== discID),
       }));
     }
 
@@ -94,7 +94,7 @@ class AppContentsContainer extends Component {
       let index;
 
       this.state.currentBag.forEach((disc, i) => {
-        if (disc.discID == discID) {
+        if (disc.discID === discID) {
           index = i;
         }
       });
