@@ -12,6 +12,7 @@ import { mediaQueries } from '../../Utils/MediaQueries';
 import AppTheme from '../../AppTheme';
 
 const { Div } = glamorous;
+const apiUrl = process.env.NODE_ENV === 'production' ? 'http://localhost:1234' : process.env.REACT_APP_DEV_API_URL;
 
 
 const styleApp = {
@@ -65,7 +66,7 @@ class AppContentsContainer extends Component {
     }
 
     componentDidMount() {
-      fetch('discs.json', { mode: 'cors' })
+      fetch(apiUrl, { mode: 'cors' })
         .then(res => res.json())
         .then((j) => {
           this.setState({ discs: j }, () => {
