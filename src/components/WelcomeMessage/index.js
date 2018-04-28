@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Div } from 'glamorous';
 import AppTheme from '../../AppTheme';
+import Link from '../Link/index';
 import { mediaQueries } from '../../Utils/MediaQueries';
 
 
@@ -38,7 +39,13 @@ const WelcomeMessage = ({ handleGetStartedOnClick }) => (
         Disc flight path data provided by:
       <br />
       <br />
-      <a href="www.inboundsdiscglf.com">Inbounds Disc Golf</a>
+      <Link
+        href="http://www.inboundsdiscgolf.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Inbounds Disc Golf
+      </Link>
     </p>
     <Div id="getStartedButtonContainer" css={getStartedButtomWrapperStyle}>
       <RaisedButton label="Get Started" secondary onClick={handleGetStartedOnClick} />
