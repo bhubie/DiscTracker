@@ -4,7 +4,7 @@
 
 Disc flight path data provided by: [Inbounds Disc Golf](http://www.inboundsdiscgolf.com)
 
-Project Inspired by: updated version of [discpath.haxor.fi](http://www.discpath.haxor.fi)
+Project Inspired by: [discpath.haxor.fi](http://www.discpath.haxor.fi)
 
 API Reposirty for app: [DiscTrackerServer](https://github.com/bhubie/DiscTrackerServer)
 
