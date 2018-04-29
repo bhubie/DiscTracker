@@ -12,7 +12,7 @@ import { mediaQueries } from '../../Utils/MediaQueries';
 import AppTheme from '../../AppTheme';
 
 const { Div } = glamorous;
-const apiUrl = process.env.NODE_ENV === 'production' ? 'http://localhost:1234' : process.env.REACT_APP_DEV_API_URL;
+const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
 
 const styleApp = {
