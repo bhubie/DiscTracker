@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
 import { Div } from 'glamorous';
 import AppTheme from '../../AppTheme';
 import Link from '../Link/index';
 import { mediaQueries } from '../../Utils/MediaQueries';
+import Button from '../Button';
 
 
 const welcomeMessageStyle = {
@@ -48,7 +48,9 @@ const WelcomeMessage = ({ handleGetStartedOnClick }) => (
       </Link>
     </p>
     <Div id="getStartedButtonContainer" css={getStartedButtomWrapperStyle}>
-      <RaisedButton label="Get Started" secondary onClick={handleGetStartedOnClick} />
+      <Button id="btnGetStarted" onClick={handleGetStartedOnClick} type="secondary">
+        Get Started
+      </Button>
     </Div>
   </Div>
 );

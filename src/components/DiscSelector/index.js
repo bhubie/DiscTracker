@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { Div } from 'glamorous';
 import 'react-select/dist/react-select.css';
 import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
+import Button from '../Button';
 
 const discSelectorStyle = {
   width: '100%',
@@ -92,7 +92,9 @@ export default class DiscSelector extends React.Component {
                   />
                 </Div>
                 <Div css={styleButtonContainer}>
-                  <RaisedButton label="Add to Bag" secondary onClick={this.handleClick} />
+                  <Button id="btnAddToBag" onClick={this.handleClick} type="secondary">
+                    Add to Bag
+                  </Button>
                 </Div>
               </Div>
             </CardText>
