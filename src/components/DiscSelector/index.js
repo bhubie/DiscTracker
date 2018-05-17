@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { Div } from 'glamorous';
-import 'react-select/dist/react-select.css';
 import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
 import Button from '../Button';
+import Select from '../Select';
 
 const discSelectorStyle = {
   width: '100%',
@@ -49,7 +48,7 @@ export default class DiscSelector extends React.Component {
     }
 
     handleClick = () => {
-      const disc = this.props.discs.filter(d => d._id === this.state.selectedOption.value)[0];
+      const disc = this.props.discs.filter(d => d._id === this.state.selectedOption)[0];
 
       if (disc !== undefined) {
         disc.discID = disc._id;
@@ -62,10 +61,6 @@ export default class DiscSelector extends React.Component {
     }
 
     render() {
-      const { selectedOption } = this.state;
-      const value = selectedOption && selectedOption.value;
-
-
       const values = this.props.discs !== undefined ? this.props.discs.map(disc => ({
         value: disc._id,
         label: `${disc.manufacturer} ${disc.name}`,
@@ -83,13 +78,7 @@ export default class DiscSelector extends React.Component {
             <CardText expandable>
               <Div id="DiscSelectorContainer" css={discSelectorContainerStyle}>
                 <Div css={dropdownContainerStyle} id="dropDownContainer">
-                  <Select
-                    name="discSelector"
-                    value={value}
-                    onChange={this.handleChange}
-                    options={values}
-                    placeholder="Select or search for a disc..."
-                  />
+                  <Select options={values} onChange={this.handleChange} placeHolder="Tap to Select a Disc" />
                 </Div>
                 <Div css={styleButtonContainer}>
                   <Button id="btnAddToBag" onClick={this.handleClick} type="secondary">
