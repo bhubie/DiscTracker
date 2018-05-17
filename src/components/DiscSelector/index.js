@@ -61,10 +61,6 @@ export default class DiscSelector extends React.Component {
     }
 
     render() {
-      const { selectedOption } = this.state;
-      const value = selectedOption && selectedOption.value;
-
-
       const values = this.props.discs !== undefined ? this.props.discs.map(disc => ({
         value: disc._id,
         label: `${disc.manufacturer} ${disc.name}`,

@@ -20,7 +20,7 @@ const styleSelect = {
 const styleSelectArrow = {
   width: '100%',
   position: 'relative',
-  backgroundImage: "url(\"data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%230' fill-rule='evenodd' opacity='.54' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E\");",
+  backgroundImage: "url(\"data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%230' fill-rule='evenodd' opacity='.54' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E\")",
   display: 'inline-flex',
   boxSizing: 'border-box',
   backgroundRepeat: 'no-repeat',
