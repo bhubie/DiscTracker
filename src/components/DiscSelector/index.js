@@ -78,7 +78,13 @@ export default class DiscSelector extends React.Component {
             <CardText expandable>
               <Div id="DiscSelectorContainer" css={discSelectorContainerStyle}>
                 <Div css={dropdownContainerStyle} id="dropDownContainer">
-                  <Select options={values} onChange={this.handleChange} placeHolder="Tap to Select a Disc" />
+                  <Select
+                    options={values}
+                    onChange={this.handleChange}
+                    placeHolder="Tap to Select a Disc"
+                    showLoadingIndicator
+                    loadingMessage="Loading Discs..."
+                  />
                 </Div>
                 <Div css={styleButtonContainer}>
                   <Button id="btnAddToBag" onClick={this.handleClick} type="secondary">
