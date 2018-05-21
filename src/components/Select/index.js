@@ -33,12 +33,19 @@ export default class Select extends React.Component {
       this.props.onChange(e.target.options[e.target.selectedIndex].value);
     }
 
-    renderOptions = (options) => {
+    renderOptions = (options, showLoadingIndicator, loadingMessage) => {
       const renderedOptions = options.map(option => (<option value={option.value}>{option.label}</option>));
+
+      let placeHolder;
+      if (showLoadingIndicator && renderedOptions.length < 1) {
+        placeHolder = <option>{loadingMessage}</option>;
+      } else {
+        placeHolder = <option disabled selected value >{this.props.placeHolder}</option>;
+      }
 
       return (
         <GlamSelect onChange={this.handleOnChange} css={styleSelect}>
-          <option disabled selected value >{this.props.placeHolder}</option>
+          {placeHolder}
           {renderedOptions}
         </GlamSelect>
       );
@@ -47,7 +54,11 @@ export default class Select extends React.Component {
     render() {
       return (
         <Div css={styleSelectArrow}>
-          {this.renderOptions(this.props.options)}
+          {this.renderOptions(
+this.props.options,
+            this.props.showLoadingIndicator,
+            this.props.loadingMessage,
+)}
         </Div>
 
       );
@@ -58,4 +69,10 @@ Select.propTypes = {
   placeHolder: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   onChange: PropTypes.func.isRequired,
+  showLoadingIndicator: PropTypes.bool.isRequired,
+  loadingMessage: PropTypes.string,
+};
+
+Select.defaultProps = {
+  loadingMessage: 'Loading...',
 };
