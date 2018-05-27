@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "dexie": "^2.0.4",
     "glamor": "^2.20.40",
     "glamorous": "^4.12.1",
     "immutability-helper": "^2.6.6",
