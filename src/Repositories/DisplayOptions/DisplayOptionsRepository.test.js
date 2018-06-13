@@ -43,6 +43,15 @@ describe('DisplayOptionsRepository', () => {
       expect(hand.value).toBe(dOptions[0].hand.value);
     });
   });
+
+  describe('Get All', () => {
+    it('should retrieve all reords from the display options table', async () => {
+      await displayOptionsRepository.add(displayOptions);
+      const dOptions = await displayOptionsRepository.getAll();
+
+      expect(dOptions.length).toBe(1);
+    });
+  });
 });
 
 afterEach(() => {
