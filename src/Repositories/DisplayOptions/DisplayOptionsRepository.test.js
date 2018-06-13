@@ -29,6 +29,20 @@ describe('DisplayOptionsRepository', () => {
       expect(id).toBe(1);
     });
   });
+
+  describe('Update Hand', () => {
+    it('should update stored hand with passed in hand value', async () => {
+      const updateHand = {
+        value: 'R',
+      };
+
+      const id = await displayOptionsRepository.add(displayOptions);
+      const hand = await displayOptionsRepository.updateHand(id, updateHand);
+      const dOptions = await displayOptionsRepository.getAll();
+
+      expect(hand.value).toBe(dOptions[0].hand.value);
+    });
+  });
 });
 
 afterEach(() => {
