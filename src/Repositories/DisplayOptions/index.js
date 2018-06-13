@@ -24,6 +24,17 @@ class DisplayOptionsRepository {
     });
   }
 
+  updateGridColor(id, gridColor) {
+    return new Promise((resolve, reject) => {
+      this.db.table('displayOptions')
+        .update(id, { gridColor })
+        .then(() => resolve(gridColor))
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  }
+
   getAll() {
     return new Promise((resolve, reject) => {
       this.db.table('displayOptions')

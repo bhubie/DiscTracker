@@ -32,6 +32,23 @@ describe('DisplayOptionsRepository', () => {
 
   describe('Update Hand', () => {
     it('should update stored hand with passed in hand value', async () => {
+      const updatedGridColor = {
+        r: '255',
+        g: '255',
+        b: '0',
+        a: '1',
+      };
+
+      const id = await displayOptionsRepository.add(displayOptions);
+      const gc = await displayOptionsRepository.updateGridColor(id, updatedGridColor);
+      const dOptions = await displayOptionsRepository.getAll();
+
+      expect(gc).toEqual(dOptions[0].gridColor);
+    });
+  });
+
+  describe('Update Grild Color', () => {
+    it('should update stored grid color with passed in grid color', async () => {
       const updateHand = {
         value: 'R',
       };
