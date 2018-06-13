@@ -35,6 +35,17 @@ class DisplayOptionsRepository {
     });
   }
 
+  updateGridLineColor(id, gridLineColor) {
+    return new Promise((resolve, reject) => {
+      this.db.table('displayOptions')
+        .update(id, { gridLineColor })
+        .then(() => resolve(gridLineColor))
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  }
+
   getAll() {
     return new Promise((resolve, reject) => {
       this.db.table('displayOptions')
