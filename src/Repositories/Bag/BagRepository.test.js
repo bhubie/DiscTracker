@@ -30,8 +30,8 @@ describe('Bag Repository', () => {
       const bag2 = {
         name: 'bag 2',
       };
-      const id = await bagRepository.add(mockedBag);
-      const id2 = await bagRepository.add(bag2);
+      bagRepository.add(mockedBag);
+      bagRepository.add(bag2);
       const bags = await bagRepository.getAll();
 
       expect(bags.length).toBe(2);
