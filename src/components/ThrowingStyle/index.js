@@ -7,7 +7,6 @@ import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
 
 export default class ThrowingStyle extends React.Component {
     state = {
-      selectedOption: this.props.hand,
       values: [{
         value: 'R',
         label: 'RHBH/LHFH',
@@ -21,7 +20,6 @@ export default class ThrowingStyle extends React.Component {
         value: e.target.id,
         label: e.target.name,
       };
-      this.setState({ selectedOption: clickedOption });
       this.props.handleStyleChange(clickedOption);
     }
 
@@ -53,8 +51,8 @@ export default class ThrowingStyle extends React.Component {
           alignItems: 'center',
         },
         ({ selected = 'L' }) => ({
-          background: selected === this.state.selectedOption.value ? AppTheme.palette.accent1Color : 'transperent',
-          color: selected === this.state.selectedOption.value ? AppTheme.palette.alternateTextColor : '#000',
+          background: selected === this.props.hand.value ? AppTheme.palette.accent1Color : 'transperent',
+          color: selected === this.props.hand.value ? AppTheme.palette.alternateTextColor : '#000',
         }),
       );
       const options = this.state.values.map(o => (<Option selected={o.value} id={o.value} name={o.label}><Div id={o.value} name={o.label}>{o.label}</Div></Option>));

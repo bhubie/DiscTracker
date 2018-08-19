@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
 import Header from '../Header';
-import Bag from '../Bag';
+import BagContainer from '../BagContainer';
 import DiscSelector from '../DiscSelector';
 import ThrowingStyle from '../ThrowingStyle/';
 import FlightPath from '../FlightPath';
@@ -10,6 +10,8 @@ import WelcomeMesage from '../WelcomeMessage';
 import BottomSheet from '../BottomSheet';
 import { mediaQueries } from '../../Utils/MediaQueries';
 import AppTheme from '../../AppTheme';
+// import db from '../../db';
+// import DisplayOptionsRepository from '../../Repositories/DisplayOptions';
 
 const { Div } = glamorous;
 const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
@@ -49,7 +51,6 @@ class AppContentsContainer extends Component {
       discs: [],
       hand: {
         value: 'L',
-        label: 'LHBH/RHFH',
       },
       gridColor: {
         r: '37',
@@ -63,6 +64,7 @@ class AppContentsContainer extends Component {
         b: '255',
         a: '1',
       },
+      displayOptionsID: 0,
     }
 
     componentDidMount() {
@@ -72,10 +74,41 @@ class AppContentsContainer extends Component {
           this.setState({ discs: j }, () => {
           });
         });
+
+      // this.loadDisplayOptions();
     }
 
+    /*
+    loadDisplayOptions = () => {
+      const displayRepository = new DisplayOptionsRepository(db);
+      displayRepository.getAll()
+        .then((results) => {
+          if (results.length > 0) {
+            this.setState({
+              hand: results[0].hand,
+              gridColor: results[0].gridColor,
+              gridLineColor: results[0].gridLineColor,
+              displayOptionsID: results[0].id,
+            });
+          } else {
+            displayRepository.add({
+              hand: this.state.hand,
+              gridColor: this.state.gridColor,
+              gridLineColor: this.state.gridLineColor,
+            }).then((id) => {
+              this.setState({displayOptionsID: id});
+            });
+          }
+        });
+    }
+
+    */
+
     handleStyleChange = (selectedOptions) => {
-      this.setState({ hand: selectedOptions });
+      this.setState({ hand: selectedOptions }, () => {
+        // const repos = new DisplayOptionsRepository(db);
+        // repos.updateHand(this.state.displayOptionsID, selectedOptions);
+      });
     }
 
     handleAddToBag = (disc) => {
@@ -135,7 +168,7 @@ class AppContentsContainer extends Component {
 
     createBagElement = (id, bottomSheet) => (
       <BagDiv id={id} bottomSheet={bottomSheet}>
-        <Bag
+        <BagContainer
           name="My Bag"
           discs={this.state.currentBag}
           handleRemoveDisc={this.handleRemoveDisc}

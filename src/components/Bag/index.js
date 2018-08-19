@@ -1,17 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Div, Table } from 'glamorous';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Disc from './Disc/index';
 import Type from './Type/index';
-import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
-
-const styleSelectedBag = {
-  width: '100%',
-  gridColumn: '1 / span 2',
-  gridRow: 1,
-  marginTop: '10px',
-};
 
 const styleTable = {
   width: '100%',
@@ -57,34 +48,23 @@ const Bag = ({
     .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange));
 
   return (
-    <Div id="selectedBag" css={styleSelectedBag}>
-      <Card style={CardStyle} initiallyExpanded>
-        <CardHeader
-          style={HeaderCardStyle}
-          title="Current Bag"
-          actAsExpander
-          showExpandableButton
-        />
-        <CardText expandable>
-          <Div id="tableWrapper" css={styleTableWrapper}>
-            <Table id="DiscTable" css={styleTable}>
-              <Type name="Drivers">
-                {drivers}
-              </Type>
-              <Type name="Fairway Drivers">
-                {fairwayDrivers}
-              </Type>
-              <Type name="Midranges">
-                {midranges}
-              </Type>
-              <Type name="Putters">
-                {putters}
-              </Type>
-            </Table>
-          </Div>
-        </CardText>
-      </Card>
+    <Div id="tableWrapper" css={styleTableWrapper}>
+      <Table id="DiscTable" css={styleTable}>
+        <Type name="Drivers">
+          {drivers}
+        </Type>
+        <Type name="Fairway Drivers">
+          {fairwayDrivers}
+        </Type>
+        <Type name="Midranges">
+          {midranges}
+        </Type>
+        <Type name="Putters">
+          {putters}
+        </Type>
+      </Table>
     </Div>
+
   );
 };
 
