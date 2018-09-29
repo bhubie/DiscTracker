@@ -8,7 +8,7 @@ class DisplayOptionsRepository {
       this.db.table('displayOptions')
         .add(displayOption)
         .then((id) => {
-          resolve(id);
+          resolve(Object.assign({}, displayOption, { id }));
         });
     });
   }
@@ -17,7 +17,7 @@ class DisplayOptionsRepository {
     return new Promise((resolve, reject) => {
       this.db.table('displayOptions')
         .update(id, { hand })
-        .then(() => resolve(hand))
+        .then(() => resolve(Object.assign({}, { hand }, { id })))
         .catch((e) => {
           reject(e);
         });
@@ -28,7 +28,7 @@ class DisplayOptionsRepository {
     return new Promise((resolve, reject) => {
       this.db.table('displayOptions')
         .update(id, { gridColor })
-        .then(() => resolve(gridColor))
+        .then(() =>  resolve(Object.assign({}, { gridColor }, { id })))
         .catch((e) => {
           reject(e);
         });
@@ -39,7 +39,7 @@ class DisplayOptionsRepository {
     return new Promise((resolve, reject) => {
       this.db.table('displayOptions')
         .update(id, { gridLineColor })
-        .then(() => resolve(gridLineColor))
+        .then(() =>  resolve(Object.assign({}, { gridLineColor }, { id })))
         .catch((e) => {
           reject(e);
         });

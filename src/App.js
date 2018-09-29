@@ -3,6 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppTheme from './AppTheme';
 import AppContentsContainer from './components/AppContentsContainer';
 
+
 const App = () => (
   <MuiThemeProvider muiTheme={AppTheme}>
     <AppContentsContainer />

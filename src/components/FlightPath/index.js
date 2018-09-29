@@ -192,7 +192,7 @@ export default class FlightPath extends React.Component {
 }
 
 FlightPath.propTypes = {
-  gridColor: PropTypes.objectOf(PropTypes.string).isRequired,
+  gridColor: PropTypes.objectOf(PropTypes.number).isRequired,
   gridLineColor: PropTypes.objectOf(PropTypes.string).isRequired,
   throwingStyle: PropTypes.string.isRequired,
   discs: PropTypes.arrayOf(PropTypes.object).isRequired,

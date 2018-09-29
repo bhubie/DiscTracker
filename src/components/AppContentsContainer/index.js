@@ -3,19 +3,16 @@ import glamorous from 'glamorous';
 import Header from '../Header';
 import BagContainer from '../BagContainer';
 import DiscSelector from '../DiscSelector';
-import ThrowingStyle from '../ThrowingStyle/';
-import FlightPath from '../FlightPath';
-import DisplayOptions from '../DisplayOptions';
 import WelcomeMesage from '../WelcomeMessage';
 import BottomSheet from '../BottomSheet';
 import { mediaQueries } from '../../Utils/MediaQueries';
 import AppTheme from '../../AppTheme';
-// import db from '../../db';
-// import DisplayOptionsRepository from '../../Repositories/DisplayOptions';
+import DisplayOptionsContainer from '../../Containers/DisplayOptionsContainer';
+import FlightPathContainer from '../../Containers/FlightPathContainer';
+import ThrowingStyleContainer from '../../Containers/ThrowingStyleContainer';
 
 const { Div } = glamorous;
 const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
-
 
 const styleApp = {
   background: AppTheme.palette.primary1Color,
@@ -49,22 +46,6 @@ class AppContentsContainer extends Component {
     state = {
       currentBag: [],
       discs: [],
-      hand: {
-        value: 'L',
-      },
-      gridColor: {
-        r: '37',
-        g: '37',
-        b: '38',
-        a: '1',
-      },
-      gridLineColor: {
-        r: '255',
-        g: '255',
-        b: '255',
-        a: '1',
-      },
-      displayOptionsID: 0,
     }
 
     componentDidMount() {
@@ -76,39 +57,6 @@ class AppContentsContainer extends Component {
         });
 
       // this.loadDisplayOptions();
-    }
-
-    /*
-    loadDisplayOptions = () => {
-      const displayRepository = new DisplayOptionsRepository(db);
-      displayRepository.getAll()
-        .then((results) => {
-          if (results.length > 0) {
-            this.setState({
-              hand: results[0].hand,
-              gridColor: results[0].gridColor,
-              gridLineColor: results[0].gridLineColor,
-              displayOptionsID: results[0].id,
-            });
-          } else {
-            displayRepository.add({
-              hand: this.state.hand,
-              gridColor: this.state.gridColor,
-              gridLineColor: this.state.gridLineColor,
-            }).then((id) => {
-              this.setState({displayOptionsID: id});
-            });
-          }
-        });
-    }
-
-    */
-
-    handleStyleChange = (selectedOptions) => {
-      this.setState({ hand: selectedOptions }, () => {
-        // const repos = new DisplayOptionsRepository(db);
-        // repos.updateHand(this.state.displayOptionsID, selectedOptions);
-      });
     }
 
     handleAddToBag = (disc) => {
@@ -149,18 +97,6 @@ class AppContentsContainer extends Component {
       this.forceUpdate();
     }
 
-    handleGridColorChange = (grid, color) => {
-      this.setState({
-        gridColor: color,
-      });
-    }
-
-    handleGridLineColorChange = (grid, color) => {
-      this.setState({
-        gridLineColor: color,
-      });
-    }
-
     handleGetStartedOnclick = () => {
       const flightPathContainer = document.getElementById('flightPathContainer');
       flightPathContainer.scrollIntoView({ behavior: 'smooth' });
@@ -179,17 +115,8 @@ class AppContentsContainer extends Component {
           discs={this.state.discs}
           handleAddToBag={this.handleAddToBag}
         />
-
-        <ThrowingStyle
-          hand={this.state.hand}
-          handleStyleChange={this.handleStyleChange}
-        />
-        <DisplayOptions
-          gridColor={this.state.gridColor}
-          gridLineColor={this.state.gridLineColor}
-          handleGridBackgroundColorChange={this.handleGridColorChange}
-          handleGridLineColorChange={this.handleGridLineColorChange}
-        />
+        <ThrowingStyleContainer />
+        <DisplayOptionsContainer />
       </BagDiv>
     )
 
@@ -199,12 +126,7 @@ class AppContentsContainer extends Component {
           <Header />
           <WelcomeMesage handleGetStartedOnClick={this.handleGetStartedOnclick} />
           {this.createBagElement('BagContainer', false)}
-          <FlightPath
-            discs={this.state.currentBag.filter(disc => disc.selected === true)}
-            throwingStyle={this.state.hand.value}
-            gridColor={this.state.gridColor}
-            gridLineColor={this.state.gridLineColor}
-          />
+          <FlightPathContainer />
 
           <BottomSheet>
             {this.createBagElement('BagContainer2', true)}
@@ -214,6 +136,4 @@ class AppContentsContainer extends Component {
     }
 }
 
-
 export default AppContentsContainer;
-

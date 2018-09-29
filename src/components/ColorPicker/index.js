@@ -5,6 +5,19 @@ import { SketchPicker } from 'react-color';
 
 
 class ColorPicker extends React.Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // console.log('get derive state called');
+    // console.log(nextProps.selectedColor);
+    // console.log(prevState.color);
+    if (prevState.color !== nextProps.selectedColor) {
+      return {
+        color: nextProps.selectedColor,
+      };
+    }
+    return {
+      prevState,
+    };
+  }
   state = {
     displayColorPicker: false,
     color: this.props.selectedColor,
@@ -17,15 +30,21 @@ class ColorPicker extends React.Component {
   handleClose = () => {
     this.setState({ displayColorPicker: false });
     if (this.props.handleColorChange !== undefined) {
-      this.props.handleColorChange(this.props.item, this.state.color);
+      this.props.handleColorChange(this.props.itemID, this.state.color);
     }
   };
 
   handleChange = (color) => {
+    // console.log(color);
     this.setState({ color: color.rgb });
   };
 
   render() {
+    // console.log('color is');
+    // console.log(this.state.color);
+    // console.log(this.props.selectedColor);
+    // console.log(this.props.item);
+    // console.log(this.props.itemID);
     const styles = {
       color: {
         width: '24px',
@@ -85,9 +104,10 @@ class ColorPicker extends React.Component {
 }
 
 ColorPicker.propTypes = {
-  selectedColor: PropTypes.objectOf(PropTypes.string).isRequired,
+  selectedColor: PropTypes.objectOf(PropTypes.number).isRequired,
   handleColorChange: PropTypes.func.isRequired,
   item: PropTypes.string.isRequired,
+  itemID: PropTypes.number.isRequired,
 };
 
 export default ColorPicker;

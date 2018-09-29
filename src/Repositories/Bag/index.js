@@ -8,7 +8,7 @@ class BagRepository {
       this.db.table('bag')
         .add(bag)
         .then((id) => {
-          resolve(id);
+          resolve(Object.assign({}, bag, { id }));
         });
     });
   }

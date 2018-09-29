@@ -10,8 +10,8 @@ const mockedBag = {
 describe('Bag Repository', () => {
   describe('Add', () => {
     it('should add passed in record successfully', async () => {
-      const id = await bagRepository.add(mockedBag);
-      expect(id).toBe(1);
+      const bag = await bagRepository.add(mockedBag);
+      expect(bag.id).toBe(1);
     });
   });
 
