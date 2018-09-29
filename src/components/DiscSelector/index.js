@@ -61,10 +61,12 @@ export default class DiscSelector extends React.Component {
     }
 
     render() {
+      /*
       const values = this.props.discs !== undefined ? this.props.discs.map(disc => ({
         value: disc._id,
         label: `${disc.manufacturer} ${disc.name}`,
       })) : [];
+      */
 
       return (
         <Div id="discSelector" css={discSelectorStyle}>
@@ -79,11 +81,14 @@ export default class DiscSelector extends React.Component {
               <Div id="DiscSelectorContainer" css={discSelectorContainerStyle}>
                 <Div css={dropdownContainerStyle} id="dropDownContainer">
                   <Select
-                    options={values}
+                    options={this.props.discs}
                     onChange={this.handleChange}
                     placeHolder="Tap to Select a Disc"
                     showLoadingIndicator
                     loadingMessage="Loading Discs..."
+                    selectLabel="name"
+                    selectValue="_id"
+                    showPlaceholder
                   />
                 </Div>
                 <Div css={styleButtonContainer}>

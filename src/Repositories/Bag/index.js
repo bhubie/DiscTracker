@@ -29,6 +29,9 @@ class BagRepository {
       this.db.table('bag')
         .toArray()
         .then((bags) => {
+          if (bags === undefined) {
+            resolve([]);
+          }
           resolve(bags);
         })
         .catch((e) => {

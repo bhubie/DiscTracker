@@ -11,8 +11,14 @@ import {
 
 export default function (state, { type, payload }) {
   switch (type) {
-    case LOAD_BAGS: return { bags: payload };
-    case ADD_BAG: return { bags: [...state.bags, payload] };
+    case LOAD_BAGS:
+      return {
+        bags: payload,
+      };
+    case ADD_BAG:
+      return {
+        bags: [...state.bags, payload],
+      };
     case UPDATE_BAG: {
       const bagToUpdate = state.bags.find(bag => bag.id === payload.id);
       return {

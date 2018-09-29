@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Div, Table } from 'glamorous';
-import Disc from './Disc/index';
-import Type from './Type/index';
+import { Div } from 'glamorous';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
+import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
+import BagSelector from '../BagSelector';
+import BagContents from '../BagContents';
 
-const styleTable = {
+const styleSelectedBag = {
   width: '100%',
-  display: 'table',
-  borderCollapse: 'collapse',
-  borderSpacing: 0,
-  borderBottom: '1px solid #e9ecef',
-  fontFamily: 'Roboto, sans-serif',
+  gridColumn: '1 / span 2',
+  gridRow: 1,
+  marginTop: '10px',
 };
 
 const styleTableWrapper = {
@@ -18,53 +18,30 @@ const styleTableWrapper = {
   overflowX: 'auto',
 };
 
-const renderDisc = (
-  name, selected, weight, handleRemoveDisc,
-  id, handleSelectedStateChange, handleDiscColorChange,
-) => (<Disc
-  key={id}
-  name={name}
-  selected={selected}
-  weight={weight}
-  handleRemoveDisc={handleRemoveDisc}
-  handleSelectedStateChange={handleSelectedStateChange}
-  discID={id}
-  handleDiscColorChange={handleDiscColorChange}
-/>);
 
 const Bag = ({
-  discs, handleRemoveDisc, handleSelectedStateChange, handleDiscColorChange,
+  discs, handleRemoveDisc, handleSelectedStateChange, handleDiscColorChange, bags
 }) => {
-  const drivers = discs.filter(disc => disc.type === 'Distance Driver')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
-
-  const fairwayDrivers = discs.filter(disc => disc.type === 'Fairway Driver')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
-
-  const midranges = discs.filter(disc => disc.type === 'Mid-Range')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
-
-  const putters = discs.filter(disc => disc.type === 'Putt & Approach')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange));
-
   return (
-    <Div id="tableWrapper" css={styleTableWrapper}>
-      <Table id="DiscTable" css={styleTable}>
-        <Type name="Drivers">
-          {drivers}
-        </Type>
-        <Type name="Fairway Drivers">
-          {fairwayDrivers}
-        </Type>
-        <Type name="Midranges">
-          {midranges}
-        </Type>
-        <Type name="Putters">
-          {putters}
-        </Type>
-      </Table>
+    <Div id="selectedBag" css={styleSelectedBag}>
+      <Card style={CardStyle} initiallyExpanded>
+        <CardHeader
+          style={HeaderCardStyle}
+          title="Bags"
+          actAsExpander
+          showExpandableButton
+        />
+        <CardText expandable>
+          <BagSelector values={bags} />
+          <BagContents
+            discs={discs}
+            handleRemoveDisc={handleRemoveDisc}
+            handleSelectedStateChange={handleSelectedStateChange}
+            handleDiscColorChange={handleDiscColorChange}
+          />
+        </CardText>
+      </Card>
     </Div>
-
   );
 };
 

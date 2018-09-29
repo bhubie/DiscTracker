@@ -14,6 +14,9 @@ const BagSelector = ({
       onChange={handleBagChange}
       showLoadingIndicator
       loadingMessage="Loading Bags..."
+      selectLabel="name"
+      selectValue="id"
+      placeHolder="test"
     />
     <Button onClick={handleNewBag}>
         New Bag

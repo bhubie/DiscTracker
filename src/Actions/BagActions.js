@@ -5,9 +5,12 @@ import db from '../db';
 const bagRepository = new BagRepository(db);
 
 export function loadBags() {
+  console.log('load bags called');
   return (dispatch) => {
     bagRepository.getAll()
       .then((bags) => {
+        console.log('bags are');
+        console.log(bags)
         dispatch({
           type: LOAD_BAGS,
           payload: bags,

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
 import Header from '../Header';
-import BagContainer from '../BagContainer';
 import DiscSelector from '../DiscSelector';
 import WelcomeMesage from '../WelcomeMessage';
 import BottomSheet from '../BottomSheet';
@@ -10,6 +9,7 @@ import AppTheme from '../../AppTheme';
 import DisplayOptionsContainer from '../../Containers/DisplayOptionsContainer';
 import FlightPathContainer from '../../Containers/FlightPathContainer';
 import ThrowingStyleContainer from '../../Containers/ThrowingStyleContainer';
+import BagContainer from '../../Containers/BagContainer';
 
 const { Div } = glamorous;
 const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
