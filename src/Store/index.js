@@ -22,9 +22,7 @@ const initialState = {
       a: '1',
     },
   }],
-  colorPicker: {
-    displayColorPicker: false,
-  },
+  showBagModal: false,
 };
 
 const store = createStore(

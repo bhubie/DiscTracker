@@ -1,16 +1,13 @@
-import { ADD_BAG, UPDATE_BAG, LOAD_BAGS } from '../Constants';
+import { ADD_BAG, UPDATE_BAG, LOAD_BAGS, TOGGLE_BAG_MODAL, BAG_NAME_ON_CHANGE } from '../Constants';
 import BagRepository from '../Repositories/Bag';
 import db from '../db';
 
 const bagRepository = new BagRepository(db);
 
 export function loadBags() {
-  console.log('load bags called');
   return (dispatch) => {
     bagRepository.getAll()
       .then((bags) => {
-        console.log('bags are');
-        console.log(bags)
         dispatch({
           type: LOAD_BAGS,
           payload: bags,
@@ -20,8 +17,9 @@ export function loadBags() {
 }
 
 export function addBag(name) {
+  const bagToAdd = { name };
   return (dispatch) => {
-    bagRepository.addBag(name)
+    bagRepository.add(bagToAdd)
       .then((bag) => {
         dispatch({
           type: ADD_BAG,
@@ -36,10 +34,46 @@ export function updateBag(id, name) {
     bagRepository
       .updateName(id, name)
       .then((bagName) => {
+        console.log('updated bag name is')
+        console.log(bagName)
         dispatch({
           type: UPDATE_BAG,
-          payload: bagName,
+          payload: {
+            bagName,
+            id,
+          },
         });
       });
   };
 }
+
+export function bagNameOnChange(name) {
+  return (dispatch) => {
+    dispatch({
+      type: BAG_NAME_ON_CHANGE,
+      payload: name,
+    });
+  };
+}
+
+export function toggleBagModal(mode, id, name) {
+  if (mode === 'new') {
+    return (dispatch) => {
+      dispatch({
+        type: TOGGLE_BAG_MODAL,
+        payload: { mode },
+      });
+    };
+  }
+  return (dispatch) => {
+    dispatch({
+      type: TOGGLE_BAG_MODAL,
+      payload: {
+        mode,
+        id,
+        name,
+      },
+    });
+  };
+}
+

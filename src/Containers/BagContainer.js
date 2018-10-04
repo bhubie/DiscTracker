@@ -1,14 +1,12 @@
 import { connect } from 'react-redux';
-import { addBag, updateBag } from '../Actions/BagActions';
+import { addBag, updateBag, toggleBagModal } from '../Actions/BagActions';
 import Bag from '../components/Bag';
 
 function mapStateToProps(state) {
-  const { bags } = state;
-  console.log('bags are');
-  console.log(bags);
-
+  const { bags, showBagModal } = state;
   return {
     bags,
+    showBagModal,
   };
 }
 
@@ -19,6 +17,10 @@ function mapDispatchToProps(dispatch) {
     },
     handleUpdateBag(id, name) {
       dispatch(updateBag(id, name));
+    },
+    handleOpenBagDialog() {
+      // console.log('new bag clicked');
+      dispatch(toggleBagModal());
     },
   };
 }

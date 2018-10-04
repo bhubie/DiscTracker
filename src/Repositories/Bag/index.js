@@ -16,8 +16,10 @@ class BagRepository {
   updateName(id, name) {
     return new Promise((resolve, reject) => {
       this.db.table('bag')
-        .update(id, { name })
-        .then(() => resolve(name))
+        .update(parseInt(id, 0), { name })
+        .then(() => {
+          resolve(name);
+        })
         .catch((e) => {
           reject(e);
         });
@@ -32,6 +34,7 @@ class BagRepository {
           if (bags === undefined) {
             resolve([]);
           }
+
           resolve(bags);
         })
         .catch((e) => {

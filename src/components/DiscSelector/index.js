@@ -88,7 +88,7 @@ export default class DiscSelector extends React.Component {
                     loadingMessage="Loading Discs..."
                     selectLabel="name"
                     selectValue="_id"
-                    showPlaceholder
+                    showPlaceHolder
                   />
                 </Div>
                 <Div css={styleButtonContainer}>

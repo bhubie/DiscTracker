@@ -33,7 +33,7 @@ export default class Select extends React.Component {
       this.props.onChange(e.target.options[e.target.selectedIndex].value);
     }
 
-    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel) => {
+    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id) => {
       let renderedOptions;
 
       if (options !== undefined) {
@@ -53,7 +53,7 @@ export default class Select extends React.Component {
       }
 
       return (
-        <GlamSelect onChange={this.handleOnChange} css={styleSelect}>
+        <GlamSelect onChange={this.handleOnChange} css={styleSelect} id={id}>
           {placeHolder}
           {renderedOptions}
         </GlamSelect>
@@ -69,6 +69,7 @@ export default class Select extends React.Component {
             this.props.loadingMessage,
             this.props.selectValue,
             this.props.selectLabel,
+            this.props.id,
           )}
         </Div>
 
