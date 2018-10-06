@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addBag, updateBag, toggleBagModal, bagNameOnChange } from '../Actions/BagActions';
+import { addBag, updateBag, toggleBagModal, bagNameOnChange, deleteBag } from '../Actions/BagActions';
 import BagSelector from '../components/BagSelector';
 
 function mapStateToProps(state) {
@@ -23,6 +23,9 @@ function mapDispatchToProps(dispatch) {
     },
     handleUpdateBag(bagID, bagName) {
       dispatch(updateBag(bagID, bagName));
+    },
+    handleDeleteBag(bagID) {
+      dispatch(deleteBag(bagID));
     },
     handleEditBagOnChange(event) {
       dispatch(bagNameOnChange(event.target.value));
@@ -54,6 +57,11 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
       } else {
         dispatchProps.handleUpdateBag(stateProps.bagID, stateProps.bagName);
       }
+    },
+    handleDeleteBagClick: () => {
+      const e = document.getElementById('bagSelectorElement');
+      const id = e.options[e.selectedIndex].value;
+      dispatchProps.handleDeleteBag(id);
     },
   };
 }

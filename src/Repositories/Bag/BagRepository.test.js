@@ -18,8 +18,8 @@ describe('Bag Repository', () => {
   describe('update name', () => {
     it('should update the name of the bag with the new passed in name', async () => {
       const updatedBagName = 'New Bag Name';
-      const id = await bagRepository.add(mockedBag);
-      const name = await bagRepository.updateName(id, updatedBagName);
+      const bag = await bagRepository.add(mockedBag);
+      const name = await bagRepository.updateName(bag.id, updatedBagName);
 
       expect(name).toBe(updatedBagName);
     });
@@ -37,6 +37,17 @@ describe('Bag Repository', () => {
       expect(bags.length).toBe(2);
       expect(bags[0].name).toBe(mockedBag.name);
       expect(bags[1].name).toBe(bag2.name);
+    });
+  });
+
+  describe('delete', () => {
+    it('should delete a record successfully', async () => {
+      bagRepository.add(mockedBag);
+      const bags = await bagRepository.getAll();
+      await bagRepository.deleteBag(bags[0].id);
+      
+      const newBags = await bagRepository.getAll();
+      expect(newBags.length).toBe(0);
     });
   });
 });

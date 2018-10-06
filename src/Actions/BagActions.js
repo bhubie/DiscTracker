@@ -1,4 +1,4 @@
-import { ADD_BAG, UPDATE_BAG, LOAD_BAGS, TOGGLE_BAG_MODAL, BAG_NAME_ON_CHANGE } from '../Constants';
+import { ADD_BAG, UPDATE_BAG, LOAD_BAGS, TOGGLE_BAG_MODAL, BAG_NAME_ON_CHANGE, DELETE_BAG } from '../Constants';
 import BagRepository from '../Repositories/Bag';
 import db from '../db';
 
@@ -29,13 +29,25 @@ export function addBag(name) {
   };
 }
 
+export function deleteBag(id) {
+  return (dispatch) => {
+    bagRepository.deleteBag(id)
+      .then(() => {
+        dispatch({
+          type: DELETE_BAG,
+          payload: id,
+        });
+      });
+  };
+}
+
 export function updateBag(id, name) {
   return (dispatch) => {
     bagRepository
       .updateName(id, name)
       .then((bagName) => {
-        console.log('updated bag name is')
-        console.log(bagName)
+        // console.log('updated bag name is')
+        // console.log(bagName)
         dispatch({
           type: UPDATE_BAG,
           payload: {

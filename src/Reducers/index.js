@@ -9,6 +9,7 @@ import {
   UPDATE_HAND,
   TOGGLE_BAG_MODAL,
   BAG_NAME_ON_CHANGE,
+  DELETE_BAG,
 } from '../Constants';
 
 export default function (state, { type, payload }) {
@@ -26,9 +27,9 @@ export default function (state, { type, payload }) {
       };
     case UPDATE_BAG: {
       const bagToUpdate = state.bags.find(bag => bag.id === parseInt(payload.id, 0));
-      //console.log('updated bag is');
-      //console.log(bagToUpdate);
-      //console.log(payload);
+      // console.log('updated bag is');
+      // console.log(bagToUpdate);
+      // console.log(payload);
       return {
         ...state,
         bags: [
@@ -36,6 +37,14 @@ export default function (state, { type, payload }) {
           Object.assign({}, bagToUpdate, { name: payload.bagName }),
         ],
         showBagModal: false,
+      };
+    }
+    case DELETE_BAG: {
+      return {
+        ...state,
+        bags: [
+          ...state.bags.filter(bag => bag.id !== parseInt(payload, 0)),
+        ],
       };
     }
     case LOAD_DISPLAY_OPTIONS:
