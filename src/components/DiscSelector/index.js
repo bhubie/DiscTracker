@@ -48,7 +48,7 @@ export default class DiscSelector extends React.Component {
     }
 
     handleClick = () => {
-      const disc = this.props.discs.filter(d => d._id === this.state.selectedOption)[0];
+      const disc = this.props.selectableDiscs.filter(d => d._id === this.state.selectedOption)[0];
 
       if (disc !== undefined) {
         disc.discID = disc._id;
@@ -56,18 +56,11 @@ export default class DiscSelector extends React.Component {
         disc.color = this.state.discColor;
         disc.weight = this.state.discWeight;
         disc.wear = this.state.discWear;
-        this.props.handleAddToBag(disc);
+        this.props.handleAddDiscToBag(this.props.selectedBagID, disc);
       }
     }
 
     render() {
-      /*
-      const values = this.props.discs !== undefined ? this.props.discs.map(disc => ({
-        value: disc._id,
-        label: `${disc.manufacturer} ${disc.name}`,
-      })) : [];
-      */
-
       return (
         <Div id="discSelector" css={discSelectorStyle}>
           <Card style={CardStyle} initiallyExpanded>
@@ -81,7 +74,7 @@ export default class DiscSelector extends React.Component {
               <Div id="DiscSelectorContainer" css={discSelectorContainerStyle}>
                 <Div css={dropdownContainerStyle} id="dropDownContainer">
                   <Select
-                    options={this.props.discs}
+                    options={this.props.selectableDiscs}
                     onChange={this.handleChange}
                     placeHolder="Tap to Select a Disc"
                     showLoadingIndicator
@@ -105,6 +98,7 @@ export default class DiscSelector extends React.Component {
 }
 
 DiscSelector.propTypes = {
-  discs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleAddToBag: PropTypes.func.isRequired,
+  selectedBagID: PropTypes.number.isRequired,
+  selectableDiscs: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleAddDiscToBag: PropTypes.func.isRequired,
 };

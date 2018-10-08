@@ -10,6 +10,12 @@ import {
   TOGGLE_BAG_MODAL,
   BAG_NAME_ON_CHANGE,
   DELETE_BAG,
+  LOAD_BAGGED_DISCS,
+  ADD_DISC,
+  FETCH_DISCS_SUCCESS,
+  UPDATE_DISC_ENABLED,
+  UPDATE_DISC_COLOR,
+  DELETE_DISC
 } from '../Constants';
 
 export default function (state, { type, payload }) {
@@ -17,7 +23,9 @@ export default function (state, { type, payload }) {
     case LOAD_BAGS:
       return {
         ...state,
-        bags: payload,
+        bags: payload.bags,
+        selectedBagName: payload.selectedBagName,
+        selectedBagID: payload.selectedBagID,
       };
     case ADD_BAG:
       return {
@@ -27,9 +35,6 @@ export default function (state, { type, payload }) {
       };
     case UPDATE_BAG: {
       const bagToUpdate = state.bags.find(bag => bag.id === parseInt(payload.id, 0));
-      // console.log('updated bag is');
-      // console.log(bagToUpdate);
-      // console.log(payload);
       return {
         ...state,
         bags: [
@@ -44,6 +49,47 @@ export default function (state, { type, payload }) {
         ...state,
         bags: [
           ...state.bags.filter(bag => bag.id !== parseInt(payload, 0)),
+        ],
+      };
+    }
+    case LOAD_BAGGED_DISCS: {
+      return {
+        ...state,
+        baggedDiscs: payload.discs,
+        // selectedBagID: payload.bagID,
+      };
+    }
+    case ADD_DISC: {
+      return {
+        ...state,
+        baggedDiscs: [...state.baggedDiscs, payload],
+      };
+    }
+    case UPDATE_DISC_ENABLED: {
+      const discToUpdate = state.baggedDiscs.find(discs => discs.id === payload.id);
+      return {
+        ...state,
+        baggedDiscs: [
+          ...state.baggedDiscs.filter(discs => discs.id !== payload.id),
+          Object.assign({}, discToUpdate, { selected: payload.selected }),
+        ],
+      };
+    }
+    case DELETE_DISC: {
+      return {
+        ...state,
+        baggedDiscs: [
+          ...state.baggedDiscs.filter(disc => disc.id !== parseInt(payload, 0)),
+        ],
+      };
+    }
+    case UPDATE_DISC_COLOR: {
+      const discToUpdate = state.baggedDiscs.find(discs => discs.id === payload.id);
+      return {
+        ...state,
+        baggedDiscs: [
+          ...state.baggedDiscs.filter(discs => discs.id !== payload.id),
+          Object.assign({}, discToUpdate, { color: payload.color }),
         ],
       };
     }
@@ -100,6 +146,12 @@ export default function (state, { type, payload }) {
       return {
         ...state,
         bagName: payload,
+      };
+    }
+    case FETCH_DISCS_SUCCESS: {
+      return {
+        ...state,
+        selectableDiscs: payload,
       };
     }
     default: return state;

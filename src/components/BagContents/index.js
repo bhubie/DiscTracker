@@ -19,33 +19,34 @@ const styleTableWrapper = {
 };
 
 const renderDisc = (
-  name, selected, weight, handleRemoveDisc,
-  id, handleSelectedStateChange, handleDiscColorChange,
+  name, selected, weight, handleDeleteDisc,
+  id, handleUpdateDiscSelected, handleUpdateDiscColor, discColor,
 ) => (<Disc
   key={id}
   name={name}
   selected={selected}
   weight={weight}
-  handleRemoveDisc={handleRemoveDisc}
-  handleSelectedStateChange={handleSelectedStateChange}
+  handleDeleteDisc={handleDeleteDisc}
+  handleUpdateDiscSelected={handleUpdateDiscSelected}
   discID={id}
-  handleDiscColorChange={handleDiscColorChange}
+  handleUpdateDiscColor={handleUpdateDiscColor}
+  discColor={discColor}
 />);
 
 const BagContents = ({
-  discs, handleRemoveDisc, handleSelectedStateChange, handleDiscColorChange,
+  baggedDiscs, handleDeleteDisc, handleUpdateDiscSelected, handleUpdateDiscColor,
 }) => {
-  const drivers = discs.filter(disc => disc.type === 'Distance Driver')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
+  const drivers = baggedDiscs.filter(disc => disc.type === 'Distance Driver')
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
 
-  const fairwayDrivers = discs.filter(disc => disc.type === 'Fairway Driver')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
+  const fairwayDrivers = baggedDiscs.filter(disc => disc.type === 'Fairway Driver')
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
 
-  const midranges = discs.filter(disc => disc.type === 'Mid-Range')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange, handleDiscColorChange));
+  const midranges = baggedDiscs.filter(disc => disc.type === 'Mid-Range')
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
 
-  const putters = discs.filter(disc => disc.type === 'Putt & Approach')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, true, disc.weight, handleRemoveDisc, disc.discID, handleSelectedStateChange));
+  const putters = baggedDiscs.filter(disc => disc.type === 'Putt & Approach')
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, disc.color));
 
   return (
     <Div id="tableWrapper" css={styleTableWrapper}>
@@ -69,11 +70,10 @@ const BagContents = ({
 };
 
 BagContents.propTypes = {
-  name: PropTypes.string.isRequired,
-  discs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleRemoveDisc: PropTypes.func.isRequired,
-  handleSelectedStateChange: PropTypes.func.isRequired,
-  handleDiscColorChange: PropTypes.func.isRequired,
+  baggedDiscs: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleDeleteDisc: PropTypes.func.isRequired,
+  handleUpdateDiscSelected: PropTypes.func.isRequired,
+  handleUpdateDiscColor: PropTypes.func.isRequired,
 };
 
 export default BagContents;

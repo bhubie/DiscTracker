@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import glamorous from 'glamorous';
 import Header from '../Header';
-import DiscSelector from '../DiscSelector';
+import DiscSelectorContainer from '../../Containers/DiscSelectorContainer';
 import WelcomeMesage from '../WelcomeMessage';
 import BottomSheet from '../BottomSheet';
 import { mediaQueries } from '../../Utils/MediaQueries';
@@ -9,10 +10,11 @@ import AppTheme from '../../AppTheme';
 import DisplayOptionsContainer from '../../Containers/DisplayOptionsContainer';
 import FlightPathContainer from '../../Containers/FlightPathContainer';
 import ThrowingStyleContainer from '../../Containers/ThrowingStyleContainer';
-import BagContainer from '../../Containers/BagContainer';
+import Bag from '../../components/Bag';
+import { fetchDiscs } from '../../Actions/DiscActions';
+
 
 const { Div } = glamorous;
-const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
 const styleApp = {
   background: AppTheme.palette.primary1Color,
@@ -43,59 +45,9 @@ const BagDiv = bagFactory(({ bottomSheet }) => ({
 }));
 
 class AppContentsContainer extends Component {
-    state = {
-      currentBag: [],
-      discs: [],
-    }
-
-    componentDidMount() {
-      fetch(apiUrl, { mode: 'cors' })
-        .then(res => res.json())
-        .then((j) => {
-          this.setState({ discs: j }, () => {
-          });
-        });
-
-      // this.loadDisplayOptions();
-    }
-
-    handleAddToBag = (disc) => {
-      this.setState(prevState => ({
-        currentBag: prevState.currentBag.concat([disc]),
-      }));
-    }
-
-    handleRemoveDisc = (discID) => {
-      this.setState(prevState => ({
-        currentBag: prevState.currentBag.filter(_ => _.discID !== discID),
-      }));
-    }
-
-    handleSelectedStateChange = (discID, value) => {
-      let index;
-
-      this.state.currentBag.forEach((disc, i) => {
-        if (disc.discID === discID) {
-          index = i;
-        }
-      });
-
-      this.state.currentBag[index].selected = value;
-      this.forceUpdate();
-    }
-
-    handleDiscColorChange = (discID, value) => {
-      let index;
-
-      this.state.currentBag.forEach((disc, i) => {
-        if (disc.discID == discID) {
-          index = i;
-        }
-      });
-
-      this.state.currentBag[index].color = value;
-      this.forceUpdate();
-    }
+  componentDidMount() {
+    this.props.dispatch(fetchDiscs());
+  }
 
     handleGetStartedOnclick = () => {
       const flightPathContainer = document.getElementById('flightPathContainer');
@@ -104,17 +56,8 @@ class AppContentsContainer extends Component {
 
     createBagElement = (id, bottomSheet) => (
       <BagDiv id={id} bottomSheet={bottomSheet}>
-        <BagContainer
-          name="My Bag"
-          discs={this.state.currentBag}
-          handleRemoveDisc={this.handleRemoveDisc}
-          handleSelectedStateChange={this.handleSelectedStateChange}
-          handleDiscColorChange={this.handleDiscColorChange}
-        />
-        <DiscSelector
-          discs={this.state.discs}
-          handleAddToBag={this.handleAddToBag}
-        />
+        <Bag />
+        <DiscSelectorContainer />
         <ThrowingStyleContainer />
         <DisplayOptionsContainer />
       </BagDiv>
@@ -136,4 +79,5 @@ class AppContentsContainer extends Component {
     }
 }
 
-export default AppContentsContainer;
+export default connect(null)(AppContentsContainer);
+// export default AppContentsContainer;

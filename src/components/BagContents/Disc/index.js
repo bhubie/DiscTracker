@@ -35,73 +35,53 @@ const styleDeleteButtom = {
 };
 
 const Disc = ({
-  name, selected, weight, handleRemoveDisc,
-  handleSelectedStateChange, discID, handleDiscColorChange,
-}) => {
-  const onClick = (e) => {
-    handleRemoveDisc(e.target.parentElement.parentElement.parentElement.parentElement.id);
-  };
-
-  const onCheck = (e) => {
-    handleSelectedStateChange(
-      e.target.parentElement.parentElement.parentElement.id,
-      e.target.checked,
-    );
-  };
-
-  const color = {
-    r: '241',
-    g: '112',
-    b: '19',
-    a: '1',
-  };
-
-  return (
-    <Tr id={discID} css={tableRowStyle}>
-      <Td css={styleTableCell}>
-        {name}
-      </Td>
-      <Td css={styleTableCell}>
-        <Div css={colorPickerWrapperStyle}>
-          <ColorPicker
-            item={discID}
-            handleColorChange={handleDiscColorChange}
-            selectedColor={color}
-          />
-        </Div>
-      </Td>
-      <Td css={styleTableCell}>
-        <Toggle
-          defaultToggled={selected}
-          onToggle={onCheck}
-          style={styleToggle}
-          secondary
+  name, selected, weight, handleDeleteDisc,
+  handleUpdateDiscSelected, discID, handleUpdateDiscColor, discColor,
+}) => (
+  <Tr id={discID} css={tableRowStyle}>
+    <Td css={styleTableCell}>
+      {name}
+    </Td>
+    <Td css={styleTableCell}>
+      <Div css={colorPickerWrapperStyle}>
+        <ColorPicker
+          itemID={discID}
+          handleColorChange={handleUpdateDiscColor}
+          selectedColor={discColor}
         />
-      </Td>
-      <Td css={styleTableCell}>
-        <Div
-          css={styleDeleteButtom}
-          role="button"
-          tabIndex={0}
-          onClick={onClick}
-        >
-          <Delete
-            color={AppTheme.palette.primary1Color}
-          />
-        </Div>
-      </Td>
-    </Tr>
-  );
-};
+      </Div>
+    </Td>
+    <Td css={styleTableCell}>
+      <Toggle
+        defaultToggled={selected}
+        onToggle={handleUpdateDiscSelected}
+        style={styleToggle}
+        secondary
+      />
+    </Td>
+    <Td css={styleTableCell}>
+      <Div
+        css={styleDeleteButtom}
+        role="button"
+        tabIndex={0}
+        onClick={handleDeleteDisc}
+      >
+        <Delete
+          color={AppTheme.palette.primary1Color}
+        />
+      </Div>
+    </Td>
+  </Tr>
+);
 
 Disc.propTypes = {
   name: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
   weight: PropTypes.string.isRequired,
-  handleRemoveDisc: PropTypes.func.isRequired,
-  handleSelectedStateChange: PropTypes.func.isRequired,
+  handleDeleteDisc: PropTypes.func.isRequired,
+  handleUpdateDiscSelected: PropTypes.func.isRequired,
   discID: PropTypes.number.isRequired,
-  handleDiscColorChange: PropTypes.func.isRequired,
+  handleUpdateDiscColor: PropTypes.func.isRequired,
 };
 
 export default Disc;

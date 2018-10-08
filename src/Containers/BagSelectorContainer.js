@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { addBag, updateBag, toggleBagModal, bagNameOnChange, deleteBag } from '../Actions/BagActions';
+import { loadBaggedDiscs } from '../Actions/DiscActions';
 import BagSelector from '../components/BagSelector';
 
 function mapStateToProps(state) {
@@ -41,6 +42,9 @@ function mapDispatchToProps(dispatch) {
     },
     handleCloseModal() {
       dispatch(toggleBagModal('Edit'));
+    },
+    handleBagChange(bagID) {
+      dispatch(loadBaggedDiscs(bagID));
     },
   };
 }

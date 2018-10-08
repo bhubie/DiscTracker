@@ -6,12 +6,17 @@ const bagRepository = new BagRepository(db);
 
 export function loadBags() {
   return (dispatch) => {
-    bagRepository.getAll()
+    return bagRepository.getAll()
       .then((bags) => {
         dispatch({
           type: LOAD_BAGS,
-          payload: bags,
+          payload: {
+            bags,
+            selectedBagID: bags[0].id,
+            selectedBagName: bags[0].name,
+          },
         });
+        return Promise.resolve();
       });
   };
 }

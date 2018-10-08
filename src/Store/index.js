@@ -23,6 +23,8 @@ const initialState = {
     },
   }],
   showBagModal: false,
+  baggedDiscs: [],
+  selectableDiscs: [],
 };
 
 const store = createStore(
