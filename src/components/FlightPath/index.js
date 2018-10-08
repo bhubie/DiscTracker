@@ -29,12 +29,6 @@ export default class FlightPath extends React.Component {
     super(props);
     this.canvas = React.createRef();
     this.flightPathContainer = React.createRef();
-    /*
-    this.state = {
-      GridWidth: 350,
-      GridBlockWidth: 50,
-    };
-    */
   }
 
   componentDidMount() {
@@ -57,7 +51,7 @@ export default class FlightPath extends React.Component {
   drawDiscs() {
     this.drawGridLines(this.props.gridColor, this.props.gridLineColor);
 
-    this.props.discs.forEach((disc) => {
+    this.props.baggedDiscs.forEach((disc) => {
       this.drawDiscPath(
         `${disc.manufacturer} ${disc.name}`,
         disc.distance,
@@ -195,5 +189,5 @@ FlightPath.propTypes = {
   gridColor: PropTypes.objectOf(PropTypes.number).isRequired,
   gridLineColor: PropTypes.objectOf(PropTypes.string).isRequired,
   throwingStyle: PropTypes.string.isRequired,
-  discs: PropTypes.arrayOf(PropTypes.object).isRequired,
+  baggedDiscs: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
