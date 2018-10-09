@@ -4,7 +4,6 @@ import BagContents from '../components/BagContents';
 
 function mapStateToProps(state) {
   const { baggedDiscs } = state;
-  console.log(baggedDiscs);
   return {
     baggedDiscs,
   };
@@ -16,8 +15,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(updateEnabled(e.target.parentElement.parentElement.parentElement.id, e.target.checked));
     },
     handleUpdateDiscColor(discID, color) {
-      // console.log(discID)
-      // console.log(color)
       dispatch(updateDiscColor(discID, color));
     },
     handleDeleteDisc(e) {

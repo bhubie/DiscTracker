@@ -44,7 +44,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(toggleBagModal('Edit'));
     },
     handleBagChange(bagID) {
-      dispatch(loadBaggedDiscs(bagID));
+      dispatch(loadBaggedDiscs(parseInt(bagID, 0)));
     },
   };
 }

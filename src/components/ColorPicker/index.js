@@ -4,19 +4,16 @@ import { Div } from 'glamorous';
 import { SketchPicker } from 'react-color';
 
 
-class ColorPicker extends React.Component {
+class ColorPicker extends React.PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
-    // console.log('get derive state called');
-    // console.log(nextProps.selectedColor);
-    // console.log(prevState.color);
+
     if (prevState.color !== nextProps.selectedColor) {
       return {
         color: nextProps.selectedColor,
       };
     }
-    return {
-      prevState,
-    };
+
+    return null;
   }
   state = {
     displayColorPicker: false,
@@ -41,6 +38,7 @@ class ColorPicker extends React.Component {
 
   render() {
     // console.log('color is');
+    // console.log('color is: ')
     // console.log(this.state.color);
     // console.log(this.props.selectedColor);
     // console.log(this.props.item);
@@ -106,7 +104,6 @@ class ColorPicker extends React.Component {
 ColorPicker.propTypes = {
   selectedColor: PropTypes.objectOf(PropTypes.number).isRequired,
   handleColorChange: PropTypes.func.isRequired,
-  item: PropTypes.string.isRequired,
   itemID: PropTypes.number.isRequired,
 };
 

@@ -56,7 +56,7 @@ export default function (state, { type, payload }) {
       return {
         ...state,
         baggedDiscs: payload.discs,
-        // selectedBagID: payload.bagID,
+        selectedBagID: payload.bagID,
       };
     }
     case ADD_DISC: {

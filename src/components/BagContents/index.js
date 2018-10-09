@@ -46,7 +46,7 @@ const BagContents = ({
     .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
 
   const putters = baggedDiscs.filter(disc => disc.type === 'Putt & Approach')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, disc.color));
+    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
 
   return (
     <Div id="tableWrapper" css={styleTableWrapper}>
