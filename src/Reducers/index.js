@@ -15,7 +15,7 @@ import {
   FETCH_DISCS_SUCCESS,
   UPDATE_DISC_ENABLED,
   UPDATE_DISC_COLOR,
-  DELETE_DISC
+  DELETE_DISC,
 } from '../Constants';
 
 export default function (state, { type, payload }) {

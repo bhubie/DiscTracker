@@ -4,6 +4,7 @@ import BagContents from '../components/BagContents';
 
 function mapStateToProps(state) {
   const { baggedDiscs } = state;
+  console.log(baggedDiscs);
   return {
     baggedDiscs,
   };

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
-import App from './App';
+import AppContainer from './Containers/AppContainer';
 import registerServiceWorker from './registerServiceWorker';
 import store from './Store';
 import { loadDisplayOptions } from './Actions/DisplayOptionsActions';
@@ -21,7 +21,7 @@ seedDatabase().then(() => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById('root'),
 );
