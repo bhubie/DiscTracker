@@ -25,11 +25,16 @@ const colorLabelStyle = {
 };
 
 const DisplayOptions = ({
-  handleGridBackgroundColorChange, handleGridLineColorChange, gridColor, gridLineColor,
+  handleUpdateGridColor, handleUpdateGridLineColor, gridColor, gridLineColor, id,
 }) => {
+  // console.log('passed in grid color is');
+  
   const defaultGridColor = (gridColor !== undefined) ? gridColor : {
     r: '0', g: '0', b: '0', a: '1',
   };
+
+  // console.log(defaultGridColor);
+
   const defaultGridLineColor = (gridLineColor !== undefined) ? gridLineColor : {
     r: '255', g: '255', b: '255', a: '1',
   };
@@ -50,8 +55,9 @@ const DisplayOptions = ({
             </Span>
             <ColorPicker
               item="gridColor"
-              handleColorChange={handleGridBackgroundColorChange}
+              handleColorChange={handleUpdateGridColor}
               selectedColor={defaultGridColor}
+              itemID={id}
             />
           </Div>
           <Div id="gridLineColor" css={colorOptionStyle} >
@@ -60,8 +66,9 @@ const DisplayOptions = ({
             </Span>
             <ColorPicker
               item="gridLineColor"
-              handleColorChange={handleGridLineColorChange}
+              handleColorChange={handleUpdateGridLineColor}
               selectedColor={defaultGridLineColor}
+              itemID={id}
             />
           </Div>
         </CardText>
@@ -71,10 +78,10 @@ const DisplayOptions = ({
 };
 
 DisplayOptions.propTypes = {
-  gridColor: PropTypes.objectOf(PropTypes.string).isRequired,
+  gridColor: PropTypes.objectOf(PropTypes.number).isRequired,
   gridLineColor: PropTypes.objectOf(PropTypes.string).isRequired,
-  handleGridBackgroundColorChange: PropTypes.func.isRequired,
-  handleGridLineColorChange: PropTypes.func.isRequired,
+  handleUpdateGridColor: PropTypes.func.isRequired,
+  handleUpdateGridLineColor: PropTypes.func.isRequired,
 };
 
 export default DisplayOptions;

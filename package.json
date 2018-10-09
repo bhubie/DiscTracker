@@ -4,16 +4,23 @@
   "private": true,
   "dependencies": {
     "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "dexie": "^2.0.4",
+    "dexie-relationships": "^1.2.10",
+    "fake-indexeddb": "^2.0.4",
     "glamor": "^2.20.40",
     "glamorous": "^4.12.1",
     "immutability-helper": "^2.6.6",
+    "indexeddbshim": "^3.8.0",
     "material-ui": "^0.20.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.0",
     "react-color": "^2.14.0",
     "react-dom": "^16.3.0",
-    "react-scripts": "1.1.1",
+    "react-redux": "^5.0.7",
+    "react-scripts": "^1.1.4",
     "react-swipeable-bottom-sheet": "^1.1.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "sinon": "^4.5.0"
   },
   "scripts": {
@@ -29,6 +36,7 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "jest-canvas-mock": "^1.0.2"
+    "jest-canvas-mock": "^1.0.2",
+    "redux-devtools": "^3.4.1"
   }
 }

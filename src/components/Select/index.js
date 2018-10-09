@@ -33,18 +33,27 @@ export default class Select extends React.Component {
       this.props.onChange(e.target.options[e.target.selectedIndex].value);
     }
 
-    renderOptions = (options, showLoadingIndicator, loadingMessage) => {
-      const renderedOptions = options.map(option => (<option value={option.value}>{option.label}</option>));
+    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id) => {
+      let renderedOptions;
+
+      if (options !== undefined) {
+        renderedOptions = options.map(option => (<option value={option[selectValue]}>{option[selectLabel]}</option>));
+      } else {
+        renderedOptions = [];
+      }
+      // console.log(renderedOptions);
 
       let placeHolder;
       if (showLoadingIndicator && renderedOptions.length < 1) {
         placeHolder = <option>{loadingMessage}</option>;
-      } else {
+      } else if (this.props.showPlaceHolder === true) {
         placeHolder = <option disabled selected value >{this.props.placeHolder}</option>;
+      } else {
+        placeHolder = undefined;
       }
 
       return (
-        <GlamSelect onChange={this.handleOnChange} css={styleSelect}>
+        <GlamSelect onChange={this.handleOnChange} css={styleSelect} id={id}>
           {placeHolder}
           {renderedOptions}
         </GlamSelect>
@@ -55,10 +64,13 @@ export default class Select extends React.Component {
       return (
         <Div css={styleSelectArrow}>
           {this.renderOptions(
-this.props.options,
+            this.props.options,
             this.props.showLoadingIndicator,
             this.props.loadingMessage,
-)}
+            this.props.selectValue,
+            this.props.selectLabel,
+            this.props.id,
+          )}
         </Div>
 
       );
@@ -66,11 +78,14 @@ this.props.options,
 }
 
 Select.propTypes = {
+  showPlaceHolder: PropTypes.bool,
   placeHolder: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   onChange: PropTypes.func.isRequired,
   showLoadingIndicator: PropTypes.bool.isRequired,
   loadingMessage: PropTypes.string,
+  selectValue: PropTypes.string.isRequired,
+  selectLabel: PropTypes.string.isRequired,
 };
 
 Select.defaultProps = {
