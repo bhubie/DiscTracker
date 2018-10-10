@@ -18,35 +18,46 @@ const styleTableWrapper = {
   overflowX: 'auto',
 };
 
-const renderDisc = (
-  name, selected, weight, handleDeleteDisc,
-  id, handleUpdateDiscSelected, handleUpdateDiscColor, discColor,
-) => (<Disc
-  key={id}
-  name={name}
-  selected={selected}
-  weight={weight}
-  handleDeleteDisc={handleDeleteDisc}
-  handleUpdateDiscSelected={handleUpdateDiscSelected}
-  discID={id}
-  handleUpdateDiscColor={handleUpdateDiscColor}
-  discColor={discColor}
-/>);
-
 const BagContents = ({
   baggedDiscs, handleDeleteDisc, handleUpdateDiscSelected, handleUpdateDiscColor,
 }) => {
-  const drivers = baggedDiscs.filter(disc => disc.type === 'Distance Driver')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
+  const drivers = [];
+  const fairwayDrivers = [];
+  const midranges = [];
+  const putters = [];
 
-  const fairwayDrivers = baggedDiscs.filter(disc => disc.type === 'Fairway Driver')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
+  baggedDiscs.forEach((disc) => {
+    const discElement = (
+      <Disc
+        key={disc.id}
+        name={`${disc.manufacturer} ${disc.name}`}
+        selected={disc.selected}
+        weight={disc.weight}
+        handleDeleteDisc={handleDeleteDisc}
+        handleUpdateDiscSelected={handleUpdateDiscSelected}
+        discID={disc.id}
+        handleUpdateDiscColor={handleUpdateDiscColor}
+        discColor={disc.color}
+      />
+    );
 
-  const midranges = baggedDiscs.filter(disc => disc.type === 'Mid-Range')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
-
-  const putters = baggedDiscs.filter(disc => disc.type === 'Putt & Approach')
-    .map(disc => renderDisc(`${disc.manufacturer} ${disc.name}`, disc.selected, disc.weight, handleDeleteDisc, disc.id, handleUpdateDiscSelected, handleUpdateDiscColor, disc.color));
+    switch (disc.type) {
+      case 'Distance Driver':
+        drivers.push(discElement);
+        break;
+      case 'Fairway Driver':
+        fairwayDrivers.push(discElement);
+        break;
+      case 'Mid-Range':
+        midranges.push(discElement);
+        break;
+      case 'Putt & Approach':
+        putters.push(discElement);
+        break;
+      default:
+        drivers.push(discElement);
+    }
+  });
 
   return (
     <Div id="tableWrapper" css={styleTableWrapper}>
