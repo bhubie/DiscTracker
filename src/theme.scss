@@ -4,6 +4,7 @@
 $navbar-background-color: #1976D2;
 $navbar-item-color: white;
 $navbar-item-hover-color: white;
+$alternate-text-color: white;
 
 $break-medium: 750px;
 
@@ -49,3 +50,26 @@ $break-medium: 750px;
       padding-bottom: 56px;
     };
   }
+
+  // Welcome Message
+  .getStartedButtonContainer {
+    display: none;
+    @media (max-width : $break-medium) {
+      display: 'inline',
+    };
+  }
+  .welcomeMessage  {
+    grid-area: welcomemessage;
+    text-align: center;
+    color: $alternate-text-color;
+    @media (max-width : $break-medium) {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex: 1;
+    };
+  };
