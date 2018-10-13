@@ -13,6 +13,7 @@
     "immutability-helper": "^2.6.6",
     "indexeddbshim": "^3.8.0",
     "material-ui": "^0.20.0",
+    "node-sass": "^4.9.3",
     "prop-types": "^15.6.1",
     "react": "^16.3.0",
     "react-color": "^2.14.0",

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { Div } from 'glamorous';
 import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
-import Button from '../Button';
+import { ButtonPrimary } from '../Buttons';
 import Select from '../Select';
 
 const discSelectorStyle = {
@@ -85,9 +85,9 @@ export default class DiscSelector extends React.Component {
                   />
                 </Div>
                 <Div css={styleButtonContainer}>
-                  <Button id="btnAddToBag" onClick={this.handleClick} type="secondary">
+                  <ButtonPrimary id="btnAddToBag" onClick={this.handleClick} >
                     Add to Bag
-                  </Button>
+                  </ButtonPrimary>
                 </Div>
               </Div>
             </CardText>

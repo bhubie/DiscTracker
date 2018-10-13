@@ -1,0 +1,13 @@
+@import 'bulma/sass/utilities/initial-variables.sass';
+
+// your customization as described in the Bulma docs
+
+@import 'bulma/bulma.sass';
+
+
+
+.throwingStyle {
+    margin-top: '10px';
+    grid-column: '1 / span 1';
+    grid-row: 3;
+}

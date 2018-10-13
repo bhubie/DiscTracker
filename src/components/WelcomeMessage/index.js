@@ -4,7 +4,7 @@ import { Div } from 'glamorous';
 import AppTheme from '../../AppTheme';
 import Link from '../Link/index';
 import { mediaQueries } from '../../Utils/MediaQueries';
-import Button from '../Button';
+import { ButtonPrimary } from '../Buttons';
 
 
 const welcomeMessageStyle = {
@@ -48,9 +48,9 @@ const WelcomeMessage = ({ handleGetStartedOnClick }) => (
       </Link>
     </p>
     <Div id="getStartedButtonContainer" css={getStartedButtomWrapperStyle}>
-      <Button id="btnGetStarted" onClick={handleGetStartedOnClick} type="secondary">
+      <ButtonPrimary id="btnGetStarted" onClick={handleGetStartedOnClick} type="secondary">
         Get Started
-      </Button>
+      </ButtonPrimary>
     </Div>
   </Div>
 );

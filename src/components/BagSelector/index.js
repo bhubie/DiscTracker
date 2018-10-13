@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from '../Select';
-import Button from '../Button';
+import { ButtonPrimary } from '../Buttons';
 
 
 const BagSelector = ({
@@ -41,15 +41,17 @@ const BagSelector = ({
         showPlaceHolder={false}
         id="bagSelectorElement"
       />
-      <Button onClick={handleNewBagClick}>
-        New Bag
-      </Button>
-      <Button onClick={handleDeleteBagClick}>
-        Delete Bag
-      </Button>
-      <Button onClick={handleEditBagClick}>
-        Edit Bag Name
-      </Button>
+      <div className="buttons">
+        <ButtonPrimary onClick={handleNewBagClick}>
+          New Bag
+        </ButtonPrimary>
+        <ButtonPrimary onClick={handleDeleteBagClick}>
+          Delete Bag
+        </ButtonPrimary>
+        <ButtonPrimary onClick={handleEditBagClick}>
+          Edit Bag Name
+        </ButtonPrimary>
+      </div>
       <Dialog
         title={modalTitle}
         modal={false}
