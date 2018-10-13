@@ -5,6 +5,8 @@ $navbar-background-color: #1976D2;
 $navbar-item-color: white;
 $navbar-item-hover-color: white;
 
+$break-medium: 750px;
+
 @import 'bulma';
 @import '~bulma-switch';
 
@@ -35,3 +37,15 @@ $navbar-item-hover-color: white;
     grid-row: 2;
     margin-top: 10px;
   };
+
+  //Flight Path
+  .flightPathContainer {
+    margin-top: 10px;
+    grid-area: flightpath;
+    max-height: 600px;
+    @media (max-width : $break-medium) {
+      padding-top: 5px;
+      min-height: 100vh;
+      padding-bottom: 56px;
+    };
+  }

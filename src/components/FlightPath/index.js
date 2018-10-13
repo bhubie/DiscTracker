@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Div } from 'glamorous';
 import { colorToRGBA } from '../../Utils/Utils';
 import { calcAdjustedHighSpeedTurn, calcAdjustedLowSpeedFade, calcTurnSign, calcFadeStart, calcImpact, calcTurnEnd, calcXAxisOrigin, calcDeltaV } from '../../Utils/FlightPathCalc';
-import { mediaQueries } from '../../Utils/MediaQueries';
 
 const style = {
   margin: 'auto',
@@ -11,17 +9,6 @@ const style = {
   width: '350px',
   height: '550px',
   maxHeight: '600px',
-};
-
-const styleFlightPathContainer = {
-  marginTop: '10px',
-  gridArea: 'flightpath',
-  maxHeight: '600px',
-  [mediaQueries.maxWidth750.value]: {
-    paddingTop: '5px',
-    minHeight: '100vh',
-    paddingBottom: '56px',
-  },
 };
 
 export default class FlightPath extends React.Component {
@@ -176,11 +163,11 @@ export default class FlightPath extends React.Component {
   }
   render() {
     return (
-      <Div id="flightPathContainer" css={styleFlightPathContainer} >
+      <div id="flightPathContainer" className="flightPathContainer" >
         <div id="flightPath" style={style} ref={this.flightPathContainer}>
           <canvas id="flightPath" ref={this.canvas} />
         </div>
-      </Div>
+      </div>
     );
   }
 }
