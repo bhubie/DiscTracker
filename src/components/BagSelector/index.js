@@ -1,11 +1,8 @@
-import { Div } from 'glamorous';
-import Dialog from 'material-ui/Dialog';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from '../Select';
 import { ButtonPrimary } from '../Buttons';
+import Modal from '../Modal';
 
 
 const BagSelector = ({
@@ -16,20 +13,20 @@ const BagSelector = ({
   const modalTitle = mode === 'New' ? 'New Bag' : 'Edit Bag';
   const bagInput = mode === 'New' ? undefined : bagName;
   const modalButtons = [
-    <FlatButton
-      label="Cancel"
-      primary
+    <button
       onClick={handleCloseModal}
-    />,
-    <FlatButton
-      label="Save"
-      primary
+      className="button"
+    >Cancel
+    </button>,
+    <button
+      className="button is-success"
       onClick={handleSaveBag}
-    />,
+    > Save
+    </button>,
   ];
 
   return (
-    <Div id="bagSelector">
+    <div id="bagSelector">
       <Select
         options={bags}
         onChange={handleBagChange}
@@ -52,21 +49,23 @@ const BagSelector = ({
           Edit Bag Name
         </ButtonPrimary>
       </div>
-      <Dialog
+      <Modal
         title={modalTitle}
         modal={false}
         open={showBagModal}
         onRequestClose={handleCloseModal}
         actions={modalButtons}
       >
-        <TextField
-          defaultValue={bagInput}
-          floatingLabelText="Bag Name"
+        <input
+          type="text"
+          className="input"
           id="bagNameTextField"
           onChange={handleEditBagOnChange}
+          value={bagInput}
+          placeholder="Bag Name"
         />
-      </Dialog>
-    </Div>
+      </Modal>
+    </div>
   );
 };
 
