@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.7.1",
+    "bulma-switch": "^2.0.0",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
     "dexie": "^2.0.4",
     "dexie-relationships": "^1.2.10",

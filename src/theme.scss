@@ -1,9 +1,18 @@
 @import 'bulma/sass/utilities/initial-variables.sass';
 
 // your customization as described in the Bulma docs
+$navbar-background-color: #1976D2;
+$navbar-item-color: white;
+$navbar-item-hover-color: white;
 
-@import 'bulma/bulma.sass';
+@import 'bulma';
+@import '~bulma-switch';
 
+
+// Header
+.header {
+    grid-area: header;
+}
 
 // Throwing Style
 .throwingStyle {
