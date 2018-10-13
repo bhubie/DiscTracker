@@ -6,6 +6,8 @@ $navbar-item-color: white;
 $navbar-item-hover-color: white;
 $alternate-text-color: white;
 
+$accent-color: #00BCD4;
+
 $break-medium: 750px;
 
 @import 'bulma';
@@ -73,3 +75,19 @@ $break-medium: 750px;
       flex: 1;
     };
   };
+
+  //Bottom Sheet
+  .BottomSheet {
+    height: 54px;
+    background: $accent-color;
+    color: #FFFFFF;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  };
+
+BottomSheetWrapper {
+    display: none;
+};
+  

@@ -1,27 +1,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Div } from 'glamorous';
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
 import KeyboardArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
-import AppTheme from '../../AppTheme';
 import { isScrolledIntoView } from '../../Utils/Utils';
 import { mediaQueries } from '../../Utils/MediaQueries';
-
-const styleBottomSheetWrapper = {
-  display: 'none',
-};
-
-
-const styleBottomSheet = {
-  height: '54px',
-  background: AppTheme.palette.accent1Color,
-  color: '#FFFFFF',
-  textAlign: 'center',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
 
 class BottomSheet extends Component {
     state = {
@@ -74,20 +57,20 @@ class BottomSheet extends Component {
       };
 
       return (
-        <Div id="BottomSheetWrapper" css={styleBottomSheetWrapper}>
+        <div id="BottomSheetWrapper" className="BottomSheetWrapper">
           <SwipeableBottomSheet
             overflowHeight={54}
             marginTop={128}
             onChange={this.onChange}
           >
-            <Div css={styleBottomSheet}>
+            <div className="BottomSheet">
               <KeyboardArrowUp style={styleArrow} id="arrow" />
               <span style={{ animation: 'fadein' }}>{bottomSheetMessage}</span>
               <KeyboardArrowUp style={styleArrow} id="arrow" />
-            </Div>
+            </div>
             {this.props.children}
           </SwipeableBottomSheet>
-        </Div>
+        </div>
       );
     }
 }
