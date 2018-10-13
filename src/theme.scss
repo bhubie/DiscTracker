@@ -5,9 +5,16 @@
 @import 'bulma/bulma.sass';
 
 
-
+// Throwing Style
 .throwingStyle {
     margin-top: '10px';
     grid-column: '1 / span 1';
+    grid-row: 3;
+}
+
+// Dislplay Options Style
+.displayOptions {
+    margin-top: '10px';
+    grid-column: '2 / span 1';
     grid-row: 3;
 }

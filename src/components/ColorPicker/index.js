@@ -75,7 +75,7 @@ class ColorPicker extends React.PureComponent {
     };
 
     return (
-      <Div>
+      <div className={this.props.className}>
         <Div
           css={styles.swatch}
           onClick={this.handleClick}
@@ -96,15 +96,17 @@ class ColorPicker extends React.PureComponent {
             />
             <SketchPicker color={this.state.color} onChange={this.handleChange} />
           </Div> : null }
-      </Div>
+      </div>
     );
   }
 }
 
 ColorPicker.propTypes = {
+  className: PropTypes.string,
   selectedColor: PropTypes.objectOf(PropTypes.number).isRequired,
   handleColorChange: PropTypes.func.isRequired,
   itemID: PropTypes.number.isRequired,
 };
+
 
 export default ColorPicker;
