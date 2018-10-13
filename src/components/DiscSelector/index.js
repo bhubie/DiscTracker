@@ -1,34 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
-import { Div } from 'glamorous';
 import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
 import { ButtonPrimary } from '../Buttons';
 import Select from '../Select';
-
-const discSelectorStyle = {
-  width: '100%',
-  gridColumn: '1 / span 2',
-  gridRow: 2,
-  marginTop: '10px',
-};
-
-const discSelectorContainerStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-around',
-  flexWrap: 'wrap',
-};
-
-const dropdownContainerStyle = {
-  width: '70%',
-  marginRight: '10px',
-  marginTop: '10px',
-};
-
-const styleButtonContainer = {
-  marginTop: '10px',
-};
 
 export default class DiscSelector extends React.Component {
     state = {
@@ -62,7 +37,7 @@ export default class DiscSelector extends React.Component {
 
     render() {
       return (
-        <Div id="discSelector" css={discSelectorStyle}>
+        <div id="discSelector" className="discSelectorStyle">
           <Card style={CardStyle} initiallyExpanded>
             <CardHeader
               style={HeaderCardStyle}
@@ -71,8 +46,8 @@ export default class DiscSelector extends React.Component {
               showExpandableButton
             />
             <CardText expandable>
-              <Div id="DiscSelectorContainer" css={discSelectorContainerStyle}>
-                <Div css={dropdownContainerStyle} id="dropDownContainer">
+              <div id="DiscSelectorContainer" className="columns">
+                <div id="dropDownContainer" className="column is-three-quarters">
                   <Select
                     options={this.props.selectableDiscs}
                     onChange={this.handleChange}
@@ -83,16 +58,16 @@ export default class DiscSelector extends React.Component {
                     selectValue="_id"
                     showPlaceHolder
                   />
-                </Div>
-                <Div css={styleButtonContainer}>
-                  <ButtonPrimary id="btnAddToBag" onClick={this.handleClick} >
+                </div>
+                <div className="column is-fullwidth">
+                  <ButtonPrimary id="btnAddToBag" onClick={this.handleClick} isFullWidth>
                     Add to Bag
                   </ButtonPrimary>
-                </Div>
-              </Div>
+                </div>
+              </div>
             </CardText>
           </Card>
-        </Div>
+        </div>
       );
     }
 }
