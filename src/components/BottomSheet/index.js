@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
-import KeyboardArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
+import IconArrowUp from '../Icons/IconArrowUp';
 import { isScrolledIntoView } from '../../Utils/Utils';
 import { mediaQueries } from '../../Utils/MediaQueries';
 
@@ -53,7 +53,10 @@ class BottomSheet extends Component {
 
       const styleArrow = {
         color: 'white',
+        fill: 'currentColor',
         transform: `rotate(${this.state.rotatation}deg)`,
+        height: '24px',
+        width: '24px',
       };
 
       return (
@@ -64,9 +67,9 @@ class BottomSheet extends Component {
             onChange={this.onChange}
           >
             <div className="BottomSheet">
-              <KeyboardArrowUp style={styleArrow} id="arrow" />
+              <IconArrowUp style={styleArrow} id="arrow" />
               <span style={{ animation: 'fadein' }}>{bottomSheetMessage}</span>
-              <KeyboardArrowUp style={styleArrow} id="arrow" />
+              <IconArrowUp style={styleArrow} id="arrow" />
             </div>
             {this.props.children}
           </SwipeableBottomSheet>

@@ -1,21 +1,14 @@
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {
-  blue500, blue700, grey400
-  , grey100, grey500
-  , cyan500, white,
-} from 'material-ui/styles/colors';
-
-const AppTheme = getMuiTheme({
+const AppTheme = {
   palette: {
-    primary1Color: blue500,
-    primary2Color: blue700,
-    primary3Color: grey400,
-    accent1Color: cyan500,
-    accent2Color: grey100,
-    accent3Color: grey500,
-    alternateTextColor: white,
+    primary1Color: '#2196F3',
+    primary2Color: '#1976D2',
+    primary3Color: '#BDBDBD',
+    accent1Color: '#00BCD4',
+    accent2Color: '#F5F5F5',
+    accent3Color: '#9E9E9E',
+    alternateTextColor: '#ffffff',
   },
-});
+};
 
 export default AppTheme;
 
