@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
-import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
+import { Card, CardHeader, CardContents } from '../Card';
 
 export default class ThrowingStyle extends React.Component {
   handleChange = (e) => {
@@ -25,18 +24,15 @@ export default class ThrowingStyle extends React.Component {
 
     return (
       <div id="throwingStyle" className="throwingStyle">
-        <Card style={CardStyle} initiallyExpanded>
+        <Card>
           <CardHeader
-            style={HeaderCardStyle}
             title="Throwing Style"
-            actAsExpander
-            showExpandableButton
           />
-          <CardText expandable>
+          <CardContents>
             <div className="buttons has-addons is-centered">
               {options}
             </div>
-          </CardText>
+          </CardContents>
         </Card>
       </div>
     );

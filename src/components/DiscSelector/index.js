@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
-import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
+import { Card, CardHeader, CardContents } from '../Card';
 import { ButtonPrimary } from '../Buttons';
 import Select from '../Select';
 
@@ -38,14 +37,11 @@ export default class DiscSelector extends React.Component {
     render() {
       return (
         <div id="discSelector" className="discSelectorStyle">
-          <Card style={CardStyle} initiallyExpanded>
+          <Card>
             <CardHeader
-              style={HeaderCardStyle}
               title="Available Discs"
-              actAsExpander
-              showExpandableButton
             />
-            <CardText expandable>
+            <CardContents>
               <div id="DiscSelectorContainer" className="columns">
                 <div id="dropDownContainer" className="column is-three-quarters">
                   <Select
@@ -65,7 +61,7 @@ export default class DiscSelector extends React.Component {
                   </ButtonPrimary>
                 </div>
               </div>
-            </CardText>
+            </CardContents>
           </Card>
         </div>
       );

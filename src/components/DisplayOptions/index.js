@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
-import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
+import { Card, CardHeader, CardContents } from '../Card';
 import ColorPicker from '../ColorPicker';
 
 const DisplayOptions = ({
@@ -17,14 +16,11 @@ const DisplayOptions = ({
 
   return (
     <div id="displayOptions" className="displayOptions">
-      <Card style={CardStyle} initiallyExpanded>
+      <Card>
         <CardHeader
-          style={HeaderCardStyle}
           title="Display Options"
-          actAsExpander
-          showExpandableButton
         />
-        <CardText expandable>
+        <CardContents>
           <div id="gridBackgroungColor" className="columns">
             <span className="column is-three-quarters">
               Grid Background Color:
@@ -49,7 +45,7 @@ const DisplayOptions = ({
               className="column"
             />
           </div>
-        </CardText>
+        </CardContents>
       </Card>
     </div>
   );

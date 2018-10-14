@@ -1,22 +1,18 @@
 import React from 'react';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
-import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
 import BagContentsContainer from '../../Containers/BagContentsContainer';
 import BagSelectorContainer from '../../Containers/BagSelectorContainer';
+import { Card, CardHeader, CardContents } from '../Card';
 
 const Bag = () => (
   <div id="selectedBag" className="styleSelectedBag">
-    <Card style={CardStyle} initiallyExpanded>
+    <Card>
       <CardHeader
-        style={HeaderCardStyle}
         title="Bags"
-        actAsExpander
-        showExpandableButton
       />
-      <CardText expandable>
+      <CardContents>
         <BagSelectorContainer />
         <BagContentsContainer />
-      </CardText>
+      </CardContents>
     </Card>
   </div>
 );
