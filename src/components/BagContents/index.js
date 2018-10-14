@@ -1,22 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Div, Table } from 'glamorous';
 import Disc from './Disc/index';
 import Type from './Type/index';
-
-const styleTable = {
-  width: '100%',
-  display: 'table',
-  borderCollapse: 'collapse',
-  borderSpacing: 0,
-  borderBottom: '1px solid #e9ecef',
-  fontFamily: 'Roboto, sans-serif',
-};
-
-const styleTableWrapper = {
-  display: 'block',
-  overflowX: 'auto',
-};
 
 const BagContents = ({
   baggedDiscs, handleDeleteDisc, handleUpdateDiscSelected, handleUpdateDiscColor,
@@ -60,8 +45,8 @@ const BagContents = ({
   });
 
   return (
-    <Div id="tableWrapper" css={styleTableWrapper}>
-      <Table id="DiscTable" css={styleTable}>
+    <div id="tableWrapper" className="styleTableWrapper">
+      <table id="DiscTable" className="styleTable">
         <Type name="Drivers">
           {drivers}
         </Type>
@@ -74,8 +59,8 @@ const BagContents = ({
         <Type name="Putters">
           {putters}
         </Type>
-      </Table>
-    </Div>
+      </table>
+    </div>
 
   );
 };

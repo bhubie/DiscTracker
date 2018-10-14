@@ -1,60 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tr, Tbody, Th } from 'glamorous';
-
-const trHeaderStyle = {
-  textAlign: 'left',
-  fontSize: '0.8125rem',
-  display: 'table-row',
-  // borderBottom: '1px solid #e9ecef',
-};
-
-const styleTableRow = {
-  fontSize: '0.8125rem',
-  display: 'table-row',
-};
-
-const styleTableBody = {
-  display: 'table-row-group',
-  borderBottom: '1px solid #e9ecef',
-};
-
-const styleTableHeader = {
-  fontWeight: 'normal',
-  fontSize: '12px',
-  paddingLeft: '24px',
-  paddingRight: '24px',
-  height: '40px',
-  color: 'rgb(158, 158, 158)',
-};
 
 const Type = ({ name, children }) => {
   const renderRowHeaders = (children.length > 0);
 
   return (
-    <Tbody id={name} css={styleTableBody}>
-      <Tr css={trHeaderStyle}>
-        <Th colSpan="4" css={styleTableHeader}>
+    <tbody id={name} className="styleTableBody">
+      <tr className="trHeaderStyle">
+        <th colSpan="4" className="styleTableHeader">
           {name}
-        </Th>
-      </Tr>
+        </th>
+      </tr>
       {renderRowHeaders ? (
-        <Tr css={styleTableRow}>
-          <Th css={styleTableHeader}>
+        <tr className="styleTableRow">
+          <th className="styleTableHeader">
             Name
-          </Th>
-          <Th css={styleTableHeader}>
+          </th>
+          <th className="styleTableHeader">
             Disc Color
-          </Th>
-          <Th css={styleTableHeader}>
+          </th>
+          <th className="styleTableHeader">
             Enabled
-          </Th>
-          <Th css={styleTableHeader}>
+          </th>
+          <th className="styleTableHeader">
             Remove
-          </Th>
-        </Tr>) : undefined}
+          </th>
+        </tr>) : undefined}
       {children}
-    </Tbody>
+    </tbody>
   );
 };
 

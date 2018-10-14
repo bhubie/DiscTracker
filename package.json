@@ -9,8 +9,6 @@
     "dexie": "^2.0.4",
     "dexie-relationships": "^1.2.10",
     "fake-indexeddb": "^2.0.4",
-    "glamor": "^2.20.40",
-    "glamorous": "^4.12.1",
     "immutability-helper": "^2.6.6",
     "indexeddbshim": "^3.8.0",
     "material-ui": "^0.20.0",

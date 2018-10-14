@@ -5,6 +5,7 @@ $navbar-background-color: #1976D2;
 $navbar-item-color: white;
 $navbar-item-hover-color: white;
 $alternate-text-color: white;
+$primary-color: #2196F3;
 
 $accent-color: #00BCD4;
 
@@ -90,4 +91,99 @@ $break-medium: 750px;
 .BottomSheetWrapper {
     display: none;
 };
+
+// Tables
+.styleTableCell {
+    display: table-cell;
+    padding-left: 24px;
+    padding-right: 24px;
+    height: 40px;
+    font-size: 13px;
+}
+.tableRowStyle {
+    text-align: center;
+    font-size: 0.8125rem;
+    display: table-row;
+}
+.styleTableHeader {
+    font-weight: normal;
+    font-size: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+    height: 40px;
+    color: rgb(158, 158, 158);
+}
+.styleTableBody {
+    display: table-row-group;
+    border-bottom: 1px solid #e9ecef;
+}
+.trHeaderStyle {
+    text-align: left;
+    font-size: 0.8125rem;
+    display: table-row;
+}
+.styleTableRow {
+    font-size: 0.8125rem;
+    display: table-row;
+}
+.styleTable {
+    width: 100%;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-bottom: 1px solid #e9ecef;
+    font-family: Roboto, sans-serif;
+}
+
+.styleTableWrapper {
+    display: block;
+    overflow-x: auto;
+}
+
+// Bag
+.styleSelectedBag {
+    width: 100%;
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    margin-top: 10px;
+}
+
+//Bottom Sheet
+.contentsBottomSheet {
+    grid-area: bagcontainer;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 24px;
+    grid-column-gap: 15px;
+    @media (max-width : $break-medium) {
+      display: inline;
+    };
+}
+.contentsNonBottomSheet {
+    grid-area: bagcontainer;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 24px;
+    grid-column-gap: 15px;
+    @media (max-width : $break-medium) {
+      display: none;
+    };
+}
+
+//App 
+.styleApp {
+    background: $primary-color;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-template-areas:
+      "header           header"
+      "welcomemessage   welcomemessage"
+      "bagcontainer     flightpath"
+      "bagcontainer     flightpath";
+    max-width: 100%;
+    @media (max-width : $break-medium) {
+      display: block;
+    };
+}
   

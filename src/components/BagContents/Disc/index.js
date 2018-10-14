@@ -1,77 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Toggle from 'material-ui/Toggle';
-import Delete from 'material-ui/svg-icons/action/delete';
-import { Tr, Div, Td } from 'glamorous';
 import ColorPicker from '../../ColorPicker/index';
 import AppTheme from '../../../AppTheme';
-
-const styleToggle = {
-  width: '0%',
-  margin: 'auto',
-};
-
-const tableRowStyle = {
-  textAlign: 'center',
-  fontSize: '0.8125rem',
-  display: 'table-row',
-};
+import ToggleSwitch from '../../ToggleSwitch';
+import IconDelete from '../../Icons/IconDelete';
 
 const colorPickerWrapperStyle = {
   margin: 'auto',
   width: '50%',
 };
 
-const styleTableCell = {
-  display: 'table-cell',
-  paddingLeft: '24px',
-  paddingRight: '24px',
-  height: '40px',
-  fontSize: '13px',
-};
-
 const styleDeleteButtom = {
   cursor: 'pointer',
+};
+
+const styleDeleteIcon = {
+  color: AppTheme.palette.primary1Color,
+  fill: 'currentColor',
+  width: '28px',
+  height: '28px',
 };
 
 const Disc = ({
   name, selected, weight, handleDeleteDisc,
   handleUpdateDiscSelected, discID, handleUpdateDiscColor, discColor,
 }) => (
-  <Tr id={discID} css={tableRowStyle}>
-    <Td css={styleTableCell}>
+  <tr id={discID} className="tableRowStyle">
+    <td className="styleTableCell">
       {name}
-    </Td>
-    <Td css={styleTableCell}>
-      <Div css={colorPickerWrapperStyle}>
+    </td>
+    <td className="styleTableCell">
+      <div style={colorPickerWrapperStyle}>
         <ColorPicker
           itemID={discID}
           handleColorChange={handleUpdateDiscColor}
           selectedColor={discColor}
         />
-      </Div>
-    </Td>
-    <Td css={styleTableCell}>
-      <Toggle
-        defaultToggled={selected}
+      </div>
+    </td>
+    <td className="styleTableCell">
+      <ToggleSwitch
+        id="enabledSwitch"
+        selected={selected}
         onToggle={handleUpdateDiscSelected}
-        style={styleToggle}
-        secondary
+        label=""
       />
-    </Td>
-    <Td css={styleTableCell}>
-      <Div
-        css={styleDeleteButtom}
+    </td>
+    <td className="styleTableCell">
+      <div
+        style={styleDeleteButtom}
         role="button"
         tabIndex={0}
         onClick={handleDeleteDisc}
       >
-        <Delete
-          color={AppTheme.palette.primary1Color}
-        />
-      </Div>
-    </Td>
-  </Tr>
+        <IconDelete style={styleDeleteIcon} />
+      </div>
+    </td>
+  </tr>
 );
 
 Disc.propTypes = {
