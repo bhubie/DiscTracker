@@ -11,7 +11,17 @@ const BagSelector = ({
   handleEditBagOnChange,
 }) => {
   const modalTitle = mode === 'New' ? 'New Bag' : 'Edit Bag';
-  const bagInput = mode === 'New' ? undefined : bagName;
+
+  let bagNameInputCSSClass;
+  let isSaveButtonDisables = true;
+
+  if (bagName !== undefined && bagName !== '') {
+    bagNameInputCSSClass = 'input is-success';
+    isSaveButtonDisables = false;
+  } else {
+    bagNameInputCSSClass = 'input is-danger';
+  }
+
   const modalButtons = [
     <button
       onClick={handleCloseModal}
@@ -21,6 +31,7 @@ const BagSelector = ({
     <button
       className="button is-success"
       onClick={handleSaveBag}
+      disabled={isSaveButtonDisables}
     > Save
     </button>,
   ];
@@ -44,11 +55,11 @@ const BagSelector = ({
         <ButtonPrimary onClick={handleNewBagClick} size="small">
           New Bag
         </ButtonPrimary>
-        <ButtonPrimary onClick={handleDeleteBagClick} size="small">
-          Delete Bag
-        </ButtonPrimary>
         <ButtonPrimary onClick={handleEditBagClick} size="small">
           Edit Bag Name
+        </ButtonPrimary>
+        <ButtonPrimary onClick={handleDeleteBagClick} size="small">
+          Delete Bag
         </ButtonPrimary>
       </div>
       <Modal
@@ -60,10 +71,10 @@ const BagSelector = ({
       >
         <input
           type="text"
-          className="input"
+          className={bagNameInputCSSClass}
           id="bagNameTextField"
           onChange={handleEditBagOnChange}
-          value={bagInput}
+          value={bagName}
           placeholder="Bag Name"
         />
       </Modal>
