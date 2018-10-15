@@ -26,26 +26,28 @@ const BagSelector = ({
   ];
 
   return (
-    <div id="bagSelector">
-      <Select
-        options={bags}
-        onChange={handleBagChange}
-        showLoadingIndicator
-        loadingMessage="Loading Bags..."
-        selectLabel="name"
-        selectValue="id"
-        placeHolder="test"
-        showPlaceHolder={false}
-        id="bagSelectorElement"
-      />
-      <div className="buttons">
-        <ButtonPrimary onClick={handleNewBagClick}>
+    <div id="bagSelector" className="columns is-desktop">
+      <div className="column">
+        <Select
+          options={bags}
+          onChange={handleBagChange}
+          showLoadingIndicator
+          loadingMessage="Loading Bags..."
+          selectLabel="name"
+          selectValue="id"
+          placeHolder="test"
+          showPlaceHolder={false}
+          id="bagSelectorElement"
+        />
+      </div>
+      <div className="buttons column" >
+        <ButtonPrimary onClick={handleNewBagClick} size="small">
           New Bag
         </ButtonPrimary>
-        <ButtonPrimary onClick={handleDeleteBagClick}>
+        <ButtonPrimary onClick={handleDeleteBagClick} size="small">
           Delete Bag
         </ButtonPrimary>
-        <ButtonPrimary onClick={handleEditBagClick}>
+        <ButtonPrimary onClick={handleEditBagClick} size="small">
           Edit Bag Name
         </ButtonPrimary>
       </div>

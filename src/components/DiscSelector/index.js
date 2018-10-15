@@ -43,7 +43,7 @@ export default class DiscSelector extends React.Component {
             />
             <CardContents>
               <div id="DiscSelectorContainer" className="columns">
-                <div id="dropDownContainer" className="column is-three-quarters">
+                <div id="dropDownContainer" className="column is-three-quarters is-two-thirds-tablet ">
                   <Select
                     options={this.props.selectableDiscs}
                     onChange={this.handleChange}
