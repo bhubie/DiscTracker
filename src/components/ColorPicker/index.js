@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Div } from 'glamorous';
 import { SketchPicker } from 'react-color';
 
 
@@ -32,17 +31,10 @@ class ColorPicker extends React.PureComponent {
   };
 
   handleChange = (color) => {
-    // console.log(color);
     this.setState({ color: color.rgb });
   };
 
   render() {
-    // console.log('color is');
-    // console.log('color is: ')
-    // console.log(this.state.color);
-    // console.log(this.props.selectedColor);
-    // console.log(this.props.item);
-    // console.log(this.props.itemID);
     const styles = {
       color: {
         width: '24px',
@@ -75,36 +67,38 @@ class ColorPicker extends React.PureComponent {
     };
 
     return (
-      <Div>
-        <Div
-          css={styles.swatch}
+      <div className={this.props.className}>
+        <div
+          style={styles.swatch}
           onClick={this.handleClick}
           onKeyDown={this.handleClick}
           role="button"
           tabIndex={0}
         >
-          <Div css={styles.color} />
-        </Div>
+          <div style={styles.color} />
+        </div>
         { this.state.displayColorPicker ?
-          <Div css={styles.popover}>
-            <Div
-              css={styles.cover}
+          <div style={styles.popover}>
+            <div
+              style={styles.cover}
               onClick={this.handleClose}
               onKeyDown={this.handleClose}
               role="button"
               tabIndex={0}
             />
             <SketchPicker color={this.state.color} onChange={this.handleChange} />
-          </Div> : null }
-      </Div>
+          </div> : null }
+      </div>
     );
   }
 }
 
 ColorPicker.propTypes = {
+  className: PropTypes.string,
   selectedColor: PropTypes.objectOf(PropTypes.number).isRequired,
   handleColorChange: PropTypes.func.isRequired,
   itemID: PropTypes.number.isRequired,
 };
+
 
 export default ColorPicker;

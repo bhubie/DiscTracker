@@ -1,34 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
-import { Div } from 'glamorous';
-import { HeaderCardStyle, CardStyle } from '../../Utils/CardStyles';
-import Button from '../Button';
+import { Card, CardHeader, CardContents } from '../Card';
+import { ButtonPrimary } from '../Buttons';
 import Select from '../Select';
-
-const discSelectorStyle = {
-  width: '100%',
-  gridColumn: '1 / span 2',
-  gridRow: 2,
-  marginTop: '10px',
-};
-
-const discSelectorContainerStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-around',
-  flexWrap: 'wrap',
-};
-
-const dropdownContainerStyle = {
-  width: '70%',
-  marginRight: '10px',
-  marginTop: '10px',
-};
-
-const styleButtonContainer = {
-  marginTop: '10px',
-};
 
 export default class DiscSelector extends React.Component {
     state = {
@@ -62,17 +36,14 @@ export default class DiscSelector extends React.Component {
 
     render() {
       return (
-        <Div id="discSelector" css={discSelectorStyle}>
-          <Card style={CardStyle} initiallyExpanded>
+        <div id="discSelector" className="discSelectorStyle">
+          <Card>
             <CardHeader
-              style={HeaderCardStyle}
               title="Available Discs"
-              actAsExpander
-              showExpandableButton
             />
-            <CardText expandable>
-              <Div id="DiscSelectorContainer" css={discSelectorContainerStyle}>
-                <Div css={dropdownContainerStyle} id="dropDownContainer">
+            <CardContents>
+              <div id="DiscSelectorContainer" className="columns">
+                <div id="dropDownContainer" className="column is-three-quarters is-two-thirds-tablet ">
                   <Select
                     options={this.props.selectableDiscs}
                     onChange={this.handleChange}
@@ -83,16 +54,16 @@ export default class DiscSelector extends React.Component {
                     selectValue="_id"
                     showPlaceHolder
                   />
-                </Div>
-                <Div css={styleButtonContainer}>
-                  <Button id="btnAddToBag" onClick={this.handleClick} type="secondary">
+                </div>
+                <div className="column is-fullwidth">
+                  <ButtonPrimary id="btnAddToBag" onClick={this.handleClick} isFullWidth>
                     Add to Bag
-                  </Button>
-                </Div>
-              </Div>
-            </CardText>
+                  </ButtonPrimary>
+                </div>
+              </div>
+            </CardContents>
           </Card>
-        </Div>
+        </div>
       );
     }
 }

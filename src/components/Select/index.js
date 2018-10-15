@@ -1,32 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Select as GlamSelect, Div } from 'glamorous';
-
-
-const styleSelect = {
-  backgroundColor: 'transparent',
-  width: '100%',
-  padding: '4px 0',
-  fontSize: '16px',
-  color: 'rgba(0,0,0,.42)',
-  border: 'none',
-  borderBottom: '1px solid rgba(0,0,0,.42)',
-  appearance: 'none',
-  ':focus': {
-    outline: 'none',
-  },
-};
-
-const styleSelectArrow = {
-  width: '100%',
-  position: 'relative',
-  backgroundImage: "url(\"data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%230' fill-rule='evenodd' opacity='.54' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E\")",
-  display: 'inline-flex',
-  boxSizing: 'border-box',
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 8px bottom 12px',
-  overflow: 'hidden',
-};
 
 export default class Select extends React.Component {
     handleOnChange = (e) => {
@@ -41,7 +14,6 @@ export default class Select extends React.Component {
       } else {
         renderedOptions = [];
       }
-      // console.log(renderedOptions);
 
       let placeHolder;
       if (showLoadingIndicator && renderedOptions.length < 1) {
@@ -53,16 +25,18 @@ export default class Select extends React.Component {
       }
 
       return (
-        <GlamSelect onChange={this.handleOnChange} css={styleSelect} id={id}>
+        <select onChange={this.handleOnChange} id={id}>
           {placeHolder}
           {renderedOptions}
-        </GlamSelect>
+        </select>
       );
     };
 
     render() {
+      const cssClass = `select is-fullwidth ${this.props.showLoadingIndicator && this.props.options.length < 1 ? 'is-loading ' : ''}`;
+      
       return (
-        <Div css={styleSelectArrow}>
+        <div className={cssClass}>
           {this.renderOptions(
             this.props.options,
             this.props.showLoadingIndicator,
@@ -71,7 +45,7 @@ export default class Select extends React.Component {
             this.props.selectLabel,
             this.props.id,
           )}
-        </Div>
+        </div>
 
       );
     }
