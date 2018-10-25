@@ -39,17 +39,19 @@ export default class FlightPath extends React.Component {
     this.drawGridLines(this.props.gridColor, this.props.gridLineColor);
 
     this.props.baggedDiscs.forEach((disc) => {
-      this.drawDiscPath(
-        `${disc.manufacturer} ${disc.name}`,
-        disc.distance,
-        disc.hst,
-        disc.lsf,
-        disc.ns,
-        1,
-        disc.wear,
-        disc.color,
-        this.props.throwingStyle,
-      );
+      if (disc.selected) {
+        this.drawDiscPath(
+          `${disc.manufacturer} ${disc.name}`,
+          disc.distance,
+          disc.hst,
+          disc.lsf,
+          disc.ns,
+          1,
+          disc.wear,
+          disc.color,
+          this.props.throwingStyle,
+        );
+      }
     });
   }
 
