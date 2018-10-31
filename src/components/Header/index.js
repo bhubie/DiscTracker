@@ -9,7 +9,7 @@ const styleIcon = {
 };
 
 const Header = () => (
-  <nav className="navbar header" role="navigation" aria-label="main navigation">
+  <nav className="header navbar  is-flex flex-space-between" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
       <a
         className="navbar-item subtitle is-4"
@@ -20,17 +20,17 @@ const Header = () => (
     </div>
 
     <div className="navbar-end">
-      <div className="navbar-item">
-        <a
-          href="https://github.com/bhubie/DiscTracker"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Contribute on Github"
-        >
-          <IconGitHub id="githubIcon" style={styleIcon} />
-        </a>
-      </div>
+      <a
+        className="navbar-item"
+        href="https://github.com/bhubie/DiscTracker"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Contribute on Github"
+      >
+        <IconGitHub id="githubIcon" style={styleIcon} />
+      </a>
     </div>
+
   </nav>
 );
 
