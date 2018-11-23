@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const ToggleSwitch = ({
   id, selected, onToggle, label,
 }) => {
-  const cssClass = 'switch is-rounded';
+  const cssClass = 'switch is-primary is-rounded';
 
   return (
     <div className="field">

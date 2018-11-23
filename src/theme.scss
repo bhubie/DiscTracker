@@ -1,19 +1,36 @@
 @import 'bulma/sass/utilities/initial-variables.sass';
 
-// your customization as described in the Bulma docs
-$navbar-background-color: #1976D2;
+// color pallete
+$primary-color: #2196F3;
+$primary-color-dark: #1976D2;
+$accent-color: #00BCD4;
+$alternate-text-color: white;
+
+//Bulma Overrides
+$navbar-background-color: $primary-color-dark;
 $navbar-item-color: white;
 $navbar-item-hover-color: white;
-$alternate-text-color: white;
-$primary-color: #2196F3;
 
-$accent-color: #00BCD4;
+$info: $accent-color;
+$primary: $primary-color;
+
+$switch-background-active: $primary;
+
 
 $break-medium: 750px;
 
+
 @import 'bulma';
+
+$primary: $primary-color;
 @import '~bulma-switch';
 
+
+
+//primary color dark
+.is-primary-dark {
+    background-color: $primary-color-dark;
+}
 
 // Header
 .header {
@@ -187,8 +204,38 @@ $break-medium: 750px;
     };
 }
 
+.delete-icon {
+    color: $primary;
+    fill: currentColor;
+    width: 28px;
+    height: 28px;
+}
+
 //Util
 .flex-space-between {
     justify-content: space-between;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.center-contents {
+    margin: auto;
+    width: 50%;
+}
   
+
+// Bulma switch fix
+.switch[type="checkbox"]:checked + label::before, .switch[type="checkbox"]:checked + label::before {
+    background: $switch-background-active;
+}
+.switch[type="checkbox"].is-primary:checked + label::before, .switch[type="checkbox"].is-primary:checked + label::before {
+    background: $switch-background-active;
+}
+.switch[type="checkbox"].is-primary:checked + label::before, .switch[type="checkbox"].is-primary:checked + label::before {
+    background: $switch-background-active;
+}
+.switch[type="checkbox"]:checked + label::before, .switch[type="checkbox"]:checked + label::before {
+    background: $switch-background-active;
+}

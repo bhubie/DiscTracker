@@ -18,7 +18,7 @@ export const ButtonPrimary = ({
     default:
       buttonSize = '';
   }
-  const cssClass = `button is-primary${isFullWidth ? ' is-fullwidth' : ''}${buttonSize}`;
+  const cssClass = `button is-info${isFullWidth ? ' is-fullwidth' : ''}${buttonSize}`;
 
   return (
     <button onClick={onClick} className={cssClass} id={id}>

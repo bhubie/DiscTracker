@@ -14,7 +14,7 @@ export default class ThrowingStyle extends React.Component {
 
   render() {
     const options = this.props.throwingStyleValues.map((value) => {
-      const cssClass = `button ${value.value === this.props.hand.value ? 'is-primary is-selected' : ''}`;
+      const cssClass = `button ${value.value === this.props.hand.value ? 'is-info is-selected' : ''}`;
       return (
         <button className={cssClass} id={value.value} name={value.label} onClick={this.handleChange} >
           {value.label}

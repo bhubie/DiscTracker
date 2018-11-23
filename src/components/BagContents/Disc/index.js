@@ -1,25 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ColorPicker from '../../ColorPicker/index';
-import AppTheme from '../../../AppTheme';
 import ToggleSwitch from '../../ToggleSwitch';
 import IconDelete from '../../Icons/IconDelete';
-
-const colorPickerWrapperStyle = {
-  margin: 'auto',
-  width: '50%',
-};
-
-const styleDeleteButtom = {
-  cursor: 'pointer',
-};
-
-const styleDeleteIcon = {
-  color: AppTheme.palette.primary1Color,
-  fill: 'currentColor',
-  width: '28px',
-  height: '28px',
-};
 
 const Disc = ({
   name, selected, weight, handleDeleteDisc,
@@ -30,7 +13,7 @@ const Disc = ({
       {name}
     </td>
     <td className="styleTableCell">
-      <div style={colorPickerWrapperStyle}>
+      <div className="center-contents">
         <ColorPicker
           itemID={discID}
           handleColorChange={handleUpdateDiscColor}
@@ -48,12 +31,12 @@ const Disc = ({
     </td>
     <td className="styleTableCell">
       <div
-        style={styleDeleteButtom}
         role="button"
         tabIndex={0}
         onClick={handleDeleteDisc}
+        className="cursor-pointer"
       >
-        <IconDelete style={styleDeleteIcon} />
+        <IconDelete className="delete-icon" />
       </div>
     </td>
   </tr>
