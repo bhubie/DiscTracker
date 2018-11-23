@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';

@@ -1,14 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppTheme from '../../AppTheme';
 import IconGitHub from '../Icons/IconGitHub';
 import { ButtonPrimary } from '../Buttons';
 
-
-const styleIcon = {
-  color: AppTheme.palette.alternateTextColor,
-  fill: 'currentColor',
-};
 
 const Header = ({ handleGetStartedOnClick }) => (
   <section className="header hero is-primary-dark is-fullheight">
@@ -32,7 +26,7 @@ const Header = ({ handleGetStartedOnClick }) => (
               rel="noopener noreferrer"
               title="Contribute on Github"
             >
-              <IconGitHub id="githubIcon" style={styleIcon} />
+              <IconGitHub id="githubIcon" className="icon-github" />
             </a>
           </div>
         </div>

@@ -211,6 +211,11 @@ $primary: $primary-color;
     height: 28px;
 }
 
+.icon-github {
+    color: $alternate-text-color;
+    fill: currentColor;
+}
+
 //Util
 .flex-space-between {
     justify-content: space-between;
