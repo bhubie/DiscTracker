@@ -80,7 +80,7 @@ export function fetchDiscs() {
       .then((j) => {
         dispatch({
           type: FETCH_DISCS_SUCCESS,
-          payload: j,
+          payload: j.discs,
         });
       })
       .catch(error => dispatch({
