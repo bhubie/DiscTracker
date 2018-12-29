@@ -23,7 +23,7 @@ const Disc = ({
     </td>
     <td className="styleTableCell">
       <ToggleSwitch
-        id="enabledSwitch"
+        id={`enabledSwitch${discID}`}
         selected={selected}
         onToggle={handleUpdateDiscSelected}
         label=""

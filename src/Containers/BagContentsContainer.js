@@ -12,7 +12,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleUpdateDiscSelected(e) {
-      dispatch(updateEnabled(e.target.parentElement.parentElement.parentElement.id, e.target.checked));
+      dispatch(updateEnabled(e.target.parentElement
+        .parentElement.parentElement.id, e.target.checked));
     },
     handleUpdateDiscColor(discID, color) {
       dispatch(updateDiscColor(discID, color));
