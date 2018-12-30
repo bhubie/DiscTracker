@@ -50,7 +50,7 @@ export default class DiscSelector extends React.Component {
                     placeHolder="Tap to Select a Disc"
                     showLoadingIndicator
                     loadingMessage="Loading Discs..."
-                    selectLabel="name"
+                    selectLabel="discWithManufacturer"
                     selectValue="_id"
                     showPlaceHolder
                   />

@@ -1,4 +1,4 @@
-import { LOAD_BAGGED_DISCS, ADD_DISC, FETCH_DISCS_BEGIN, FETCH_DISCS_SUCCESS, FETCH_DISCS_FAILURE, UPDATE_DISC_ENABLED, UPDATE_DISC_COLOR, DELETE_DISC, } from '../Constants';
+import { LOAD_BAGGED_DISCS, ADD_DISC, FETCH_DISCS_BEGIN, FETCH_DISCS_SUCCESS, FETCH_DISCS_FAILURE, UPDATE_DISC_ENABLED, UPDATE_DISC_COLOR, DELETE_DISC } from '../Constants';
 import DiscsRepository from '../Repositories/Discs';
 import db from '../db';
 
@@ -78,9 +78,10 @@ export function fetchDiscs() {
     return fetch(apiUrl, { mode: 'cors' })
       .then(res => res.json())
       .then((j) => {
+        const discs = j.discs.map(disc => Object.assign({ discWithManufacturer: `${disc.manufacturer} - ${disc.name}` }, disc));
         dispatch({
           type: FETCH_DISCS_SUCCESS,
-          payload: j.discs,
+          payload: discs,
         });
       })
       .catch(error => dispatch({

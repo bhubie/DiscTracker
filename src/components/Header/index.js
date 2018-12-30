@@ -7,8 +7,8 @@ import { ButtonPrimary } from '../Buttons';
 const Header = ({ handleGetStartedOnClick }) => (
   <section className="header hero is-primary-dark is-fullheight">
     <div className="hero-head">
-      <nav className="navbar  is-flex flex-space-between">
-        <div className="container">
+      <nav className="navbar">
+        <div className="container is-flex flex-space-between">
           <div className="navbar-brand ">
             <a
               className="navbar-item subtitle is-4"
@@ -40,7 +40,12 @@ const Header = ({ handleGetStartedOnClick }) => (
         </h1>
         <h2 className="subtitle has-text-light">
           Disc flight path data provided by: &nbsp;
-          <a href="http://www.inboundsdiscgolf.com" target="_blank" rel="noopener noreferrer">
+          <a
+            className="has-text-info"
+            href="http://www.inboundsdiscgolf.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Inbounds Disc Golf
           </a>
         </h2>
