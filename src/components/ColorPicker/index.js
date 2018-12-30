@@ -5,7 +5,6 @@ import { SketchPicker } from 'react-color';
 
 class ColorPicker extends React.PureComponent {
   static getDerivedStateFromProps(nextProps, prevState) {
-
     if (prevState.color !== nextProps.selectedColor) {
       return {
         color: nextProps.selectedColor,
@@ -100,5 +99,8 @@ ColorPicker.propTypes = {
   itemID: PropTypes.number.isRequired,
 };
 
+ColorPicker.defaultProps = {
+  className: ' ',
+};
 
 export default ColorPicker;

@@ -7,7 +7,7 @@ import Modal from '../Modal';
 
 const BagSelector = ({
   bags, handleBagChange, handleNewBagClick, handleDeleteBagClick, showBagModal,
-  mode, handleEditBagClick, handleSaveBag, handleCloseModal, bagName, bagID,
+  mode, handleEditBagClick, handleSaveBag, handleCloseModal, bagName,
   handleEditBagOnChange,
 }) => {
   const modalTitle = mode === 'New' ? 'New Bag' : 'Edit Bag';
@@ -26,13 +26,17 @@ const BagSelector = ({
     <button
       onClick={handleCloseModal}
       className="button"
-    >Cancel
+      key="positiveButton"
+    >
+      Cancel
     </button>,
     <button
       className="button is-success"
       onClick={handleSaveBag}
       disabled={isSaveButtonDisables}
-    > Save
+      key="negativeButton"
+    >
+      Save
     </button>,
   ];
 
@@ -84,8 +88,10 @@ const BagSelector = ({
 
 BagSelector.propTypes = {
   bags: PropTypes.arrayOf(PropTypes.object).isRequired,
+  bagName: PropTypes.string.isRequired,
   mode: PropTypes.string.isRequired,
   handleBagChange: PropTypes.func.isRequired,
+  handleEditBagOnChange: PropTypes.func.isRequired,
   handleDeleteBagClick: PropTypes.func.isRequired,
   handleNewBagClick: PropTypes.func.isRequired,
   showBagModal: PropTypes.bool.isRequired,

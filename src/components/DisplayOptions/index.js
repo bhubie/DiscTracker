@@ -52,6 +52,7 @@ const DisplayOptions = ({
 };
 
 DisplayOptions.propTypes = {
+  id: PropTypes.number.isRequired,
   gridColor: PropTypes.objectOf(PropTypes.number).isRequired,
   gridLineColor: PropTypes.objectOf(PropTypes.string).isRequired,
   handleUpdateGridColor: PropTypes.func.isRequired,

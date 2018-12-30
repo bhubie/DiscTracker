@@ -15,7 +15,6 @@ const ToggleSwitch = ({
         className={cssClass}
         checked={selected}
         onChange={onToggle}
-        secondary
       />
       <label htmlFor={id} id="switchlabel">{label}</label>
     </div>

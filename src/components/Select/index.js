@@ -6,11 +6,20 @@ export default class Select extends React.Component {
       this.props.onChange(e.target.options[e.target.selectedIndex].value);
     }
 
+    // eslint-disable-next-line max-len
     renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id) => {
       let renderedOptions;
 
       if (options !== undefined) {
-        renderedOptions = options.map(option => (<option value={option[selectValue]}>{option[selectLabel]}</option>));
+        // eslint-disable-next-line arrow-parens
+        // eslint-disable-next-line arrow-body-style
+        renderedOptions = options.map((option) => {
+          return (
+            <option value={option[selectValue]} key={option[selectValue]}>
+              {option[selectLabel]}
+            </option>
+          );
+        });
       } else {
         renderedOptions = [];
       }
@@ -34,7 +43,7 @@ export default class Select extends React.Component {
 
     render() {
       const cssClass = `select is-fullwidth ${this.props.showLoadingIndicator && this.props.options.length < 1 ? 'is-loading ' : ''}`;
-      
+
       return (
         <div className={cssClass}>
           {this.renderOptions(
@@ -52,6 +61,7 @@ export default class Select extends React.Component {
 }
 
 Select.propTypes = {
+  id: PropTypes.string.isRequired,
   showPlaceHolder: PropTypes.bool,
   placeHolder: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -64,4 +74,5 @@ Select.propTypes = {
 
 Select.defaultProps = {
   loadingMessage: 'Loading...',
+  showPlaceHolder: false,
 };

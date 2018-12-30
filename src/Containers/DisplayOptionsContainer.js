@@ -5,7 +5,6 @@ import DisplayOptions from '../components/DisplayOptions';
 function mapStateToProps(state) {
   const { displayOptions } = state;
   const { gridColor, gridLineColor, id } = displayOptions[0];
-  
   return {
     gridColor,
     gridLineColor,

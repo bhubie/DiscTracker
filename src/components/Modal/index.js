@@ -26,9 +26,10 @@ const Modal = ({
 };
 
 Modal.propTypes = {
-  title: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   actions: PropTypes.array.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

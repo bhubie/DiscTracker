@@ -34,7 +34,7 @@ export const ButtonSecondary = props => (
 );
 
 ButtonPrimary.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   isFullWidth: PropTypes.bool,
@@ -47,7 +47,7 @@ ButtonPrimary.defaultProps = {
 };
 
 ButtonSecondary.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
