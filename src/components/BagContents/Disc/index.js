@@ -46,7 +46,7 @@ const Disc = ({
         selectLabel="value"
         selectValue="value"
         showPlaceHolder={false}
-        selectedOption={discWear}
+        selectedOption={discWear.toString()}
         onChange={handleUpdateDiscWear}
         returnFullEvent
       />

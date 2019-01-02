@@ -84,7 +84,7 @@ export default function (state, { type, payload }) {
         ...state,
         baggedDiscs: [
           ...state.baggedDiscs.filter(discs => discs.id !== payload.id),
-          Object.assign({}, discToUpdate, { selected: payload.wear }),
+          Object.assign({}, discToUpdate, { wear: payload.wear }),
         ],
       };
     }

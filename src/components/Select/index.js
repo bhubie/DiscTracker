@@ -12,7 +12,7 @@ export default class Select extends React.Component {
     }
 
     // eslint-disable-next-line max-len
-    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id, selectedOption) => {
+    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id) => {
       let renderedOptions;
 
       if (options !== undefined) {
@@ -20,14 +20,6 @@ export default class Select extends React.Component {
         // eslint-disable-next-line arrow-body-style
         renderedOptions = options.map((option) => {
           // eslint-disable-next-line eqeqeq
-          if (selectedOption == option[selectValue]) {
-            return (
-              <option value={option[selectValue]} key={option[selectValue]} selected>
-                {option[selectLabel]}
-              </option>
-            );
-          }
-
           return (
             <option value={option[selectValue]} key={option[selectValue]}>
               {option[selectLabel]}
@@ -48,7 +40,7 @@ export default class Select extends React.Component {
       }
 
       return (
-        <select onChange={this.handleOnChange} id={id}>
+        <select onChange={this.handleOnChange} id={id} value={this.props.selectedOption}>
           {placeHolder}
           {renderedOptions}
         </select>
@@ -67,7 +59,6 @@ export default class Select extends React.Component {
             this.props.selectValue,
             this.props.selectLabel,
             this.props.id,
-            this.props.selectedOption,
           )}
         </div>
 
