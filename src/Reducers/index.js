@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   LOAD_BAGS,
   ADD_BAG,
@@ -16,6 +17,7 @@ import {
   UPDATE_DISC_ENABLED,
   UPDATE_DISC_COLOR,
   DELETE_DISC,
+  TOGGLE_DISC_TYPE_INCLUSION,
 } from '../Constants';
 
 export default function (state, { type, payload }) {
@@ -152,6 +154,19 @@ export default function (state, { type, payload }) {
       return {
         ...state,
         selectableDiscs: payload,
+      };
+    }
+    case TOGGLE_DISC_TYPE_INCLUSION: {
+      const newIncludedDiscTypes = payload.include ?
+        [...state.discFilterOptions.includedDiscTypes, payload.discType] :
+        [...state.discFilterOptions.includedDiscTypes.filter(discType => discType !== payload.discType)];
+
+      return {
+        ...state,
+        discFilterOptions: {
+          ...state.discFilterOptions,
+          includedDiscTypes: newIncludedDiscTypes,
+        },
       };
     }
     default: return state;

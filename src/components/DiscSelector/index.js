@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-for */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardContents } from '../Card';
 import { ButtonPrimary } from '../Buttons';
 import Select from '../Select';
+import Checkbox from '../Checkbox';
 
 export default class DiscSelector extends React.Component {
     state = {
@@ -55,11 +57,42 @@ export default class DiscSelector extends React.Component {
                     showPlaceHolder
                   />
                 </div>
-                <div className="column is-fullwidth">
+                <div className="column ">
                   <ButtonPrimary id="btnAddToBag" onClick={this.handleClick} isFullWidth>
                     Add to Bag
                   </ButtonPrimary>
                 </div>
+              </div>
+              <div id="filter-container" className="column is-full">
+                <h5 className="title is-5">Filters</h5>
+                <Checkbox
+                  id="includeDriverCheckbox"
+                  name="Distance Driver"
+                  checked={this.props.includedDiscTypes.includes('Distance Driver')}
+                  onChange={this.props.handleDiscFilterCheckboxChange}
+                  label="Drivers"
+                />
+                <Checkbox
+                  id="includeFairwayCheckbox"
+                  name="Fairway Driver"
+                  checked={this.props.includedDiscTypes.includes('Fairway Driver')}
+                  onChange={this.props.handleDiscFilterCheckboxChange}
+                  label="Fairway Drivers"
+                />
+                <Checkbox
+                  id="includeMidCheckbox"
+                  name="Mid-Range"
+                  checked={this.props.includedDiscTypes.includes('Mid-Range')}
+                  onChange={this.props.handleDiscFilterCheckboxChange}
+                  label="Mid-Ranges"
+                />
+                <Checkbox
+                  id="includePutCheckbox"
+                  name="Putt & Approach"
+                  checked={this.props.includedDiscTypes.includes('Putt & Approach')}
+                  onChange={this.props.handleDiscFilterCheckboxChange}
+                  label="Putters"
+                />
               </div>
             </CardContents>
           </Card>
@@ -72,4 +105,6 @@ DiscSelector.propTypes = {
   selectedBagID: PropTypes.number.isRequired,
   selectableDiscs: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleAddDiscToBag: PropTypes.func.isRequired,
+  handleDiscFilterCheckboxChange: PropTypes.func.isRequired,
+  includedDiscTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

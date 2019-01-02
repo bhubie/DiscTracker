@@ -24,6 +24,7 @@ $break-medium: 750px;
 
 $primary: $primary-color;
 @import '~bulma-switch';
+@import '~bulma-checkradio';
 
 
 
@@ -242,4 +243,15 @@ $primary: $primary-color;
 }
 .switch[type="checkbox"]:checked + label::before, .switch[type="checkbox"]:checked + label::before {
     background: $switch-background-active;
+}
+
+// Bulmas color Checkbox fix
+.is-checkradio[type="checkbox"].is-primary:checked + label::after, .is-checkradio[type="checkbox"].is-primary:checked + label::after {
+
+    border-color:  $primary-color !important;
+
+}
+
+.is-checkradio[type="checkbox"] + label::after, .is-checkradio[type="checkbox"] + label::after {
+    border-color: $primary-color !important;
 }

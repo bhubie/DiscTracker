@@ -25,6 +25,14 @@ const initialState = {
   showBagModal: false,
   baggedDiscs: [],
   selectableDiscs: [],
+  discFilterOptions: {
+    includedDiscTypes: [
+      'Distance Driver',
+      'Fairway Driver',
+      'Mid-Range',
+      'Putt & Approach',
+    ],
+  },
 };
 
 const store = createStore(

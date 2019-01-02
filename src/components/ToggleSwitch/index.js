@@ -6,7 +6,7 @@ const ToggleSwitch = ({
   id, selected, onToggle, label,
 }) => {
   const cssClass = 'switch is-primary is-rounded';
-  
+
   return (
     <div className="field">
       <input
