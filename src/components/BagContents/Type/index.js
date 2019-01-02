@@ -20,6 +20,9 @@ const Type = ({ name, children }) => {
             Disc Color
           </th>
           <th className="styleTableHeader">
+            Wear
+          </th>
+          <th className="styleTableHeader">
             Enabled
           </th>
           <th className="styleTableHeader">

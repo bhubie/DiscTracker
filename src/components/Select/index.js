@@ -3,17 +3,31 @@ import PropTypes from 'prop-types';
 
 export default class Select extends React.Component {
     handleOnChange = (e) => {
-      this.props.onChange(e.target.options[e.target.selectedIndex].value);
+      if (this.props.returnFullEvent) {
+        e.stopPropagation();
+        this.props.onChange(e);
+      } else {
+        this.props.onChange(e.target.options[e.target.selectedIndex].value);
+      }
     }
 
     // eslint-disable-next-line max-len
-    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id) => {
+    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id, selectedOption) => {
       let renderedOptions;
 
       if (options !== undefined) {
         // eslint-disable-next-line arrow-parens
         // eslint-disable-next-line arrow-body-style
         renderedOptions = options.map((option) => {
+          // eslint-disable-next-line eqeqeq
+          if (selectedOption == option[selectValue]) {
+            return (
+              <option value={option[selectValue]} key={option[selectValue]} selected>
+                {option[selectLabel]}
+              </option>
+            );
+          }
+
           return (
             <option value={option[selectValue]} key={option[selectValue]}>
               {option[selectLabel]}
@@ -53,6 +67,7 @@ export default class Select extends React.Component {
             this.props.selectValue,
             this.props.selectLabel,
             this.props.id,
+            this.props.selectedOption,
           )}
         </div>
 
@@ -70,9 +85,13 @@ Select.propTypes = {
   loadingMessage: PropTypes.string,
   selectValue: PropTypes.string.isRequired,
   selectLabel: PropTypes.string.isRequired,
+  selectedOption: PropTypes.string,
+  returnFullEvent: PropTypes.bool,
 };
 
 Select.defaultProps = {
   loadingMessage: 'Loading...',
   showPlaceHolder: false,
+  selectedOption: undefined,
+  returnFullEvent: false,
 };

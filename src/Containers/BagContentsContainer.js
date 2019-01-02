@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { updateEnabled, updateDiscColor, deleteDisc } from '../Actions/DiscActions';
+import { updateEnabled, updateDiscColor, updateWear, deleteDisc } from '../Actions/DiscActions';
 import BagContents from '../components/BagContents';
 
 function mapStateToProps(state) {
@@ -14,6 +14,10 @@ function mapDispatchToProps(dispatch) {
     handleUpdateDiscSelected(e) {
       dispatch(updateEnabled(e.target.parentElement
         .parentElement.parentElement.id, e.target.checked));
+    },
+    handleUpdateDiscWear(e) {
+      dispatch(updateWear(e.target.parentElement
+        .parentElement.parentElement.id, e.target.options[e.target.selectedIndex].value));
     },
     handleUpdateDiscColor(discID, color) {
       dispatch(updateDiscColor(discID, color));

@@ -15,6 +15,7 @@ import {
   ADD_DISC,
   FETCH_DISCS_SUCCESS,
   UPDATE_DISC_ENABLED,
+  UPDATE_DISC_WEAR,
   UPDATE_DISC_COLOR,
   DELETE_DISC,
   TOGGLE_DISC_TYPE_INCLUSION,
@@ -74,6 +75,16 @@ export default function (state, { type, payload }) {
         baggedDiscs: [
           ...state.baggedDiscs.filter(discs => discs.id !== payload.id),
           Object.assign({}, discToUpdate, { selected: payload.selected }),
+        ],
+      };
+    }
+    case UPDATE_DISC_WEAR: {
+      const discToUpdate = state.baggedDiscs.find(discs => discs.id === payload.id);
+      return {
+        ...state,
+        baggedDiscs: [
+          ...state.baggedDiscs.filter(discs => discs.id !== payload.id),
+          Object.assign({}, discToUpdate, { selected: payload.wear }),
         ],
       };
     }

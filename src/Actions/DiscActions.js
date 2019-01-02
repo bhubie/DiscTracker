@@ -1,4 +1,4 @@
-import { LOAD_BAGGED_DISCS, ADD_DISC, FETCH_DISCS_BEGIN, FETCH_DISCS_SUCCESS, FETCH_DISCS_FAILURE, UPDATE_DISC_ENABLED, UPDATE_DISC_COLOR, DELETE_DISC } from '../Constants';
+import { LOAD_BAGGED_DISCS, ADD_DISC, FETCH_DISCS_BEGIN, FETCH_DISCS_SUCCESS, FETCH_DISCS_FAILURE, UPDATE_DISC_ENABLED, UPDATE_DISC_COLOR, DELETE_DISC, UPDATE_DISC_WEAR } from '../Constants';
 import DiscsRepository from '../Repositories/Discs';
 import db from '../db';
 
@@ -42,6 +42,19 @@ export function updateEnabled(discID, enabled) {
       });
   };
 }
+
+export function updateWear(discID, wear) {
+  return (dispatch) => {
+    discsRepository.updateDiscWear(parseInt(discID, 0), parseInt(wear, 0))
+      .then((updatedDisc) => {
+        dispatch({
+          type: UPDATE_DISC_WEAR,
+          payload: updatedDisc,
+        });
+      });
+  };
+}
+
 
 export function updateDiscColor(discID, color) {
   return (dispatch) => {

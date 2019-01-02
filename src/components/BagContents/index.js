@@ -4,7 +4,8 @@ import Disc from './Disc/index';
 import Type from './Type/index';
 
 const BagContents = ({
-  baggedDiscs, handleDeleteDisc, handleUpdateDiscSelected, handleUpdateDiscColor,
+  baggedDiscs, handleDeleteDisc, handleUpdateDiscSelected,
+  handleUpdateDiscColor, handleUpdateDiscWear,
 }) => {
   const drivers = [];
   const fairwayDrivers = [];
@@ -23,6 +24,8 @@ const BagContents = ({
         discID={disc.id}
         handleUpdateDiscColor={handleUpdateDiscColor}
         discColor={disc.color}
+        discWear={disc.wear}
+        handleUpdateDiscWear={handleUpdateDiscWear}
       />
     );
 
@@ -70,6 +73,7 @@ BagContents.propTypes = {
   handleDeleteDisc: PropTypes.func.isRequired,
   handleUpdateDiscSelected: PropTypes.func.isRequired,
   handleUpdateDiscColor: PropTypes.func.isRequired,
+  handleUpdateDiscWear: PropTypes.func.isRequired,
 };
 
 export default BagContents;

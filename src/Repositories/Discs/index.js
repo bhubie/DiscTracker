@@ -55,6 +55,17 @@ class DiscsRepository {
     });
   }
 
+  updateDiscWear(id, wear) {
+    return new Promise((resolve, reject) => {
+      this.db.table(this.tableName)
+        .update(id, { wear })
+        .then(() => resolve(Object.assign({}, { wear }, { id })))
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  }
+
   deleteDisc(id) {
     return new Promise((resolve, reject) => {
       this.db.table(this.tableName)
