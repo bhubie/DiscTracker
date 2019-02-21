@@ -5,32 +5,36 @@ const Type = ({ name, children }) => {
   const renderRowHeaders = (children.length > 0);
 
   return (
-    <tbody id={name} className="styleTableBody">
-      <tr className="trHeaderStyle">
-        <th colSpan="4" className="styleTableHeader">
-          {name}
-        </th>
-      </tr>
-      {renderRowHeaders ? (
-        <tr className="styleTableRow">
-          <th className="styleTableHeader">
-            Name
-          </th>
-          <th className="styleTableHeader">
-            Disc Color
-          </th>
-          <th className="styleTableHeader">
-            Wear
-          </th>
-          <th className="styleTableHeader">
-            Enabled
-          </th>
-          <th className="styleTableHeader">
-            Remove
-          </th>
-        </tr>) : undefined}
-      {children}
-    </tbody>
+    <div>
+      <div className="mg-bt-10px">{name}</div>
+      <div id="tableWrapper" className="styleTableWrapper">
+        <table id={name} className="styleTable">
+          <thead>
+            {renderRowHeaders ? (
+              <tr className="styleTableRow">
+                <th className="styleTableHeader sticky-column">
+                  Name
+                </th>
+                <th className="styleTableHeader">
+                  Disc Color
+                </th>
+                <th className="styleTableHeader" style={{ minWidth: '100px' }}>
+                  Wear
+                </th>
+                <th className="styleTableHeader">
+                  Enabled
+                </th>
+                <th className="styleTableHeader">
+                  Remove
+                </th>
+              </tr>) : undefined}
+          </thead>
+          <tbody id={name} className="styleTableBody">
+            {children}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 

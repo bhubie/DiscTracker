@@ -12,7 +12,7 @@ class BottomSheet extends Component {
     }
 
     componentDidMount() {
-      const mobileMaxPixels = mediaQueries.maxWidth750.maxPixels;
+      const mobileMaxPixels = mediaQueries.mobile.maxPixels;
       window.addEventListener('scroll', () => {
         if (isScrolledIntoView(document.getElementById('flightPath'))
                   && window.innerWidth <= mobileMaxPixels

@@ -17,7 +17,7 @@ $primary: $primary-color;
 $switch-background-active: $primary;
 
 
-$break-medium: 750px;
+$break-medium: 768px;
 
 
 @import 'bulma';
@@ -111,9 +111,9 @@ $primary: $primary-color;
 };
 
 // Tables
+
 .styleTableCell {
     display: table-cell;
-    padding-left: 24px;
     padding-right: 24px;
     height: 40px;
     font-size: 13px;
@@ -122,18 +122,19 @@ $primary: $primary-color;
     text-align: center;
     font-size: 0.8125rem;
     display: table-row;
+    //border-bottom: 1px solid #e9ecef;
 }
 .styleTableHeader {
     font-weight: normal;
     font-size: 12px;
-    padding-left: 24px;
+    //padding-left: 24px;
     padding-right: 24px;
     height: 40px;
-    color: rgb(158, 158, 158);
+    //color: rgb(158, 158, 158);
 }
 .styleTableBody {
     display: table-row-group;
-    border-bottom: 1px solid #e9ecef;
+    //border-bottom: 1px solid #e9ecef;
 }
 .trHeaderStyle {
     text-align: left;
@@ -143,19 +144,30 @@ $primary: $primary-color;
 .styleTableRow {
     font-size: 0.8125rem;
     display: table-row;
+    //border-bottom: 1px solid #e9ecef;
 }
 .styleTable {
     width: 100%;
     display: table;
     border-collapse: collapse;
     border-spacing: 0;
-    border-bottom: 1px solid #e9ecef;
+    //border-bottom: 1px solid #e9ecef;
     font-family: Roboto, sans-serif;
 }
 
 .styleTableWrapper {
     display: block;
     overflow-x: auto;
+}
+.sticky-column {
+    position: sticky;
+    min-width: 100px;
+    left: 0;
+    top: auto;
+    border-top-width: 1px;
+    margin-top: -1px;
+    z-index: 1;
+    background: white;
 }
 
 // Bag
@@ -191,13 +203,6 @@ $primary: $primary-color;
 //App 
 .styleApp {
     background: $primary-color;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 10px;
-    grid-template-areas:
-      "header           header"
-      "bagcontainer     flightpath"
-      "bagcontainer     flightpath";
     max-width: 100%;
     @media (max-width : $break-medium) {
       display: block;
@@ -228,6 +233,10 @@ $primary: $primary-color;
 .center-contents {
     margin: auto;
     width: 50%;
+}
+
+.mg-bt-10px {
+    margin-bottom: 10px;
 }
   
 

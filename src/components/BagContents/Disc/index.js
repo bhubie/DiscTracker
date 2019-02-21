@@ -25,7 +25,7 @@ const Disc = ({
   handleUpdateDiscWear,
 }) => (
   <tr id={discID} className="tableRowStyle">
-    <td className="styleTableCell">
+    <td className="styleTableCell sticky-column">
       {name}
     </td>
     <td className="styleTableCell">

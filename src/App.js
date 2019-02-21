@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   createBagElement = (id, bottomSheet) => {
-    const cssClass = bottomSheet ? 'contentsBottomSheet' : 'contentsNonBottomSheet';
+    const cssClass = bottomSheet ? 'contentsBottomSheet' : 'contentsNonBottomSheet column is-half-desktop is-two-thirds-widescreen';
     return (
       <div id={id} className={cssClass}>
         <Bag />
@@ -34,8 +34,13 @@ class App extends Component {
     return (
       <div className="styleApp" id="app">
         <Header handleGetStartedOnClick={this.handleGetStartedOnclick} />
-        {this.createBagElement('BagContainer', false)}
-        <FlightPathContainer />
+        <div className="columns" style={{marginBottom: 0, marginRight: 0,}}>
+          {this.createBagElement('BagContainer', false)}
+          <div id="columnRight" className="column">
+            <FlightPathContainer />
+          </div>
+        </div>
+
 
         <BottomSheet>
           {this.createBagElement('BagContainer2', true)}

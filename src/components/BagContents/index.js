@@ -48,23 +48,20 @@ const BagContents = ({
   });
 
   return (
-    <div id="tableWrapper" className="styleTableWrapper">
-      <table id="DiscTable" className="styleTable">
-        <Type name="Drivers">
-          {drivers}
-        </Type>
-        <Type name="Fairway Drivers">
-          {fairwayDrivers}
-        </Type>
-        <Type name="Midranges">
-          {midranges}
-        </Type>
-        <Type name="Putters">
-          {putters}
-        </Type>
-      </table>
+    <div id="tableWrapper">
+      <Type name="Drivers">
+        {drivers}
+      </Type>
+      <Type name="Fairway Drivers">
+        {fairwayDrivers}
+      </Type>
+      <Type name="Midranges">
+        {midranges}
+      </Type>
+      <Type name="Putters">
+        {putters}
+      </Type>
     </div>
-
   );
 };
 
