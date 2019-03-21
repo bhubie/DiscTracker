@@ -48,8 +48,6 @@ $primary: $primary-color;
 // Dislplay Options Style
 .displayOptions {
     margin-top: 10px;
-    grid-column: 2 / span 1;
-    grid-row: 3;
 }
 
 // Disc Selector Style
@@ -194,11 +192,7 @@ $primary: $primary-color;
     };
 }
 .contentsNonBottomSheet {
-    grid-area: bagcontainer;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     margin-left: 24px;
-    grid-column-gap: 15px;
     @media (max-width : $break-medium) {
       display: none;
     };

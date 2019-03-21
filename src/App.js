@@ -4,7 +4,6 @@ import DiscSelectorContainer from './Containers/DiscSelectorContainer';
 import BottomSheet from './components/BottomSheet';
 import DisplayOptionsContainer from './Containers/DisplayOptionsContainer';
 import FlightPathContainer from './Containers/FlightPathContainer';
-import ThrowingStyleContainer from './Containers/ThrowingStyleContainer';
 import BagContainer from './Containers/BagContainer';
 import { fetchDiscs } from './Actions/DiscActions';
 
@@ -24,7 +23,6 @@ class App extends Component {
       <div id={id} className={cssClass}>
         <BagContainer />
         <DiscSelectorContainer />
-        <ThrowingStyleContainer />
         <DisplayOptionsContainer />
       </div>
     );
