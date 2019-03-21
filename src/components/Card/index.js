@@ -11,13 +11,13 @@ const Card = ({ children, className }) => {
   );
 };
 
-const CardHeader = ({ title, className }) => {
-  const cssClass = `card-header ${className}`;
+const CardHeader = ({ className, children }) => {
+  const cssClass = `card-header-title ${className}`;
   return (
-    <div className={cssClass}>
-      <p className="card-header-title">
-        {title}
-      </p>
+    <div className="card-header">
+      <div className={cssClass}>
+        {children}
+      </div>
     </div>
   );
 };
@@ -55,8 +55,8 @@ CardContents.defaultProps = {
 };
 
 CardHeader.propTypes = {
-  title: PropTypes.string.isRequired,
   className: PropTypes.string,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 CardHeader.defaultProps = {

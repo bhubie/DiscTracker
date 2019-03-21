@@ -5,7 +5,7 @@ import Type from './Type/index';
 
 const BagContents = ({
   baggedDiscs, handleDeleteDisc, handleUpdateDiscSelected,
-  handleUpdateDiscColor, handleUpdateDiscWear,
+  handleUpdateDiscColor, handleUpdateDiscWear, columns,
 }) => {
   const drivers = [];
   const fairwayDrivers = [];
@@ -16,7 +16,7 @@ const BagContents = ({
     const discElement = (
       <Disc
         key={disc.id}
-        name={`${disc.manufacturer} ${disc.name}`}
+        name={disc.discWithManufacturer}
         selected={disc.selected}
         weight={disc.weight}
         handleDeleteDisc={handleDeleteDisc}
@@ -26,6 +26,7 @@ const BagContents = ({
         discColor={disc.color}
         discWear={disc.wear}
         handleUpdateDiscWear={handleUpdateDiscWear}
+        displayedFields={columns}
       />
     );
 
@@ -49,16 +50,16 @@ const BagContents = ({
 
   return (
     <div id="tableWrapper">
-      <Type name="Drivers">
+      <Type name="Drivers" columns={columns}>
         {drivers}
       </Type>
-      <Type name="Fairway Drivers">
+      <Type name="Fairway Drivers" columns={columns}>
         {fairwayDrivers}
       </Type>
-      <Type name="Midranges">
+      <Type name="Midranges" columns={columns}>
         {midranges}
       </Type>
-      <Type name="Putters">
+      <Type name="Putters" columns={columns}>
         {putters}
       </Type>
     </div>
@@ -67,6 +68,7 @@ const BagContents = ({
 
 BagContents.propTypes = {
   baggedDiscs: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleDeleteDisc: PropTypes.func.isRequired,
   handleUpdateDiscSelected: PropTypes.func.isRequired,
   handleUpdateDiscColor: PropTypes.func.isRequired,

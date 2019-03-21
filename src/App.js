@@ -5,7 +5,7 @@ import BottomSheet from './components/BottomSheet';
 import DisplayOptionsContainer from './Containers/DisplayOptionsContainer';
 import FlightPathContainer from './Containers/FlightPathContainer';
 import ThrowingStyleContainer from './Containers/ThrowingStyleContainer';
-import Bag from './components//Bag';
+import BagContainer from './Containers/BagContainer';
 import { fetchDiscs } from './Actions/DiscActions';
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
     const cssClass = bottomSheet ? 'contentsBottomSheet' : 'contentsNonBottomSheet column is-half-desktop is-two-thirds-widescreen';
     return (
       <div id={id} className={cssClass}>
-        <Bag />
+        <BagContainer />
         <DiscSelectorContainer />
         <ThrowingStyleContainer />
         <DisplayOptionsContainer />

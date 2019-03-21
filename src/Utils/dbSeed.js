@@ -1,6 +1,7 @@
 import db from '../db';
 import DisplayOptionsRepository from '../Repositories/DisplayOptions';
 import BagRepository from '../Repositories/Bag';
+import BagSettingsRepository from '../Repositories/BagSettings';
 
 const defaultDisplayOptions = {
   hand: {
@@ -21,6 +22,7 @@ const defaultDisplayOptions = {
 };
 
 const defaultBag = { name: 'Default Bag' };
+const defaultBagSettings = { hiddenColumns: [] };
 
 
 const seedDisplayOptions = () => {
@@ -33,6 +35,23 @@ const seedDisplayOptions = () => {
           resolve(true);
         } else {
           displayRepository.add(defaultDisplayOptions).then(() => {
+            resolve(true);
+          });
+        }
+      });
+  });
+};
+
+const seedBagSettings = () => {
+  const bagSettingsRepository = new BagSettingsRepository(db);
+
+  return new Promise((resolve) => {
+    bagSettingsRepository.getAll()
+      .then((results) => {
+        if (results.length > 0) {
+          resolve(true);
+        } else {
+          bagSettingsRepository.add(defaultBagSettings).then(() => {
             resolve(true);
           });
         }
@@ -60,6 +79,7 @@ const seedBags = () => {
 const seedDatabase = async () => {
   await seedDisplayOptions();
   await seedBags();
+  await seedBagSettings();
   return true;
 };
 

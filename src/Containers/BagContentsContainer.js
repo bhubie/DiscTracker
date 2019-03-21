@@ -3,9 +3,14 @@ import { updateEnabled, updateDiscColor, updateWear, deleteDisc } from '../Actio
 import BagContents from '../components/BagContents';
 
 function mapStateToProps(state) {
-  const { baggedDiscs } = state;
+  const { baggedDiscs, bagSettings, columns } = state;
+  const { hiddenColumns } = bagSettings;
+
+  const visibleColumns = columns.filter(column => !hiddenColumns.includes(column.name) && column.name !== 'Manufacturer');
+
   return {
     baggedDiscs,
+    columns: visibleColumns,
   };
 }
 

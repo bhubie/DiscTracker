@@ -9,6 +9,7 @@ testDB.version(1).stores({
   baggedDisc: '++id,discID,bagID -> bag.id,name,type,weight,color,wear',
   bag: '++id,name',
   displayOptions: '++id,hand,gridColor,gridLineColor',
+  bagSettings: '++id,hiddenColumns',
 });
 
 const deleteTableContents = (table) => {

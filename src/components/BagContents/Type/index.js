@@ -1,8 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-const Type = ({ name, children }) => {
+const Type = ({ name, children, columns }) => {
   const renderRowHeaders = (children.length > 0);
+
+  const tableHeaders = columns.map((column) => {
+    const cssClass = classNames(
+      'styleTableHeader',
+      { 'sticky-column': column.name === 'Name' },
+      { 'select-cell': column.name === 'Wear' },
+    );
+    return (
+      <th className={cssClass} key={column.name}>
+        {column.caption}
+      </th>
+    );
+  });
 
   return (
     <div>
@@ -10,24 +24,9 @@ const Type = ({ name, children }) => {
       <div id="tableWrapper" className="styleTableWrapper">
         <table id={name} className="styleTable">
           <thead>
-            {renderRowHeaders ? (
-              <tr className="styleTableRow">
-                <th className="styleTableHeader sticky-column">
-                  Name
-                </th>
-                <th className="styleTableHeader">
-                  Disc Color
-                </th>
-                <th className="styleTableHeader" style={{ minWidth: '100px' }}>
-                  Wear
-                </th>
-                <th className="styleTableHeader">
-                  Enabled
-                </th>
-                <th className="styleTableHeader">
-                  Remove
-                </th>
-              </tr>) : undefined}
+            <tr>
+              {renderRowHeaders ? tableHeaders : undefined}
+            </tr>
           </thead>
           <tbody id={name} className="styleTableBody">
             {children}

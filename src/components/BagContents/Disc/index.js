@@ -22,55 +22,84 @@ const discWearOptions = [
 const Disc = ({
   name, selected, handleDeleteDisc,
   handleUpdateDiscSelected, discID, handleUpdateDiscColor, discColor, discWear,
-  handleUpdateDiscWear,
-}) => (
-  <tr id={discID} className="tableRowStyle">
-    <td className="styleTableCell sticky-column">
-      {name}
-    </td>
-    <td className="styleTableCell">
-      <div className="center-contents">
-        <ColorPicker
-          itemID={discID}
-          handleColorChange={handleUpdateDiscColor}
-          selectedColor={discColor}
-        />
-      </div>
-    </td>
-    <td className="styleTableCell">
-      <Select
-        options={discWearOptions}
-        placeHolder=" "
-        showLoadingIndicator={false}
-        loadingMessage="Loading"
-        selectLabel="value"
-        selectValue="value"
-        showPlaceHolder={false}
-        selectedOption={discWear.toString()}
-        onChange={handleUpdateDiscWear}
-        returnFullEvent
-      />
-    </td>
-    <td className="styleTableCell">
-      <ToggleSwitch
-        id={`enabledSwitch${discID}`}
-        selected={selected}
-        onToggle={handleUpdateDiscSelected}
-        label=""
-      />
-    </td>
-    <td className="styleTableCell">
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={handleDeleteDisc}
-        className="cursor-pointer"
-      >
-        <IconDelete className="delete-icon" id={`deleteDisc${discID}`} />
-      </div>
-    </td>
-  </tr>
-);
+  handleUpdateDiscWear, displayedFields,
+}) => {
+  const displayedColumns = displayedFields.map((column) => {
+    const cssClass = column.name === 'Name' ? 'styleTableCell sticky-column' : 'styleTableCell';
+    let contents;
+    switch (column.name) {
+      case 'Name':
+        contents = name;
+        break;
+      case 'Manufacturer':
+        contents = name;
+        break;
+      case 'Wear':
+        contents = (
+          <Select
+            options={discWearOptions}
+            placeHolder=" "
+            showLoadingIndicator={false}
+            loadingMessage="Loading"
+            selectLabel="value"
+            selectValue="value"
+            showPlaceHolder={false}
+            selectedOption={discWear.toString()}
+            onChange={handleUpdateDiscWear}
+            returnFullEvent
+          />
+        );
+        break;
+      case 'Disc Color':
+        contents = (
+          <div className="center-contents">
+            <ColorPicker
+              itemID={discID}
+              handleColorChange={handleUpdateDiscColor}
+              selectedColor={discColor}
+            />
+          </div>
+        );
+        break;
+      case 'Enabled':
+        contents = (
+          <ToggleSwitch
+            id={`enabledSwitch${discID}`}
+            selected={selected}
+            onToggle={handleUpdateDiscSelected}
+            label=""
+          />
+        );
+        break;
+      case 'Remove':
+        contents = (
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={handleDeleteDisc}
+            className="cursor-pointer"
+          >
+            <IconDelete className="delete-icon" id={`deleteDisc${discID}`} />
+          </div>
+        );
+        break;
+      default:
+        contents = undefined;
+    }
+
+    return (
+      <td className={cssClass} key={column.name + discID}>
+        {contents}
+      </td>
+    );
+  });
+
+  return (
+    <tr id={discID} className="tableRowStyle" key={discID}>
+      {displayedColumns}
+    </tr>
+  );
+};
 
 Disc.propTypes = {
   name: PropTypes.string.isRequired,
@@ -83,6 +112,10 @@ Disc.propTypes = {
   discColor: PropTypes.objectOf(PropTypes.number).isRequired,
   discWear: PropTypes.number.isRequired,
   handleUpdateDiscWear: PropTypes.func.isRequired,
+  displayedFields: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    caption: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default Disc;

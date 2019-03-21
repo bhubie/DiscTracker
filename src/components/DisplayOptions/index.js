@@ -17,9 +17,9 @@ const DisplayOptions = ({
   return (
     <div id="displayOptions" className="displayOptions">
       <Card>
-        <CardHeader
-          title="Display Options"
-        />
+        <CardHeader>
+          Display Options
+        </CardHeader>
         <CardContents>
           <div id="gridBackgroungColor" className="columns">
             <span className="column is-three-quarters">

@@ -22,7 +22,8 @@ const initialState = {
       a: '1',
     },
   }],
-  showBagModal: false,
+  showModal: false,
+  modalType: undefined,
   baggedDiscs: [],
   selectableDiscs: [],
   discFilterOptions: {
@@ -32,6 +33,17 @@ const initialState = {
       'Mid-Range',
       'Putt & Approach',
     ],
+  },
+  columns: [
+    { name: 'Name', caption: 'Name' },
+    { name: 'Manufacturer', caption: 'Manufacturer' },
+    { name: 'Disc Color', caption: 'Disc Color' },
+    { name: 'Wear', caption: 'Wear' },
+    { name: 'Enabled', caption: 'Enabled' },
+    { name: 'Remove', caption: 'Remove' },
+  ],
+  bagSettings: {
+    hiddenColumns: [],
   },
 };
 

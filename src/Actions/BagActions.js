@@ -1,24 +1,22 @@
-import { ADD_BAG, UPDATE_BAG, LOAD_BAGS, TOGGLE_BAG_MODAL, BAG_NAME_ON_CHANGE, DELETE_BAG } from '../Constants';
+import { ADD_BAG, UPDATE_BAG, LOAD_BAGS, TOGGLE_BAG_MODAL, BAG_NAME_ON_CHANGE, DELETE_BAG, TOGGLE_BAG_SETTINGS_MODAL, TOGGLE_COLUMN_VISIBILITY } from '../Constants';
 import BagRepository from '../Repositories/Bag';
 import db from '../db';
 
 const bagRepository = new BagRepository(db);
 
 export function loadBags() {
-  return (dispatch) => {
-    return bagRepository.getAll()
-      .then((bags) => {
-        dispatch({
-          type: LOAD_BAGS,
-          payload: {
-            bags,
-            selectedBagID: bags[0].id,
-            selectedBagName: bags[0].name,
-          },
-        });
-        return Promise.resolve();
+  return dispatch => bagRepository.getAll()
+    .then((bags) => {
+      dispatch({
+        type: LOAD_BAGS,
+        payload: {
+          bags,
+          selectedBagID: bags[0].id,
+          selectedBagName: bags[0].name,
+        },
       });
-  };
+      return Promise.resolve();
+    });
 }
 
 export function addBag(name) {
@@ -69,6 +67,41 @@ export function bagNameOnChange(name) {
     dispatch({
       type: BAG_NAME_ON_CHANGE,
       payload: name,
+    });
+  };
+}
+
+export function toggleColumnVisibility(column, checked) {
+  console.log(column, checked);
+  if (!checked) {
+    return (dispatch) => {
+      bagRepository.addHiddenColumn(column)
+        .then(() => {
+          console.log('promise returned from add hidden column');
+          dispatch({
+            type: TOGGLE_COLUMN_VISIBILITY,
+            payload: column,
+          });
+        });
+    };
+  }
+
+  return (dispatch) => {
+    bagRepository.deleteHiddenColumn(column)
+      .then(() => {
+        dispatch({
+          type: TOGGLE_COLUMN_VISIBILITY,
+          payload: column,
+        });
+      });
+  };
+}
+
+export function toggleBagSettingsModal() {
+  return (dispatch) => {
+    dispatch({
+      type: TOGGLE_BAG_SETTINGS_MODAL,
+      payload: {},
     });
   };
 }

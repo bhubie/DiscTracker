@@ -19,6 +19,9 @@ import {
   UPDATE_DISC_COLOR,
   DELETE_DISC,
   TOGGLE_DISC_TYPE_INCLUSION,
+  TOGGLE_BAG_SETTINGS_MODAL,
+  TOGGLE_COLUMN_VISIBILITY,
+  LOAD_BAG_SETTINGS
 } from '../Constants';
 
 export default function (state, { type, payload }) {
@@ -149,10 +152,38 @@ export default function (state, { type, payload }) {
     case TOGGLE_BAG_MODAL: {
       return {
         ...state,
-        showBagModal: !state.showBagModal,
+        showModal: !state.showModal,
         mode: payload.mode,
         bagName: payload.name,
         bagID: payload.id,
+        modalType: 'BagCreator',
+      };
+    }
+    case TOGGLE_BAG_SETTINGS_MODAL: {
+      return {
+        ...state,
+        showModal: !state.showModal,
+        modalType: 'BagSettings',
+      };
+    }
+    case LOAD_BAG_SETTINGS: {
+      return {
+        ...state,
+        bagSettings: payload,
+      };
+    }
+    case TOGGLE_COLUMN_VISIBILITY: {
+      if (!state.bagSettings.hiddenColumns.includes(payload)) {
+        // Add Item
+        return {
+          ...state,
+          bagSettings: Object.assign({}, state.bagSettings, { hiddenColumns: [...state.bagSettings.hiddenColumns, payload] }),
+        };
+      }
+      // Remove Item
+      return {
+        ...state,
+        bagSettings: Object.assign({}, state.bagSettings, { hiddenColumns: state.bagSettings.hiddenColumns.filter(item => item !== payload) }),
       };
     }
     case BAG_NAME_ON_CHANGE: {

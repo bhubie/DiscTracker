@@ -55,6 +55,35 @@ class BagRepository {
         });
     });
   }
+
+  addHiddenColumn(column) {
+    return new Promise((resolve, reject) => {
+      this.db.table('hiddenColumns')
+        .add({ column })
+        .then((id) => {
+          resolve(Object.assign({}, column, { id }));
+        })
+        .catch((e) => {
+          // eslint-disable-next-line no-console
+          console.error(e);
+          reject(e);
+        });
+    });
+  }
+
+  deleteHiddenColumn(column) {
+    return new Promise((resolve, reject) => {
+      this.db.table('hiddenColumns')
+        .where('column').anyOf(column)
+        .delete()
+        .then(() => {
+          resolve(true);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  }
 }
 
 export default BagRepository;

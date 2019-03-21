@@ -6,7 +6,7 @@ import Modal from '../Modal';
 
 
 const BagSelector = ({
-  bags, handleBagChange, handleNewBagClick, handleDeleteBagClick, showBagModal,
+  bags, handleBagChange, handleNewBagClick, handleDeleteBagClick, showModal,
   mode, handleEditBagClick, handleSaveBag, handleCloseModal, bagName,
   handleEditBagOnChange,
 }) => {
@@ -69,7 +69,7 @@ const BagSelector = ({
       <Modal
         title={modalTitle}
         modal={false}
-        open={showBagModal}
+        open={showModal}
         onRequestClose={handleCloseModal}
         actions={modalButtons}
       >
@@ -94,7 +94,7 @@ BagSelector.propTypes = {
   handleEditBagOnChange: PropTypes.func.isRequired,
   handleDeleteBagClick: PropTypes.func.isRequired,
   handleNewBagClick: PropTypes.func.isRequired,
-  showBagModal: PropTypes.bool.isRequired,
+  showModal: PropTypes.bool.isRequired,
   handleEditBagClick: PropTypes.func.isRequired,
   handleSaveBag: PropTypes.func.isRequired,
   handleCloseModal: PropTypes.func.isRequired,

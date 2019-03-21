@@ -31,9 +31,9 @@ export default class ThrowingStyle extends React.Component {
     return (
       <div id="throwingStyle" className="throwingStyle">
         <Card>
-          <CardHeader
-            title="Throwing Style"
-          />
+          <CardHeader>
+            Throwing Style
+          </CardHeader>
           <CardContents>
             <div className="buttons has-addons is-centered">
               {options}

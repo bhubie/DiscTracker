@@ -161,13 +161,17 @@ $primary: $primary-color;
 }
 .sticky-column {
     position: sticky;
-    min-width: 100px;
+    width: 125px;
     left: 0;
     top: auto;
     border-top-width: 1px;
     margin-top: -1px;
     z-index: 1;
     background: white;
+}
+
+.select-cell {
+    min-width: 100px;
 }
 
 // Bag

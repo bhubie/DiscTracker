@@ -40,9 +40,10 @@ export default class DiscSelector extends React.Component {
       return (
         <div id="discSelector" className="discSelectorStyle">
           <Card>
-            <CardHeader
-              title="Available Discs"
-            />
+            <CardHeader>
+              Available Discs
+            </CardHeader>
+            
             <CardContents>
               <div id="DiscSelectorContainer" className="columns">
                 <div id="dropDownContainer" className="column is-three-quarters is-two-thirds-tablet ">

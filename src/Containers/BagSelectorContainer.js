@@ -5,12 +5,12 @@ import BagSelector from '../components/BagSelector';
 
 function mapStateToProps(state) {
   const {
-    bags, showBagModal, mode, bagName, bagID,
+    bags, showModal, mode, bagName, bagID, modalType,
   } = state;
 
   return {
     bags,
-    showBagModal,
+    showModal: showModal && modalType === 'BagCreator',
     mode,
     bagName,
     bagID,
