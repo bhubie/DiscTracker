@@ -25,8 +25,9 @@ const Header = ({ handleGetStartedOnClick }) => (
               target="_blank"
               rel="noopener noreferrer"
               title="Contribute on Github"
+              id="link-github"
             >
-              <IconGitHub id="githubIcon" className="icon-github" />
+              <IconGitHub id="githubIcon" color="white" />
             </a>
           </div>
         </div>

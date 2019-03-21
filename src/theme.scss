@@ -262,3 +262,8 @@ $primary: $primary-color;
 .is-checkradio[type="checkbox"] + label::after, .is-checkradio[type="checkbox"] + label::after {
     border-color: $primary-color !important;
 }
+
+#link-github {
+    background-color: transparent !important;
+    
+}
