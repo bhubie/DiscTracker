@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Div } from 'glamorous';
 import { SketchPicker } from 'react-color';
 
 
-class ColorPicker extends React.Component {
+class ColorPicker extends React.PureComponent {
   state = {
     displayColorPicker: false,
     color: this.props.selectedColor,
@@ -16,8 +15,9 @@ class ColorPicker extends React.Component {
 
   handleClose = () => {
     this.setState({ displayColorPicker: false });
+
     if (this.props.handleColorChange !== undefined) {
-      this.props.handleColorChange(this.props.item, this.state.color);
+      this.props.handleColorChange(this.props.itemID, this.state.color);
     }
   };
 
@@ -58,36 +58,41 @@ class ColorPicker extends React.Component {
     };
 
     return (
-      <Div>
-        <Div
-          css={styles.swatch}
+      <div className={this.props.className}>
+        <div
+          style={styles.swatch}
           onClick={this.handleClick}
           onKeyDown={this.handleClick}
           role="button"
           tabIndex={0}
         >
-          <Div css={styles.color} />
-        </Div>
+          <div style={styles.color} />
+        </div>
         { this.state.displayColorPicker ?
-          <Div css={styles.popover}>
-            <Div
-              css={styles.cover}
+          <div style={styles.popover}>
+            <div
+              style={styles.cover}
               onClick={this.handleClose}
               onKeyDown={this.handleClose}
               role="button"
               tabIndex={0}
             />
             <SketchPicker color={this.state.color} onChange={this.handleChange} />
-          </Div> : null }
-      </Div>
+          </div> : null }
+      </div>
     );
   }
 }
 
 ColorPicker.propTypes = {
-  selectedColor: PropTypes.objectOf(PropTypes.string).isRequired,
+  className: PropTypes.string,
+  selectedColor: PropTypes.objectOf(PropTypes.number).isRequired,
   handleColorChange: PropTypes.func.isRequired,
-  item: PropTypes.string.isRequired,
+  itemID: PropTypes.number.isRequired,
+};
+
+ColorPicker.defaultProps = {
+  className: ' ',
 };
 
 export default ColorPicker;

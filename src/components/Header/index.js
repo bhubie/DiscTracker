@@ -1,55 +1,66 @@
 import React from 'react';
-import { Header as GlamHeader, H1, Nav } from 'glamorous';
-import AppTheme from '../../AppTheme';
+import PropTypes from 'prop-types';
 import IconGitHub from '../Icons/IconGitHub';
-import Link from '../Link/index';
+import { ButtonPrimary } from '../Buttons';
 
-const headerStyle = {
-  left: 0,
-  top: 0,
-  height: '56px',
-  padding: '0 24px',
-  background: AppTheme.palette.primary2Color,
-  zIndex: 50,
-  gridArea: 'header',
-  marginBottom: '24px',
-  color: AppTheme.palette.alternateTextColor,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-};
 
-const h1Style = {
-  margin: '0',
-  fontSize: '24px',
-  fontWeight: '400',
-};
+const Header = ({ handleGetStartedOnClick }) => (
+  <section className="header hero is-primary-dark is-fullheight">
+    <div className="hero-head">
+      <nav className="navbar">
+        <div className="container is-flex flex-space-between">
+          <div className="navbar-brand ">
+            <a
+              className="navbar-item subtitle is-4"
+              href="https://disctracker.netlify.com/"
+            >
+                Disc Golf Bag Manager
+            </a>
+          </div>
 
-const styleIcon = {
-  color: AppTheme.palette.alternateTextColor,
-  fill: 'currentColor',
-};
+          <div className="navbar-end">
+            <a
+              className="navbar-item"
+              href="https://github.com/bhubie/DiscTracker"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Contribute on Github"
+              id="link-github"
+            >
+              <IconGitHub id="githubIcon" color="white" />
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
 
-const styleNav = {
-  fontSize: '100%',
-};
+    <div className="hero-body">
+      <div className="container">
+        <h1 className="title has-text-light">
+          Golf Disc Bag Manager & Flight Path Visualizer
+        </h1>
+        <h2 className="subtitle has-text-light">
+          Disc flight path data provided by: &nbsp;
+          <a
+            className="has-text-info"
+            href="http://www.inboundsdiscgolf.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Inbounds Disc Golf
+          </a>
+        </h2>
+        <ButtonPrimary id="btnGetStarted" onClick={handleGetStartedOnClick}>
+          Get Started
+        </ButtonPrimary>
+      </div>
+    </div>
+  </section>
 
-const Header = () => (
-  <GlamHeader css={headerStyle} id="Header">
-    <H1 css={h1Style}>
-      Disc Tracker
-    </H1>
-    <Nav id="headerNav" css={styleNav}>
-      <Link
-        href="https://github.com/bhubie/DiscTracker"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Contribute on Github"
-      >
-        <IconGitHub id="githubIcon" style={styleIcon} />
-      </Link>
-    </Nav>
-  </GlamHeader>
 );
+
+Header.propTypes = {
+  handleGetStartedOnClick: PropTypes.func.isRequired,
+};
 
 export default Header;

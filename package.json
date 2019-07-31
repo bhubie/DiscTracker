@@ -3,32 +3,53 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-brands-svg-icons": "^5.8.0",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "bulma": "^0.7.5",
+    "bulma-checkradio": "^2.1.0",
+    "bulma-switch": "^2.0.0",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
-    "glamor": "^2.20.40",
-    "glamorous": "^4.12.1",
+    "classnames": "^2.2.6",
+    "dexie": "^2.0.4",
+    "dexie-relationships": "^1.2.10",
+    "fake-indexeddb": "^2.0.4",
     "immutability-helper": "^2.6.6",
-    "material-ui": "^0.20.0",
+    "indexeddbshim": "^3.8.0",
+    "node-sass": "^4.9.3",
     "prop-types": "^15.6.1",
-    "react": "^16.3.0",
+    "react": "^16.8.6",
     "react-color": "^2.14.0",
-    "react-dom": "^16.3.0",
-    "react-scripts": "1.1.1",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-scripts": "^2.1.5",
     "react-swipeable-bottom-sheet": "^1.1.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "sinon": "^4.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build; npm run sw-epilog",
+    "sw-epilog": "cat src/sw-epilog.js >> build/service-worker.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
-    "eslint": "^4.19.1",
+    "babel-eslint": "^9.0.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "jest-canvas-mock": "^1.0.2"
-  }
+    "jest-canvas-mock": "^1.0.2",
+    "redux-devtools": "^3.4.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

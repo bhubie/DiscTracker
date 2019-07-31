@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Div } from 'glamorous';
 import { colorToRGBA } from '../../Utils/Utils';
 import { calcAdjustedHighSpeedTurn, calcAdjustedLowSpeedFade, calcTurnSign, calcFadeStart, calcImpact, calcTurnEnd, calcXAxisOrigin, calcDeltaV } from '../../Utils/FlightPathCalc';
-import { mediaQueries } from '../../Utils/MediaQueries';
 
 const style = {
   margin: 'auto',
@@ -13,28 +11,11 @@ const style = {
   maxHeight: '600px',
 };
 
-const styleFlightPathContainer = {
-  marginTop: '10px',
-  gridArea: 'flightpath',
-  maxHeight: '600px',
-  [mediaQueries.maxWidth750.value]: {
-    paddingTop: '5px',
-    minHeight: '100vh',
-    paddingBottom: '56px',
-  },
-};
-
 export default class FlightPath extends React.Component {
   constructor(props) {
     super(props);
     this.canvas = React.createRef();
     this.flightPathContainer = React.createRef();
-    /*
-    this.state = {
-      GridWidth: 350,
-      GridBlockWidth: 50,
-    };
-    */
   }
 
   componentDidMount() {
@@ -57,18 +38,20 @@ export default class FlightPath extends React.Component {
   drawDiscs() {
     this.drawGridLines(this.props.gridColor, this.props.gridLineColor);
 
-    this.props.discs.forEach((disc) => {
-      this.drawDiscPath(
-        `${disc.manufacturer} ${disc.name}`,
-        disc.distance,
-        disc.hst,
-        disc.lsf,
-        disc.ns,
-        1,
-        disc.wear,
-        disc.color,
-        this.props.throwingStyle,
-      );
+    this.props.baggedDiscs.forEach((disc) => {
+      if (disc.selected) {
+        this.drawDiscPath(
+          `${disc.manufacturer} ${disc.name}`,
+          disc.distance,
+          disc.hst,
+          disc.lsf,
+          disc.ns,
+          1,
+          disc.wear,
+          disc.color,
+          this.props.throwingStyle,
+        );
+      }
     });
   }
 
@@ -182,18 +165,18 @@ export default class FlightPath extends React.Component {
   }
   render() {
     return (
-      <Div id="flightPathContainer" css={styleFlightPathContainer} >
+      <div id="flightPathContainer" className="flightPathContainer" >
         <div id="flightPath" style={style} ref={this.flightPathContainer}>
           <canvas id="flightPath" ref={this.canvas} />
         </div>
-      </Div>
+      </div>
     );
   }
 }
 
 FlightPath.propTypes = {
-  gridColor: PropTypes.objectOf(PropTypes.string).isRequired,
+  gridColor: PropTypes.objectOf(PropTypes.number).isRequired,
   gridLineColor: PropTypes.objectOf(PropTypes.string).isRequired,
   throwingStyle: PropTypes.string.isRequired,
-  discs: PropTypes.arrayOf(PropTypes.object).isRequired,
+  baggedDiscs: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

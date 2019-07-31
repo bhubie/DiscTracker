@@ -1,0 +1,274 @@
+@import 'bulma/sass/utilities/initial-variables.sass';
+
+// color pallete
+$primary-color: #2196F3;
+$primary-color-dark: #1976D2;
+$accent-color: #00BCD4;
+$alternate-text-color: white;
+
+//Bulma Overrides
+$navbar-background-color: $primary-color-dark;
+$navbar-item-color: white;
+$navbar-item-hover-color: white;
+
+$info: $accent-color;
+$primary: $primary-color;
+
+$switch-background-active: $primary;
+
+
+$break-medium: 768px;
+
+
+@import 'bulma';
+
+$primary: $primary-color;
+@import '~bulma-switch';
+@import '~bulma-checkradio';
+
+
+
+//primary color dark
+.is-primary-dark {
+    background-color: $primary-color-dark;
+}
+
+// Header
+.header {
+    grid-area: header;
+}
+
+// Throwing Style
+.throwingStyle {
+    margin-top: 10px;
+    grid-column: 1 / span 1;
+    grid-row: 3;
+}
+
+// Dislplay Options Style
+.displayOptions {
+    margin-top: 10px;
+}
+
+// Disc Selector Style
+.discSelectorStyle {
+    width: 100%;
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    margin-top: 10px;
+  };
+
+  //Flight Path
+  .flightPathContainer {
+    margin-top: 10px;
+    grid-area: flightpath;
+    max-height: 600px;
+    position: sticky;
+    top: 10px;
+    @media (max-width : $break-medium) {
+      padding-top: 5px;
+      min-height: 100vh;
+      padding-bottom: 56px;
+    };
+  }
+
+  // Welcome Message
+  .getStartedButtonContainer {
+    display: none;
+    @media (max-width : $break-medium) {
+      display: 'inline',
+    };
+  }
+  .welcomeMessage  {
+    grid-area: welcomemessage;
+    text-align: center;
+    color: $alternate-text-color;
+    @media (max-width : $break-medium) {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex: 1;
+    };
+  };
+
+  //Bottom Sheet
+  .BottomSheet {
+    height: 54px;
+    background: $accent-color;
+    color: #FFFFFF;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  };
+
+.BottomSheetWrapper {
+    display: none;
+};
+
+// Tables
+
+.styleTableCell {
+    display: table-cell;
+    padding-right: 24px;
+    height: 40px;
+    font-size: 13px;
+}
+.tableRowStyle {
+    text-align: center;
+    font-size: 0.8125rem;
+    display: table-row;
+    //border-bottom: 1px solid #e9ecef;
+}
+.styleTableHeader {
+    font-weight: normal;
+    font-size: 12px;
+    //padding-left: 24px;
+    padding-right: 24px;
+    height: 40px;
+    //color: rgb(158, 158, 158);
+}
+.styleTableBody {
+    display: table-row-group;
+    //border-bottom: 1px solid #e9ecef;
+}
+.trHeaderStyle {
+    text-align: left;
+    font-size: 0.8125rem;
+    display: table-row;
+}
+.styleTableRow {
+    font-size: 0.8125rem;
+    display: table-row;
+    //border-bottom: 1px solid #e9ecef;
+}
+.styleTable {
+    width: 100%;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    //border-bottom: 1px solid #e9ecef;
+    font-family: Roboto, sans-serif;
+}
+
+.styleTableWrapper {
+    display: block;
+    overflow-x: auto;
+}
+.sticky-column {
+    position: sticky;
+    width: 125px;
+    left: 0;
+    top: auto;
+    border-top-width: 1px;
+    margin-top: -1px;
+    z-index: 1;
+    background: white;
+}
+
+.select-cell {
+    min-width: 100px;
+}
+
+// Bag
+.styleSelectedBag {
+    width: 100%;
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    margin-top: 10px;
+}
+
+//Bottom Sheet
+.contentsBottomSheet {
+    grid-area: bagcontainer;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 24px;
+    grid-column-gap: 15px;
+    @media (max-width : $break-medium) {
+      display: inline;
+    };
+}
+.contentsNonBottomSheet {
+    margin-left: 24px;
+    @media (max-width : $break-medium) {
+      display: none;
+    };
+}
+
+//App 
+.styleApp {
+    background: $primary-color;
+    @media (max-width : $break-medium) {
+      display: block;
+    };
+}
+
+#root {
+    background: $primary;
+}
+
+.delete-icon {
+    color: $primary;
+    fill: currentColor;
+    width: 28px;
+    height: 28px;
+}
+
+.icon-github {
+    color: $alternate-text-color;
+    fill: currentColor;
+}
+
+//Util
+.flex-space-between {
+    justify-content: space-between;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.center-contents {
+    margin: auto;
+    width: 50%;
+}
+
+.mg-bt-10px {
+    margin-bottom: 10px;
+}
+  
+
+// Bulma switch fix
+.switch[type="checkbox"]:checked + label::before, .switch[type="checkbox"]:checked + label::before {
+    background: $switch-background-active;
+}
+.switch[type="checkbox"].is-primary:checked + label::before, .switch[type="checkbox"].is-primary:checked + label::before {
+    background: $switch-background-active;
+}
+.switch[type="checkbox"].is-primary:checked + label::before, .switch[type="checkbox"].is-primary:checked + label::before {
+    background: $switch-background-active;
+}
+.switch[type="checkbox"]:checked + label::before, .switch[type="checkbox"]:checked + label::before {
+    background: $switch-background-active;
+}
+
+// Bulmas color Checkbox fix
+.is-checkradio[type="checkbox"].is-primary:checked + label::after, .is-checkradio[type="checkbox"].is-primary:checked + label::after {
+
+    border-color:  $primary-color !important;
+
+}
+
+.is-checkradio[type="checkbox"] + label::after, .is-checkradio[type="checkbox"] + label::after {
+    border-color: $primary-color !important;
+}
+
+#link-github {
+    background-color: transparent !important;
+    
+}

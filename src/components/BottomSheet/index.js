@@ -1,27 +1,9 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Div } from 'glamorous';
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
-import KeyboardArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
-import AppTheme from '../../AppTheme';
+import IconArrowUp from '../Icons/IconArrowUp';
 import { isScrolledIntoView } from '../../Utils/Utils';
 import { mediaQueries } from '../../Utils/MediaQueries';
-
-const styleBottomSheetWrapper = {
-  display: 'none',
-};
-
-
-const styleBottomSheet = {
-  height: '54px',
-  background: AppTheme.palette.accent1Color,
-  color: '#FFFFFF',
-  textAlign: 'center',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
 
 class BottomSheet extends Component {
     state = {
@@ -30,7 +12,7 @@ class BottomSheet extends Component {
     }
 
     componentDidMount() {
-      const mobileMaxPixels = mediaQueries.maxWidth750.maxPixels;
+      const mobileMaxPixels = mediaQueries.mobile.maxPixels;
       window.addEventListener('scroll', () => {
         if (isScrolledIntoView(document.getElementById('flightPath'))
                   && window.innerWidth <= mobileMaxPixels
@@ -70,24 +52,27 @@ class BottomSheet extends Component {
 
       const styleArrow = {
         color: 'white',
+        fill: 'currentColor',
         transform: `rotate(${this.state.rotatation}deg)`,
+        height: '24px',
+        width: '24px',
       };
 
       return (
-        <Div id="BottomSheetWrapper" css={styleBottomSheetWrapper}>
+        <div id="BottomSheetWrapper" className="BottomSheetWrapper">
           <SwipeableBottomSheet
             overflowHeight={54}
             marginTop={128}
             onChange={this.onChange}
           >
-            <Div css={styleBottomSheet}>
-              <KeyboardArrowUp style={styleArrow} id="arrow" />
+            <div className="BottomSheet">
+              <IconArrowUp style={styleArrow} id="arrow" />
               <span style={{ animation: 'fadein' }}>{bottomSheetMessage}</span>
-              <KeyboardArrowUp style={styleArrow} id="arrow" />
-            </Div>
+              <IconArrowUp style={styleArrow} id="arrow" />
+            </div>
             {this.props.children}
           </SwipeableBottomSheet>
-        </Div>
+        </div>
       );
     }
 }

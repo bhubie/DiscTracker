@@ -1,78 +1,88 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Select as GlamSelect, Div } from 'glamorous';
-
-
-const styleSelect = {
-  backgroundColor: 'transparent',
-  width: '100%',
-  padding: '4px 0',
-  fontSize: '16px',
-  color: 'rgba(0,0,0,.42)',
-  border: 'none',
-  borderBottom: '1px solid rgba(0,0,0,.42)',
-  appearance: 'none',
-  ':focus': {
-    outline: 'none',
-  },
-};
-
-const styleSelectArrow = {
-  width: '100%',
-  position: 'relative',
-  backgroundImage: "url(\"data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%230' fill-rule='evenodd' opacity='.54' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E\")",
-  display: 'inline-flex',
-  boxSizing: 'border-box',
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 8px bottom 12px',
-  overflow: 'hidden',
-};
 
 export default class Select extends React.Component {
     handleOnChange = (e) => {
-      this.props.onChange(e.target.options[e.target.selectedIndex].value);
+      if (this.props.returnFullEvent) {
+        e.stopPropagation();
+        this.props.onChange(e);
+      } else {
+        this.props.onChange(e.target.options[e.target.selectedIndex].value);
+      }
     }
 
-    renderOptions = (options, showLoadingIndicator, loadingMessage) => {
-      const renderedOptions = options.map(option => (<option value={option.value}>{option.label}</option>));
+    // eslint-disable-next-line max-len
+    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id) => {
+      let renderedOptions;
+
+      if (options !== undefined) {
+        // eslint-disable-next-line arrow-parens
+        // eslint-disable-next-line arrow-body-style
+        renderedOptions = options.map((option) => {
+          // eslint-disable-next-line eqeqeq
+          return (
+            <option value={option[selectValue]} key={option[selectValue]}>
+              {option[selectLabel]}
+            </option>
+          );
+        });
+      } else {
+        renderedOptions = [];
+      }
 
       let placeHolder;
       if (showLoadingIndicator && renderedOptions.length < 1) {
         placeHolder = <option>{loadingMessage}</option>;
-      } else {
+      } else if (this.props.showPlaceHolder === true) {
         placeHolder = <option disabled selected value >{this.props.placeHolder}</option>;
+      } else {
+        placeHolder = undefined;
       }
 
       return (
-        <GlamSelect onChange={this.handleOnChange} css={styleSelect}>
+        <select onChange={this.handleOnChange} id={id} value={this.props.selectedOption}>
           {placeHolder}
           {renderedOptions}
-        </GlamSelect>
+        </select>
       );
     };
 
     render() {
+      const cssClass = `select is-fullwidth ${this.props.showLoadingIndicator && this.props.options.length < 1 ? 'is-loading ' : ''}`;
+
       return (
-        <Div css={styleSelectArrow}>
+        <div className={cssClass}>
           {this.renderOptions(
-this.props.options,
+            this.props.options,
             this.props.showLoadingIndicator,
             this.props.loadingMessage,
-)}
-        </Div>
+            this.props.selectValue,
+            this.props.selectLabel,
+            this.props.id,
+          )}
+        </div>
 
       );
     }
 }
 
 Select.propTypes = {
+  id: PropTypes.string.isRequired,
+  showPlaceHolder: PropTypes.bool,
   placeHolder: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   onChange: PropTypes.func.isRequired,
   showLoadingIndicator: PropTypes.bool.isRequired,
   loadingMessage: PropTypes.string,
+  selectValue: PropTypes.string.isRequired,
+  selectLabel: PropTypes.string.isRequired,
+  selectedOption: PropTypes.string,
+  returnFullEvent: PropTypes.bool,
 };
 
 Select.defaultProps = {
   loadingMessage: 'Loading...',
+  showPlaceHolder: false,
+  selectedOption: undefined,
+  returnFullEvent: false,
 };
