@@ -63,6 +63,8 @@ $primary: $primary-color;
     margin-top: 10px;
     grid-area: flightpath;
     max-height: 600px;
+    position: sticky;
+    top: 10px;
     @media (max-width : $break-medium) {
       padding-top: 5px;
       min-height: 100vh;
@@ -201,10 +203,13 @@ $primary: $primary-color;
 //App 
 .styleApp {
     background: $primary-color;
-    max-width: 100%;
     @media (max-width : $break-medium) {
       display: block;
     };
+}
+
+#root {
+    background: $primary;
 }
 
 .delete-icon {

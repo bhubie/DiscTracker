@@ -21,7 +21,7 @@ import {
   TOGGLE_DISC_TYPE_INCLUSION,
   TOGGLE_BAG_SETTINGS_MODAL,
   TOGGLE_COLUMN_VISIBILITY,
-  LOAD_BAG_SETTINGS
+  LOAD_BAG_SETTINGS,
 } from '../Constants';
 
 export default function (state, { type, payload }) {
@@ -37,7 +37,8 @@ export default function (state, { type, payload }) {
       return {
         ...state,
         bags: [...state.bags, payload],
-        showBagModal: false,
+        showModal: !state.showModal,
+        modalType: undefined,
       };
     case UPDATE_BAG: {
       const bagToUpdate = state.bags.find(bag => bag.id === parseInt(payload.id, 0));
@@ -47,7 +48,8 @@ export default function (state, { type, payload }) {
           ...state.bags.filter(bag => bag.id !== parseInt(payload.id, 0)),
           Object.assign({}, bagToUpdate, { name: payload.bagName }),
         ],
-        showBagModal: false,
+        showModal: !state.showModal,
+        modalType: undefined,
       };
     }
     case DELETE_BAG: {

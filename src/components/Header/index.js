@@ -14,7 +14,7 @@ const Header = ({ handleGetStartedOnClick }) => (
               className="navbar-item subtitle is-4"
               href="https://disctracker.netlify.com/"
             >
-                Disc Tracker
+                Disc Golf Bag Manager
             </a>
           </div>
 
@@ -37,7 +37,7 @@ const Header = ({ handleGetStartedOnClick }) => (
     <div className="hero-body">
       <div className="container">
         <h1 className="title has-text-light">
-          Golf Disc Flight Path Visualizer
+          Golf Disc Bag Manager & Flight Path Visualizer
         </h1>
         <h2 className="subtitle has-text-light">
           Disc flight path data provided by: &nbsp;

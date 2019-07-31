@@ -77,7 +77,6 @@ export function toggleColumnVisibility(column, checked) {
     return (dispatch) => {
       bagRepository.addHiddenColumn(column)
         .then(() => {
-          console.log('promise returned from add hidden column');
           dispatch({
             type: TOGGLE_COLUMN_VISIBILITY,
             payload: column,

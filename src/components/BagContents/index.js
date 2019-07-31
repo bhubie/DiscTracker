@@ -12,41 +12,43 @@ const BagContents = ({
   const midranges = [];
   const putters = [];
 
-  baggedDiscs.forEach((disc) => {
-    const discElement = (
-      <Disc
-        key={disc.id}
-        name={disc.discWithManufacturer}
-        selected={disc.selected}
-        weight={disc.weight}
-        handleDeleteDisc={handleDeleteDisc}
-        handleUpdateDiscSelected={handleUpdateDiscSelected}
-        discID={disc.id}
-        handleUpdateDiscColor={handleUpdateDiscColor}
-        discColor={disc.color}
-        discWear={disc.wear}
-        handleUpdateDiscWear={handleUpdateDiscWear}
-        displayedFields={columns}
-      />
-    );
+  baggedDiscs
+    .sort((a, b) => a.name > b.name)
+    .forEach((disc) => {
+      const discElement = (
+        <Disc
+          key={disc.id}
+          name={disc.discWithManufacturer}
+          selected={disc.selected}
+          weight={disc.weight}
+          handleDeleteDisc={handleDeleteDisc}
+          handleUpdateDiscSelected={handleUpdateDiscSelected}
+          discID={disc.id}
+          handleUpdateDiscColor={handleUpdateDiscColor}
+          discColor={disc.color}
+          discWear={disc.wear}
+          handleUpdateDiscWear={handleUpdateDiscWear}
+          displayedFields={columns}
+        />
+      );
 
-    switch (disc.type) {
-      case 'Distance Driver':
-        drivers.push(discElement);
-        break;
-      case 'Fairway Driver':
-        fairwayDrivers.push(discElement);
-        break;
-      case 'Mid-Range':
-        midranges.push(discElement);
-        break;
-      case 'Putt & Approach':
-        putters.push(discElement);
-        break;
-      default:
-        drivers.push(discElement);
-    }
-  });
+      switch (disc.type) {
+        case 'Distance Driver':
+          drivers.push(discElement);
+          break;
+        case 'Fairway Driver':
+          fairwayDrivers.push(discElement);
+          break;
+        case 'Mid-Range':
+          midranges.push(discElement);
+          break;
+        case 'Putt & Approach':
+          putters.push(discElement);
+          break;
+        default:
+          drivers.push(discElement);
+      }
+    });
 
   return (
     <div id="tableWrapper">
