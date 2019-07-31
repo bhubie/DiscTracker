@@ -4,7 +4,9 @@ import DisplayOptions from '../components/DisplayOptions';
 
 function mapStateToProps(state) {
   const { displayOptions } = state;
-  const { gridColor, gridLineColor, id, hand } = displayOptions[0];
+  const {
+    gridColor, gridLineColor, id, hand,
+  } = displayOptions[0];
 
   const throwingStyleValues = [{
     value: 'R',

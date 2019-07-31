@@ -4,15 +4,6 @@ import { SketchPicker } from 'react-color';
 
 
 class ColorPicker extends React.PureComponent {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.color !== nextProps.selectedColor) {
-      return {
-        color: nextProps.selectedColor,
-      };
-    }
-
-    return null;
-  }
   state = {
     displayColorPicker: false,
     color: this.props.selectedColor,
@@ -24,6 +15,7 @@ class ColorPicker extends React.PureComponent {
 
   handleClose = () => {
     this.setState({ displayColorPicker: false });
+
     if (this.props.handleColorChange !== undefined) {
       this.props.handleColorChange(this.props.itemID, this.state.color);
     }
