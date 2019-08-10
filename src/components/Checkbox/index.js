@@ -15,6 +15,7 @@ const Checkbox = React.memo(({
         name={name}
         checked={checked}
         onChange={onChange}
+        data-testid={id}
       />
       <label htmlFor={id}>{label}</label>
     </div>

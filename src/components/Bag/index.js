@@ -1,7 +1,7 @@
 import React from 'react';
 import BagContentsContainer from '../../Containers/BagContentsContainer';
 import BagSelectorContainer from '../../Containers/BagSelectorContainer';
-import { Card, CardHeader, CardContents } from '../Card';
+import { Card, CardHeader, CardContents } from '../Card/Card';
 import IconSettings from '../Icons/IconSettings';
 import Modal from '../Modal';
 import BagSettingsContainer from '../../Containers/BagSettingsContainer';

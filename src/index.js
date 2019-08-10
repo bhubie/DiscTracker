@@ -5,7 +5,7 @@ import './index.css';
 import './theme.scss';
 import AppContainer from './Containers/AppContainer';
 import registerServiceWorker from './registerServiceWorker';
-import store from './Store';
+import store from './Stores';
 import { loadDisplayOptions } from './Actions/DisplayOptionsActions';
 import { loadBags } from './Actions/BagActions';
 import { loadBaggedDiscs } from './Actions/DiscActions';

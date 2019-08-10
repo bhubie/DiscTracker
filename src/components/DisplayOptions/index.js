@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardContents } from '../Card';
+import { Card, CardHeader, CardContents } from '../Card/Card';
 import ColorPicker from '../ColorPicker';
 
 const DisplayOptions = ({

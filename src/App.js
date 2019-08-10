@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import DiscSelectorContainer from './Containers/DiscSelectorContainer';
+import { DiscSelector } from './components/DiscSelector/DiscSelector.tsx';
 import BottomSheet from './components/BottomSheet';
 import DisplayOptionsContainer from './Containers/DisplayOptionsContainer';
 import FlightPathContainer from './Containers/FlightPathContainer';
@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div id={id} className={cssClass}>
         <BagContainer />
-        <DiscSelectorContainer />
+        <DiscSelector />
         <DisplayOptionsContainer />
       </div>
     );
