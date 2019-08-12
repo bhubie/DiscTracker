@@ -6,7 +6,6 @@ import './theme.scss';
 import AppContainer from './Containers/AppContainer';
 import registerServiceWorker from './registerServiceWorker';
 import store from './Stores';
-import { loadDisplayOptions } from './Actions/DisplayOptionsActions';
 import { loadBags } from './Actions/BagActions';
 import { loadBaggedDiscs } from './Actions/DiscActions';
 import { loadBagSettings } from './Actions/BagSettingsActions';
@@ -14,7 +13,6 @@ import seedDatabase from './Utils/dbSeed';
 
 
 seedDatabase().then(() => {
-  store.dispatch(loadDisplayOptions());
   store.dispatch(loadBags())
     .then(() => {
       store.dispatch(loadBaggedDiscs(store.getState().selectedBagID));

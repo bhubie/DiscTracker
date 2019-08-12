@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import { DiscSelector } from './components/DiscSelector/DiscSelector.tsx';
 import BottomSheet from './components/BottomSheet';
-import DisplayOptionsContainer from './Containers/DisplayOptionsContainer';
 import FlightPathContainer from './Containers/FlightPathContainer';
 import BagContainer from './Containers/BagContainer';
 import { fetchDiscs } from './Actions/DiscActions';
+import { DisplayOptions } from './components/DisplayOptions/DisplayOptions.tsx';
 
 class App extends Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ class App extends Component {
       <div id={id} className={cssClass}>
         <BagContainer />
         <DiscSelector />
-        <DisplayOptionsContainer />
+        <DisplayOptions />
       </div>
     );
   }

@@ -4,6 +4,16 @@ import { SketchPicker } from 'react-color';
 
 
 class ColorPicker extends React.PureComponent {
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.selectedColor !== state.color && !state.displayColorPicker) {
+      return {
+        color: props.selectedColor,
+      };
+    }
+    return null;
+  }
+
   state = {
     displayColorPicker: false,
     color: this.props.selectedColor,

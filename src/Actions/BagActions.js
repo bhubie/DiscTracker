@@ -1,6 +1,6 @@
 import { ADD_BAG, UPDATE_BAG, LOAD_BAGS, TOGGLE_BAG_MODAL, BAG_NAME_ON_CHANGE, DELETE_BAG, TOGGLE_BAG_SETTINGS_MODAL, TOGGLE_COLUMN_VISIBILITY } from '../Constants';
 import BagRepository from '../Repositories/Bag';
-import db from '../db';
+import db from '../db.ts';
 
 const bagRepository = new BagRepository(db);
 
