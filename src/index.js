@@ -13,10 +13,10 @@ import seedDatabase from './Utils/dbSeed';
 
 
 seedDatabase().then(() => {
-  store.dispatch(loadBags())
-    .then(() => {
-      store.dispatch(loadBaggedDiscs(store.getState().selectedBagID));
-    });
+  // store.dispatch(loadBags())
+  //   .then(() => {
+  //     store.dispatch(loadBaggedDiscs(store.getState().selectedBagID));
+  //   });
   store.dispatch(loadBagSettings());
 });
 

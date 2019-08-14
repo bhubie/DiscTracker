@@ -1,4 +1,4 @@
-import { EntityState, Store, EntityStore, StoreConfig } from '@datorama/akita';
+import { Store, StoreConfig } from '@datorama/akita';
 
 export type RightHand = {
     value: 'R',

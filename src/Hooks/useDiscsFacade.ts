@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { discService } from '../Stores/Disc/DiscService';
 import { IDisc, DiscType } from '../Stores/Disc/DiscStore';
 import { discQuery } from '../Stores/Disc/DiscQuery';
+import { onEmit } from '../Utils/Utils';
 
 
 interface DiscState {
@@ -13,10 +14,6 @@ interface DiscState {
     isPutterSelected: boolean
     isFetchingDiscs: boolean
 }
-
-function onEmit<T>(source$:Observable<T>, nextFn:(value: T) => void): Subscription {
-    return source$.subscribe(nextFn, console.error);
-  }
 
 export function useDiscsFacade(): [DiscState, Function] {
 

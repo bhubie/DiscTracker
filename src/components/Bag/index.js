@@ -1,10 +1,10 @@
 import React from 'react';
 import BagContentsContainer from '../../Containers/BagContentsContainer';
-import BagSelectorContainer from '../../Containers/BagSelectorContainer';
 import { Card, CardHeader, CardContents } from '../Card/Card';
 import IconSettings from '../Icons/IconSettings';
 import Modal from '../Modal';
 import BagSettingsContainer from '../../Containers/BagSettingsContainer';
+import { BagSelector } from '../BagSelector/BagSelector.tsx';
 
 const Bag = ({ showModal, handleBagSettingsClick }) => {
   const modalButtons = (
@@ -27,7 +27,7 @@ const Bag = ({ showModal, handleBagSettingsClick }) => {
           </div>
         </CardHeader>
         <CardContents>
-          <BagSelectorContainer />
+          <BagSelector />
           <BagContentsContainer />
         </CardContents>
       </Card>

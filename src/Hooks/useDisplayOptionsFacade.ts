@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { displayOptionsQuery } from '../Stores/DisplayOptions/DisplayOptionsQuery';
 import { displayOptionsService } from '../Stores/DisplayOptions/DisplayOptionsService';
 import { IColor } from '../Stores/DisplayOptions/DisplayOptionsStore';
+import { onEmit } from '../Utils/Utils';
 
 interface DisplayOptionsState {
     isRightHandSelected: boolean
     isLeftHandSelected: boolean
     gridColor: IColor
     gridLineColor: IColor
-}
-
-function onEmit<T>(source$:Observable<T>, nextFn:(value: T) => void): Subscription {
-    return source$.subscribe(nextFn, console.error);
 }
 
 export function useDisplayOptionsFacade(): [DisplayOptionsState, Function, Function, Function] {
