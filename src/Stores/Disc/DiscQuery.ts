@@ -2,9 +2,6 @@ import { Query } from '@datorama/akita';
 import { combineLatest, Observable } from 'rxjs';
 import { IDiscState, DiscStore , discStore, IDisc, } from './DiscStore';
 
-export interface test {
-    selectDiscs$: Observable<IDisc[]>
-}
 export class DiscQuery extends Query<IDiscState> {
 
     selectedDiscTypes$ = this.select(state => state.ui.discTypesToInclude);

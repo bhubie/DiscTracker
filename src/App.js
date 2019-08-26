@@ -3,9 +3,9 @@ import Header from './components/Header';
 import { DiscSelector } from './components/DiscSelector/DiscSelector.tsx';
 import BottomSheet from './components/BottomSheet';
 import FlightPathContainer from './Containers/FlightPathContainer';
-import BagContainer from './Containers/BagContainer';
 import { fetchDiscs } from './Actions/DiscActions';
 import { DisplayOptions } from './components/DisplayOptions/DisplayOptions.tsx';
+import Bag from './components/Bag/Bag.tsx';
 
 class App extends Component {
   componentDidMount() {
@@ -21,7 +21,7 @@ class App extends Component {
     const cssClass = bottomSheet ? 'contentsBottomSheet' : 'contentsNonBottomSheet column is-half-desktop is-two-thirds-widescreen';
     return (
       <div id={id} className={cssClass}>
-        <BagContainer />
+        <Bag />
         <DiscSelector />
         <DisplayOptions />
       </div>
@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <div className="styleApp" id="app">
         <Header handleGetStartedOnClick={this.handleGetStartedOnclick} />
-        <div className="columns" style={{marginBottom: 0, marginRight: 0,}}>
+        <div className="columns" style={{marginBottom: 0, marginRight: 0 }}>
           {this.createBagElement('BagContainer', false)}
           <div id="columnRight" className="column">
             <FlightPathContainer />

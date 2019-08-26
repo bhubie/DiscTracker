@@ -109,7 +109,6 @@ Disc.propTypes = {
   handleUpdateDiscSelected: PropTypes.func.isRequired,
   discID: PropTypes.number.isRequired,
   handleUpdateDiscColor: PropTypes.func.isRequired,
-  discColor: PropTypes.objectOf(PropTypes.number).isRequired,
   discWear: PropTypes.number.isRequired,
   handleUpdateDiscWear: PropTypes.func.isRequired,
   displayedFields: PropTypes.arrayOf(PropTypes.shape({
