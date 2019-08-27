@@ -13,9 +13,13 @@ export const DiscSelector: React.SFC<{}> = () => {
                 isFairwayDriversSelected, 
                 isMidrangeSelected, 
                 isPutterSelected,
-                isFetchingDiscs
+                isFetchingDiscs,
+                isAddToBagButtonDisabled
             }, 
-            setDiscTypeInclusionFilter] = useDiscsFacade();
+            setDiscTypeInclusionFilter,
+            setSelectedDiscID,
+            addDiscToBag
+          ] = useDiscsFacade();
 
     const handleDiscTypeCheck = (event: any) => {
         setDiscTypeInclusionFilter(event.target.name, event.target.checked);
@@ -34,7 +38,7 @@ export const DiscSelector: React.SFC<{}> = () => {
                 <div id="dropDownContainer" className="column is-three-quarters is-two-thirds-tablet ">
                   <Select
                     options={discs}
-                    // onChange={this.handleChange}
+                    onChange={setSelectedDiscID}
                     placeHolder="Tap to Select a Disc"
                     showLoadingIndicator
                     loadingMessage="Loading Discs..."
@@ -46,7 +50,7 @@ export const DiscSelector: React.SFC<{}> = () => {
                   />
                 </div>
                 <div className="column ">
-                  <ButtonPrimary id="btnAddToBag" isFullWidth onClick={() => {console.log('test')}}>
+                  <ButtonPrimary id="btnAddToBag" isFullWidth onClick={addDiscToBag} disabled={isAddToBagButtonDisabled}>
                     Add to Bag
                   </ButtonPrimary>
                 </div>

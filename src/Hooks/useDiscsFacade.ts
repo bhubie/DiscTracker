@@ -4,6 +4,10 @@ import { discService } from '../Stores/Disc/DiscService';
 import { IDisc, DiscType } from '../Stores/Disc/DiscStore';
 import { discQuery } from '../Stores/Disc/DiscQuery';
 import { onEmit } from '../Utils/Utils';
+import { baggedDiscsService } from '../Stores/BaggedDiscs/BaggedDiscsService';
+import { IBaggedDisc } from '../Stores/BaggedDiscs/BaggedDiscsStore';
+import { bagQuery } from '../Stores/Bags/BagQuery';
+import { combineLatest } from 'rxjs';
 
 
 interface DiscState {
@@ -13,9 +17,15 @@ interface DiscState {
     isMidrangeSelected: boolean
     isPutterSelected: boolean
     isFetchingDiscs: boolean
+    isAddToBagButtonDisabled: boolean
+    selectedDiscID: string
 }
 
-export function useDiscsFacade(): [DiscState, Function] {
+export function useDiscsFacade(): [DiscState, 
+    (discType: DiscType, include: boolean) => void, 
+    (id: string) => void,
+    () => void
+] {
 
     const setDiscTypeInclusionFilter = (discType: DiscType, include: boolean) => {
         if(include) {
@@ -24,6 +34,37 @@ export function useDiscsFacade(): [DiscState, Function] {
             discService.removeDiscTypeFromDiscToIncludeFilter(discType);
         }
     };
+
+    const setSelectedDiscID = (id: string) => {
+        discService.setSelectedDiscID(id);
+    }
+
+    const addDiscToBag = () => {
+
+        combineLatest(bagQuery.selectedBag$, discQuery.selectedDisc$)
+            .subscribe(([bag, disc]) => {
+                if(disc !== undefined && bag !== undefined) {
+                    const d: IBaggedDisc =  {
+                        discID: disc._id,
+                        bagID: bag.id,
+                        name: disc.name,
+                        manufacturer: disc.manufacturer,
+                        difficulty: disc.dificulty,
+                        type: disc.type,
+                        selected: true,
+                        color: {
+                            r: 0,
+                            g: 188,
+                            b: 212,
+                            a: 1,
+                        },
+                        weight: 175,
+                        wear: 10
+                    }
+                    baggedDiscsService.addDisc(d);
+                }
+            }).unsubscribe();  
+    }
     
     const [state, setState] = useState<DiscState>({ 
         discs: [],
@@ -32,6 +73,8 @@ export function useDiscsFacade(): [DiscState, Function] {
         isPutterSelected: true,
         isMidrangeSelected: true,
         isFetchingDiscs: true,
+        isAddToBagButtonDisabled: true,
+        selectedDiscID: ''
     }); 
 
 
@@ -43,6 +86,8 @@ export function useDiscsFacade(): [DiscState, Function] {
           onEmit<boolean>(discQuery.isMidrangeSelected$, isMidrangeSelected => setState(state => ({ ...state, isMidrangeSelected  }))),
           onEmit<boolean>(discQuery.isPuttersSelected$, isPutterSelected => setState(state => ({ ...state, isPutterSelected }))),
           onEmit<boolean>(discQuery.isFetchingDiscs$, isFetchingDiscs => setState(state => ({ ...state, isFetchingDiscs }))),
+          onEmit<boolean>(discQuery.isAddToBagButtonDisabled$, isAddToBagButtonDisabled => setState(state => ({ ...state, isAddToBagButtonDisabled }))),
+          onEmit<string>(discQuery.selectedDiscID$, selectedDiscID => setState(state => ({ ...state, selectedDiscID }))),
         ];
         
         discService.fetchDiscs();
@@ -50,5 +95,5 @@ export function useDiscsFacade(): [DiscState, Function] {
         return () => { subscriptions.map(it => it.unsubscribe()) };
       },[]);
     
-      return [state, setDiscTypeInclusionFilter];
+      return [state, setDiscTypeInclusionFilter, setSelectedDiscID, addDiscToBag];
 }

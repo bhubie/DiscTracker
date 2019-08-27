@@ -11,6 +11,13 @@ export class DiscQuery extends Query<IDiscState> {
     isMidrangeSelected$ = this.select(state => state.ui.discTypesToInclude.includes('Mid-Range'));
     isPuttersSelected$ = this.select(state => state.ui.discTypesToInclude.includes('Putt & Approach'));
     selectDiscs$ = this.select(state => state.discs);
+    isAddToBagButtonDisabled$ = this.select(state => state.selectedDiscId === '');
+    selectedDiscID$ = this.select(state => state.selectedDiscId);
+    selectedDisc$ = combineLatest(
+        this.selectedDiscID$,
+        this.selectDiscs$,
+        this.getSelectedDisc
+    )
 
     selectVisibleDiscs$ = combineLatest(
         this.selectedDiscTypes$,
@@ -24,6 +31,10 @@ export class DiscQuery extends Query<IDiscState> {
 
     private getVisibleDiscs(indlucdedDiscs: string[], discs: IDisc[]) {
         return discs.filter(disc => indlucdedDiscs.includes(disc.type));
+    }
+
+    private getSelectedDisc(id: string, discs: IDisc[]) {
+        return discs.find(disc => disc._id === id);
     }
 }
 

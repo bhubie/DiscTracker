@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const ButtonPrimary = ({
-  children, id, isFullWidth, onClick, size,
+  children, id, isFullWidth, onClick, size, disabled
 }) => {
   let buttonSize;
   switch (size) {
@@ -21,7 +21,7 @@ export const ButtonPrimary = ({
   const cssClass = `button is-info${isFullWidth ? ' is-fullwidth' : ''}${buttonSize}`;
 
   return (
-    <button onClick={onClick} className={cssClass} id={id}>
+    <button onClick={onClick} className={cssClass} id={id} disabled={disabled}>
       {children}
     </button>
   );
@@ -39,11 +39,13 @@ ButtonPrimary.propTypes = {
   onClick: PropTypes.func.isRequired,
   isFullWidth: PropTypes.bool,
   size: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 ButtonPrimary.defaultProps = {
   isFullWidth: false,
   size: '',
+  disabled: false,
 };
 
 ButtonSecondary.propTypes = {

@@ -1,7 +1,6 @@
 import { DiscStore, discStore, DiscType, IDiscState, IDisc } from './DiscStore';
-import { tap } from 'rxjs/operators';
 import { fromFetch } from 'rxjs/fetch';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 export class DiscService {
 
@@ -19,16 +18,6 @@ export class DiscService {
             switchMap(response => {
                 return response.json();
             }),
-            // tap(response => {
-
-            //     const discs = response.discs.map((disc: IDisc)  => Object.assign({ discWithManufacturer: `${disc.manufacturer} - ${disc.name}` }, disc));
-
-            //     this.discStore.update((state: IDiscState) => ({
-            //         discs
-            //     }));
-
-            //     this.discStore.setLoading(false);
-            // })
         ).subscribe(response => {
             const discs = response.discs.map((disc: IDisc)  => Object.assign({ discWithManufacturer: `${disc.manufacturer} - ${disc.name}` }, disc));
 
@@ -54,6 +43,12 @@ export class DiscService {
                 discTypesToInclude: [...state.ui.discTypesToInclude.filter(discType => discType !== disc)]
             }
           }));
+    }
+
+    setSelectedDiscID(id: string) {
+        this.discStore.update((state: IDiscState) => ({
+            selectedDiscId: id
+        }));
     }
 
 }

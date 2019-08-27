@@ -25,6 +25,7 @@ export const DEFAULT_DISC_TYPES_TO_INCLUDE: DiscType[] = [
 
 export interface IDiscState {
     discs: IDisc[]
+    selectedDiscId: string
     ui: {
         discTypesToInclude: DiscType[]
     }
@@ -33,6 +34,7 @@ export interface IDiscState {
 export function createInitialDiscState(): IDiscState {
     return {
         discs: [],
+        selectedDiscId: '',
         ui: {
             discTypesToInclude: DEFAULT_DISC_TYPES_TO_INCLUDE
         }
