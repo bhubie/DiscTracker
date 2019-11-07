@@ -1,7 +1,10 @@
+/* eslint-disable react/no-unused-state */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { colorToRGBA } from '../../Utils/Utils';
+import { colorToRGBA } from '../../Utils/Utils.ts';
 import { calcAdjustedHighSpeedTurn, calcAdjustedLowSpeedFade, calcTurnSign, calcFadeStart, calcImpact, calcTurnEnd, calcXAxisOrigin, calcDeltaV } from '../../Utils/FlightPathCalc';
+import { displayOptionsQuery } from '../../Stores/DisplayOptions/DisplayOptionsQuery.ts';
+import { startWith } from 'rxjs/operators';
 
 const style = {
   margin: 'auto',
@@ -16,11 +19,48 @@ export default class FlightPath extends React.Component {
     super(props);
     this.canvas = React.createRef();
     this.flightPathContainer = React.createRef();
+
+    this.state = {
+      gridColor: {
+        r: 37,
+        g: 37,
+        b: 38,
+        a: 1,
+      },
+      gridLineColor: {
+        r: 255,
+        g: 255,
+        b: 255,
+        a: 1,
+      },
+    };
   }
 
   componentDidMount() {
-    this.createCanvas(this.props.gridColor, this.props.gridLineColor);
     // window.addEventListener('resize', this.drawDiscs.bind(this));
+    displayOptionsQuery.gridColor$.pipe(startWith({
+      r: 37,
+      g: 37,
+      b: 38,
+      a: 1,
+    })).subscribe((color) => {
+      this.setState({
+        gridColor: color,
+      });
+    });
+
+    displayOptionsQuery.gridColor$.pipe(startWith({
+      r: 255,
+      g: 255,
+      b: 255,
+      a: 1,
+    })).subscribe((color) => {
+      this.setState({
+        gridLineColor: color,
+      });
+    });
+
+    this.createCanvas(this.state.gridColor, this.state.gridLineColor);
   }
 
   componentDidUpdate() {
@@ -36,23 +76,23 @@ export default class FlightPath extends React.Component {
   }
 
   drawDiscs() {
-    this.drawGridLines(this.props.gridColor, this.props.gridLineColor);
+    this.drawGridLines(this.state.gridColor, this.state.gridLineColor);
 
-    this.props.baggedDiscs.forEach((disc) => {
-      if (disc.selected) {
-        this.drawDiscPath(
-          `${disc.manufacturer} ${disc.name}`,
-          disc.distance,
-          disc.hst,
-          disc.lsf,
-          disc.ns,
-          1,
-          disc.wear,
-          disc.color,
-          this.props.throwingStyle,
-        );
-      }
-    });
+    // this.props.baggedDiscs.forEach((disc) => {
+    //   if (disc.selected) {
+    //     this.drawDiscPath(
+    //       `${disc.manufacturer} ${disc.name}`,
+    //       disc.distance,
+    //       disc.hst,
+    //       disc.lsf,
+    //       disc.ns,
+    //       1,
+    //       disc.wear,
+    //       disc.color,
+    //       this.props.throwingStyle,
+    //     );
+    //   }
+    // });
   }
 
   drawDiscLie(color, xCoordinate, yCoordinate) {
@@ -175,8 +215,8 @@ export default class FlightPath extends React.Component {
 }
 
 FlightPath.propTypes = {
-  gridColor: PropTypes.objectOf(PropTypes.number).isRequired,
-  gridLineColor: PropTypes.objectOf(PropTypes.string).isRequired,
+  // gridColor: PropTypes.objectOf(PropTypes.number).isRequired,
+  // gridLineColor: PropTypes.objectOf(PropTypes.string).isRequired,
   throwingStyle: PropTypes.string.isRequired,
   baggedDiscs: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import { DiscSelector } from './components/DiscSelector/DiscSelector.tsx';
 import BottomSheet from './components/BottomSheet';
-import FlightPathContainer from './Containers/FlightPathContainer';
 import { fetchDiscs } from './Actions/DiscActions';
 import { DisplayOptions } from './components/DisplayOptions/DisplayOptions.tsx';
 import Bag from './components/Bag/Bag.tsx';
+//import FlightPath from './components/FlightPath/index.js';
+import { FlightPath } from './components/FlightPath/FlightPath.tsx';
 
 class App extends Component {
   componentDidMount() {
@@ -35,7 +36,7 @@ class App extends Component {
         <div className="columns" style={{marginBottom: 0, marginRight: 0 }}>
           {this.createBagElement('BagContainer', false)}
           <div id="columnRight" className="column">
-            <FlightPathContainer />
+            <FlightPath />
           </div>
         </div>
 

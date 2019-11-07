@@ -59,7 +59,8 @@ export function useDiscsFacade(): [DiscState,
                             a: 1,
                         },
                         weight: 175,
-                        wear: 10
+                        wear: 10,
+                        discInformation: null
                     }
                     baggedDiscsService.addDisc(d);
                 }

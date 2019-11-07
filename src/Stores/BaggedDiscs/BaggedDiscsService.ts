@@ -2,41 +2,77 @@ import { BaggedDiscsStore, IBaggedDiscsStore, IBaggedDisc, baggedDiscsStore } fr
 import { IBaggedDiscsRepositry, baggedDiscsRepository } from "../../Repositories/BaggedDiscs/BaggedDiscsRepository";
 import { from } from "rxjs";
 import { IColor } from "../DisplayOptions/DisplayOptionsStore";
+import { DiscQuery, discQuery } from "../Disc/DiscQuery";
+import { IDisc } from "../Disc/DiscStore";
+import { combineLatest } from "rxjs";
 
 
 
 export class BaggedDiscsService {
     
-    constructor(private baggedDiscsStore: BaggedDiscsStore, private baggedDiscsRepository: IBaggedDiscsRepositry) {
+    constructor(private baggedDiscsStore: BaggedDiscsStore, 
+                private baggedDiscsRepository: IBaggedDiscsRepositry,
+                private discQuery: DiscQuery) {
 
     }
 
     fetchBaggedDiscs(bagID: number) {
+       
         this.baggedDiscsStore.setLoading(true);
 
-        from(this.baggedDiscsRepository.getBaggedDiscs(bagID))
-            .subscribe(discs => {
-                this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
-                    baggedDiscs: discs.sort((a, b) => { 
-                        if(a.name < b.name) {
-                            return -1;
-                        }
-                        if(a.name > b.name) {
-                            return 1
-                        }
-                        return 0;
-                    })
-                }));
-                this.baggedDiscsStore.setLoading(false);
-            })
+        combineLatest(
+            from(this.baggedDiscsRepository.getBaggedDiscs(bagID))
+            ,this.discQuery.selectDiscs$
+            ,this.mergeBaggedDiscsWithDiscInformation
+        )
+        .subscribe(discs => {
+
+            //console.log(discs)
+            this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
+                baggedDiscs: discs
+            }));
+
+            this.baggedDiscsStore.setLoading(false);
+        })
+        //.unsubscribe();
     }
+
+    private mergeBaggedDiscsWithDiscInformation(baggedDiscs: IBaggedDisc[], discs: IDisc[]) {
+        //console.log('merge bagged discs called');
+        //console.log(discs)
+        return baggedDiscs.map(bd => {
+            if(bd.discInformation === null) {
+                //console.log('discInformation is null')
+                //console.log(discs.find(d => d._id === bd.discID))
+                const foundDisc = discs.find(d => d._id === bd.discID);
+
+                return {
+                    ...bd,
+                    discInformation: foundDisc !== undefined ? foundDisc : null
+                }
+                
+            }
+            return bd;       
+        })
+    }
+
+ 
 
     async addDisc(disc: IBaggedDisc) {
         try {
-            const d = await  this.baggedDiscsRepository.addDisc(disc);
-            this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
-                baggedDiscs: [...state.baggedDiscs, d]
-            }));
+            const d = await this.baggedDiscsRepository.addDisc(disc);
+
+            this.discQuery.selectedDisc$.subscribe(disc => {
+                if(disc !== undefined) {
+                    d.discInformation = disc;
+                }
+
+                //console.log(d);
+                this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
+                    baggedDiscs: [...state.baggedDiscs, d]
+                }));
+            }).unsubscribe();
+           
         } 
         catch(error) {
             this.baggedDiscsStore.setError(error);
@@ -106,4 +142,4 @@ export class BaggedDiscsService {
     }
 }
 
-export const baggedDiscsService = new BaggedDiscsService(baggedDiscsStore, baggedDiscsRepository);
+export const baggedDiscsService = new BaggedDiscsService(baggedDiscsStore, baggedDiscsRepository, discQuery);

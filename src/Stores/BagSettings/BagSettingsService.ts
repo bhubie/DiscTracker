@@ -11,13 +11,10 @@ export class BagSettingsService {
     }
 
     fetchBagSettings() {
-
-        console.log('fetch bag settigns called')
         this.bagSettingsStore.setLoading(true);
 
         from(this.bagSettingsRepository.getAll())
             .subscribe(bagSettings => {
-                console.log(bagSettings[0].hiddenColumns)
                 this.bagSettingsStore.update((state: IBagSettingsStore) => ({
                     id: bagSettings[0].id,
                     hiddenColumns: bagSettings[0].hiddenColumns

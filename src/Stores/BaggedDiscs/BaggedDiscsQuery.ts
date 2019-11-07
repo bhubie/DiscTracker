@@ -12,6 +12,7 @@ export class BaggedDiscsQuery extends Query<IBaggedDiscsStore> {
     baggedFairwayDrivers$ = this.select(state => state.baggedDiscs.filter(disc => disc.type ===  'Fairway Driver'));
     baggedPutters$ = this.select(state => state.baggedDiscs.filter(disc => disc.type === 'Putt & Approach'));
     baggedMidranges$  = this.select(state => state.baggedDiscs.filter(disc => disc.type === 'Mid-Range'));
+    selectedBagDiscs$ = this.select(state => state.baggedDiscs.filter(disc => disc.selected === true));
 
     constructor(protected store: BaggedDiscsStore) {
         super(store);

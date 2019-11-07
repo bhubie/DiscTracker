@@ -1,7 +1,10 @@
 import { Store, StoreConfig } from '@datorama/akita';
-import { DiscType } from "../Disc/DiscStore";
+import { DiscType, IDisc } from "../Disc/DiscStore";
 import { IColor } from "../DisplayOptions/DisplayOptionsStore";
 
+export interface IPathCoordinates {
+    coordinates: {x: number, y: number}[]
+}
 
 export interface IBaggedDisc {
     id?: number
@@ -15,6 +18,7 @@ export interface IBaggedDisc {
     color: IColor
     weight: number
     wear: number
+    discInformation: IDisc | null
 }
 
 export interface IBaggedDiscsStore {
