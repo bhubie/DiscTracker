@@ -25,7 +25,7 @@ export const BagSelector: React.SFC<{}> = () => {
         undefined;
     
     return (
-        <div id="bagSelector" className="columns is-desktop">
+        <div id="bagSelector" className="columns is-desktop" style={{alignItems: 'center'}}>
             <div className="column">
                 <Select
                 options={bags}
