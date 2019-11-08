@@ -8,6 +8,7 @@ import { baggedDiscsService } from '../Stores/BaggedDiscs/BaggedDiscsService';
 import { IColor } from '../Stores/DisplayOptions/DisplayOptionsStore';
 import { bagSettingsQuery } from '../Stores/BagSettings/BagSettingsQuery';
 import { IBag } from '../Stores/Bags/BagStore';
+import { discQuery } from '../Stores/Disc/DiscQuery';
 
 
 interface BaggedDiscsState {

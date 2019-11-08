@@ -5,6 +5,7 @@ import { IColor } from "../DisplayOptions/DisplayOptionsStore";
 import { DiscQuery, discQuery } from "../Disc/DiscQuery";
 import { IDisc } from "../Disc/DiscStore";
 import { combineLatest } from "rxjs";
+import { IBag } from "../Bags/BagStore";
 
 
 
@@ -12,7 +13,8 @@ export class BaggedDiscsService {
     
     constructor(private baggedDiscsStore: BaggedDiscsStore, 
                 private baggedDiscsRepository: IBaggedDiscsRepositry,
-                private discQuery: DiscQuery) {
+                private discQuery: DiscQuery
+                ) {
 
     }
 
@@ -58,20 +60,51 @@ export class BaggedDiscsService {
 
  
 
-    async addDisc(disc: IBaggedDisc) {
+    async addDisc(bag: IBag | undefined, disc: IDisc) {
         try {
-            const d = await this.baggedDiscsRepository.addDisc(disc);
 
-            this.discQuery.selectedDisc$.subscribe(disc => {
-                if(disc !== undefined) {
-                    d.discInformation = disc;
+            if(disc !== undefined && bag !== undefined) {
+                const baggedDisc: IBaggedDisc =  {
+                    discID: disc._id,
+                    bagID: bag.id,
+                    name: disc.name,
+                    manufacturer: disc.manufacturer,
+                    difficulty: disc.dificulty,
+                    type: disc.type,
+                    selected: true,
+                    color: {
+                        r: 0,
+                        g: 188,
+                        b: 212,
+                        a: 1,
+                    },
+                    weight: 175,
+                    wear: 10,
+                    discInformation: null
                 }
+                const d = await this.baggedDiscsRepository.addDisc(baggedDisc);
 
-                //console.log(d);
+                d.discInformation = disc;
+
                 this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
                     baggedDiscs: [...state.baggedDiscs, d]
                 }));
-            }).unsubscribe();
+            
+            }
+
+
+            
+
+            // this.discQuery.selectedDisc$.subscribe(disc => {
+            //     if(disc !== undefined) {
+            //         d.discInformation = disc;
+            //     }
+
+            //     //console.log(d);
+            //     this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
+            //         baggedDiscs: [...state.baggedDiscs, d]
+            //     }));
+            // }).unsubscribe();
            
         } 
         catch(error) {
