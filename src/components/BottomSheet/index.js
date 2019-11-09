@@ -2,36 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
 import IconArrowUp from '../Icons/IconArrowUp';
-import { isScrolledIntoView } from '../../Utils/Utils';
-import { mediaQueries } from '../../Utils/MediaQueries';
+import { isScrolledIntoView } from '../../Utils/Utils.ts';
 
 class BottomSheet extends Component {
-    state = {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       opened: false,
       rotatation: 0,
-    }
+      isVisible: false,
+    };
+  }
 
-    componentDidMount() {
-      const mobileMaxPixels = mediaQueries.mobile.maxPixels;
-      window.addEventListener('scroll', () => {
-        if (isScrolledIntoView(document.getElementById('flightPath'))
-                  && window.innerWidth <= mobileMaxPixels
-                  && document.getElementById('BottomSheetWrapper').style.display !== 'inline') {
-          document.getElementById('BottomSheetWrapper').style.display = 'inline';
-        } else if (!isScrolledIntoView(document.getElementById('flightPath'))
-                && window.innerWidth <= mobileMaxPixels
-                && document.getElementById('BottomSheetWrapper').style.display === 'inline') {
-          document.getElementById('BottomSheetWrapper').style.display = 'none';
-        }
-      });
+  componentDidMount() {
 
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= mobileMaxPixels && document.getElementById('BottomSheetWrapper').style.display !== 'none') {
-          document.getElementById('BottomSheetWrapper').style.display = 'none';
-          document.body.style.overflowY = 'auto';
-        }
-      });
-    }
+    window.addEventListener('scroll', () => {
+      if (isScrolledIntoView(document.getElementById('flightPath'))) {
+        this.setState({
+          isVisible: true,
+        });
+      } else {
+        this.setState({
+          isVisible: false,
+        });
+      }
+    });
+  }
 
     onChange = (isOpen) => {
       this.setState(prevState => ({
@@ -58,8 +55,10 @@ class BottomSheet extends Component {
         width: '24px',
       };
 
+      const bottomSheetStyle = this.state.isVisible ? { display: 'inline' } : { display: 'none' };
+
       return (
-        <div id="BottomSheetWrapper" className="BottomSheetWrapper">
+        <div id="BottomSheetWrapper" className="BottomSheetWrapper" style={bottomSheetStyle}>
           <SwipeableBottomSheet
             overflowHeight={54}
             marginTop={128}

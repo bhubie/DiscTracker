@@ -35,6 +35,7 @@
     "react-color": "^2.14.0",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
+    "react-responsive": "^8.0.1",
     "react-scripts": "^2.1.5",
     "react-swipeable-bottom-sheet": "^1.1.1",
     "redux": "^4.0.0",

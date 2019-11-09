@@ -91,20 +91,6 @@ export class BaggedDiscsService {
                 }));
             
             }
-
-
-            
-
-            // this.discQuery.selectedDisc$.subscribe(disc => {
-            //     if(disc !== undefined) {
-            //         d.discInformation = disc;
-            //     }
-
-            //     //console.log(d);
-            //     this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
-            //         baggedDiscs: [...state.baggedDiscs, d]
-            //     }));
-            // }).unsubscribe();
            
         } 
         catch(error) {

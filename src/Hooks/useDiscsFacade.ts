@@ -40,33 +40,7 @@ export function useDiscsFacade(): [DiscState,
     }
 
     const addDiscToBag = () => {
-
         baggedDiscsService.addDisc(bagQuery.getValue().selectedBag, discQuery.getValue().discs.filter(disc => disc._id === discQuery.getValue().selectedDiscId)[0]);
-
-        // combineLatest(bagQuery.selectedBag$, discQuery.selectedDisc$)
-        //     .subscribe(([bag, disc]) => {
-        //         if(disc !== undefined && bag !== undefined) {
-        //             const d: IBaggedDisc =  {
-        //                 discID: disc._id,
-        //                 bagID: bag.id,
-        //                 name: disc.name,
-        //                 manufacturer: disc.manufacturer,
-        //                 difficulty: disc.dificulty,
-        //                 type: disc.type,
-        //                 selected: true,
-        //                 color: {
-        //                     r: 0,
-        //                     g: 188,
-        //                     b: 212,
-        //                     a: 1,
-        //                 },
-        //                 weight: 175,
-        //                 wear: 10,
-        //                 discInformation: null
-        //             }
-        //             baggedDiscsService.addDisc(d);
-        //         }
-        //     }).unsubscribe();  
     }
     
     const [state, setState] = useState<DiscState>({ 
