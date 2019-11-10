@@ -12,7 +12,7 @@ export interface IBaggedDiscsRepositry {
     updateDiscEnabled: (id: number, enabled: boolean) => Promise<boolean>
     updateDiscColor: (id: number, color: IColor) => Promise<boolean>
     updateDiscWear: (id: number, wear: number) => Promise<boolean>
-    deleteDisc: (id: number) => Promise<boolean>
+    deleteDisc: (id: number) => Promise<number>
 
 }
 
@@ -88,17 +88,12 @@ export class BaggedDiscsRepository  implements IBaggedDiscsRepositry{
         });
       }
     
-      deleteDisc(id: number) {
-        return new Promise<boolean>((resolve, reject) => {
-          this.db.table(this.tableName)
-            .delete(id)
-            .then(() => {
-              resolve(true);
-            })
-            .catch((e) => {
-              reject(e);
-            });
-        });
+      deleteDisc(i: number) {
+        return this.db.table(this.tableName)
+          .where('id')
+          .equals(parseInt(i.toString()))
+          .delete()
+
       }
 }
 

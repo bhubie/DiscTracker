@@ -28,8 +28,6 @@ export class BaggedDiscsService {
             ,this.mergeBaggedDiscsWithDiscInformation
         )
         .subscribe(discs => {
-
-            //console.log(discs)
             this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
                 baggedDiscs: discs
             }));
@@ -98,15 +96,17 @@ export class BaggedDiscsService {
         }
     }
 
-    deleteBaggedDisc(id: number) {
+    async deleteBaggedDisc(id: number) {
         try {
-            this.baggedDiscsRepository.deleteDisc(id);
-
-            this.baggedDiscsStore.update((state: IBaggedDiscsStore) => ({
-                baggedDiscs: state.baggedDiscs.filter(disc => disc.id !== id)
-            }));
+            const success = await this.baggedDiscsRepository.deleteDisc(id);
+            this.baggedDiscsStore.update((state: IBaggedDiscsStore) => {
+                return{
+                    baggedDiscs: state.baggedDiscs.filter(disc => disc.id != id)
+                }
+            });
         }
         catch(error) {
+            console.log(error);
             this.baggedDiscsStore.setError(error);
         }
     }

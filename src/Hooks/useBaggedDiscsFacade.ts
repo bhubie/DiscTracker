@@ -40,6 +40,7 @@ export function useBaggedDiscsFacade(): [
     }
 
     function deleteDisc(id: number) {
+        console.log('deleting disc: ' + id);
         baggedDiscsService.deleteBaggedDisc(id);
     }
 
