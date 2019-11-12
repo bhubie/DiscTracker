@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Card, CardHeader, CardContents } from '../Card/Card';
 import IconSettings from '../Icons/IconSettings';
-import Modal from '../Modal';
+import Modal from '../Modal/Modal';
 import { BagSelector } from '../BagSelector/BagSelector';
 import { BagSettings } from '../BagSettings/BagSettings';
 import { BagContents } from '../BagContents/BagContents';
@@ -48,12 +48,10 @@ const Bag: React.SFC<{}> = ({}) => {
           <BagContents />
         </CardContents>
       </Card>
-    {/*
-    // @ts-ignore */}
+ 
       <Modal
         title="Bag Settings"
-        modal={false}
-        open={showBagSettingsModal}
+        isOpen={showBagSettingsModal}
         onRequestClose={() => handleBagSettingsClick(!showBagSettingsModal)}
         actions={modalButtons}
       >

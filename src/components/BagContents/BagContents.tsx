@@ -13,8 +13,6 @@ export const BagContents: React.SFC<{}> = () => {
             columns
         }, updateDiscEnabled, updateDiscColor, updateDiscWear, deleteDisc] = useBaggedDiscsFacade();
 
-        console.log('render called bagged contents')
-        //console.log(baggedDrivers)
     return (
         <div id="tableWrapper">
             <Type name="Drivers" 

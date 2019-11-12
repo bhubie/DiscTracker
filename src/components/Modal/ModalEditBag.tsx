@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Modal from '.';
+import Modal from './Modal'
 import classNames from 'classnames';
 
 
@@ -42,11 +42,9 @@ export const ModalEditBag: React.SFC<IModalEditBagProps> = (props) => {
 
 
     return (
-// @ts-ignore
         <Modal
             title={props.modalTitle}
-            modal={false}
-            open={true}
+            isOpen={true}
             onRequestClose={props.handleCloseModal}
             actions={modalButtons}
         >
