@@ -8,7 +8,6 @@ import Bag from './components/Bag/Bag.tsx';
 import { FlightPath } from './components/FlightPath/FlightPath.tsx';
 
 const App = () => {
-
   function handleGetStartedOnclick() {
     const flightPathContainer = document.getElementById('flightPathContainer');
     flightPathContainer.scrollIntoView({ behavior: 'smooth' });
