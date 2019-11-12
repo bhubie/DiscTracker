@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Card, CardHeader, CardContents } from '../Card/Card';
-import { ButtonPrimary } from '../Buttons';
+import { Button, Size, Color } from '../FormComponents/FormComponents';
 import Select from '../Select';
 import Checkbox from '../Checkbox';
 import { useDiscsFacade } from '../../Hooks/useDiscsFacade';
@@ -50,9 +50,9 @@ export const DiscSelector: React.SFC<{}> = () => {
                   />
                 </div>
                 <div className="column ">
-                  <ButtonPrimary id="btnAddToBag" isFullWidth onClick={addDiscToBag} disabled={isAddToBagButtonDisabled}>
+                  <Button id="btnAddToBag" isFullWidth onClick={addDiscToBag} disabled={isAddToBagButtonDisabled} size={Size.Normal} color={Color.Primary}>
                     Add to Bag
-                  </ButtonPrimary>
+                  </Button>
                 </div>
               </div>
               <div id="filter-container" className="column is-full">

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Select from '../Select';
-import { ButtonPrimary } from '../Buttons';
+import { Button, Size, Color } from '../FormComponents/FormComponents';
 import { ModalEditBag } from '../Modal/ModalEditBag';
 import { useBagsFacade } from '../../Hooks/useBagsFacade';
 
@@ -40,21 +40,15 @@ export const BagSelector: React.SFC<{}> = () => {
                 />
             </div>
             <div className="buttons column" >
-                              {/* 
-  // @ts-ignore */}
-                <ButtonPrimary onClick={() => setShowModal([true, 'New'])} size="small">
+                <Button onClick={() => setShowModal([true, 'New'])} size={Size.Small} color={Color.Primary} >
                     New Bag
-                </ButtonPrimary>
-                              {/* 
-  // @ts-ignore */}
-                <ButtonPrimary onClick={() => setShowModal([true, 'Edit'])} size="small">
+                </Button>
+                <Button onClick={() => setShowModal([true, 'Edit'])} size={Size.Small} color={Color.Primary}>
                     Edit Bag Name
-                </ButtonPrimary>
-                              {/* 
-  // @ts-ignore */}
-                <ButtonPrimary onClick={() => deleteBag(selectedBag!.id)} size="small">
+                </Button>
+                <Button onClick={() => deleteBag(selectedBag!.id)} size={Size.Small} color={Color.Primary}>
                     Delete Bag
-                </ButtonPrimary>
+                </Button>
             </div>
             {modal}
                    

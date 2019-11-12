@@ -7,6 +7,7 @@ import { BagSelector } from '../BagSelector/BagSelector';
 import { BagSettings } from '../BagSettings/BagSettings';
 import { BagContents } from '../BagContents/BagContents';
 import { useBagSettingsFacade } from '../../Hooks/useBagSettingsFacade';
+import { Button, Color } from '../FormComponents/FormComponents';
 
 const Bag: React.SFC<{}> = ({}) => {
 
@@ -39,9 +40,9 @@ const Bag: React.SFC<{}> = ({}) => {
     // @ts-ignore */}
         <CardHeader className="is-flex flex-space-between">
           Bags
-          <div onClick={() => handleBagSettingsClick(!showBagSettingsModal)}>
+          <Button onClick={() => handleBagSettingsClick(!showBagSettingsModal)} color={Color.Text}>
             <IconSettings id="icon-bag-settings" color="black" />
-          </div>
+          </Button>
         </CardHeader>
         <CardContents>
           <BagSelector />
