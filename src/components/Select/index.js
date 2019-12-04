@@ -12,7 +12,7 @@ export default class Select extends React.Component {
     }
 
     // eslint-disable-next-line max-len
-    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id) => {
+    renderOptions = (options, showLoadingIndicator, loadingMessage, selectValue, selectLabel, id, isLoadingData) => {
       let renderedOptions;
 
       if (options !== undefined) {
@@ -31,7 +31,7 @@ export default class Select extends React.Component {
       }
 
       let placeHolder;
-      if (showLoadingIndicator && renderedOptions.length < 1) {
+      if (showLoadingIndicator && renderedOptions.length < 1 && isLoadingData) {
         placeHolder = <option>{loadingMessage}</option>;
       } else if (this.props.showPlaceHolder === true) {
         placeHolder = <option disabled selected value >{this.props.placeHolder}</option>;
@@ -40,7 +40,7 @@ export default class Select extends React.Component {
       }
 
       return (
-        <select onChange={this.handleOnChange} id={id} value={this.props.selectedOption}>
+        <select onChange={this.handleOnChange} id={id} value={this.props.selectedOption} data-testid={id}>
           {placeHolder}
           {renderedOptions}
         </select>
@@ -48,7 +48,7 @@ export default class Select extends React.Component {
     };
 
     render() {
-      const cssClass = `select is-fullwidth ${this.props.showLoadingIndicator && this.props.options.length < 1 ? 'is-loading ' : ''}`;
+      const cssClass = `select is-fullwidth ${this.props.showLoadingIndicator && this.props.options.length < 1 && this.props.isLoadingData ? 'is-loading ' : ''}`;
 
       return (
         <div className={cssClass}>
@@ -59,6 +59,7 @@ export default class Select extends React.Component {
             this.props.selectValue,
             this.props.selectLabel,
             this.props.id,
+            this.props.isLoadingData
           )}
         </div>
 

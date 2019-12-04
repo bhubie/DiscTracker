@@ -1,0 +1,19 @@
+{
+    "roots": [
+      "src"
+    ],
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "transform": {
+      "\\.tsx?$": "ts-jest",
+      "\\.jsx?$": "ts-jest",
+      "\\.js?$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "babelConfig": {
+          "presets": ["@babel/preset-env", "@babel/preset-react"]
+        }
+      }
+    }
+  }

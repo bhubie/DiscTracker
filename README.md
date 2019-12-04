@@ -10,9 +10,6 @@ API Reposirty for app: [DiscTrackerServer](https://github.com/bhubie/DiscTracker
 
 # Roadmap 
  * [ ] Add better mobile scaling for flight path canvas
- * [ ] Add ability to save user bag and selections in browser local storage
- * [ ] Add filtering options to availble discs drop down
- * [ ] Add ability to create and save multiple bags
  * [ ] Add throwing power slider and logic
  * [ ] Add disc wear power and logic
  * [ ] Add disc weight power and logic

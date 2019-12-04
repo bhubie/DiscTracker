@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconGitHub from '../Icons/IconGitHub';
-import { ButtonPrimary } from '../Buttons';
+import { Button, Color } from '../FormComponents/FormComponents.tsx';
 
 
 const Header = ({ handleGetStartedOnClick }) => (
@@ -50,9 +50,9 @@ const Header = ({ handleGetStartedOnClick }) => (
             Inbounds Disc Golf
           </a>
         </h2>
-        <ButtonPrimary id="btnGetStarted" onClick={handleGetStartedOnClick}>
+        <Button id="btnGetStarted" onClick={handleGetStartedOnClick} color={Color.Primary}>
           Get Started
-        </ButtonPrimary>
+        </Button>
       </div>
     </div>
   </section>

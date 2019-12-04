@@ -1,6 +1,8 @@
-const colorToRGBA = color => `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
+import { Observable, Subscription } from 'rxjs';
 
-const isScrolledIntoView = (el) => {
+const colorToRGBA = (color: any) => `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
+
+const isScrolledIntoView = (el: any) => {
   const rect = el.getBoundingClientRect();
   const elemTop = rect.top;
   const elemBottom = rect.bottom;
@@ -12,7 +14,12 @@ const isScrolledIntoView = (el) => {
   return isVisible;
 };
 
+function onEmit<T>(source$:Observable<T>, nextFn:(value: T) => void): Subscription {
+  return source$.subscribe(nextFn, console.error);
+}
+
 export {
   colorToRGBA,
   isScrolledIntoView,
+  onEmit
 };

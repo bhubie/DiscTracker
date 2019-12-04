@@ -1,5 +1,5 @@
-import db from '../db';
-import DisplayOptionsRepository from '../Repositories/DisplayOptions';
+import db from '../db.ts';
+import { displayOptionsRepository } from '../Repositories/DisplayOptions/DisplayOptionsRepository.ts';
 import BagRepository from '../Repositories/Bag';
 import BagSettingsRepository from '../Repositories/BagSettings';
 
@@ -25,16 +25,15 @@ const defaultBag = { name: 'Default Bag' };
 const defaultBagSettings = { hiddenColumns: [] };
 
 
+// eslint-disable-next-line arrow-body-style
 const seedDisplayOptions = () => {
-  const displayRepository = new DisplayOptionsRepository(db);
-
   return new Promise((resolve) => {
-    displayRepository.getAll()
+    displayOptionsRepository.getAll()
       .then((results) => {
         if (results.length > 0) {
           resolve(true);
         } else {
-          displayRepository.add(defaultDisplayOptions).then(() => {
+          displayOptionsRepository.add(defaultDisplayOptions).then(() => {
             resolve(true);
           });
         }
