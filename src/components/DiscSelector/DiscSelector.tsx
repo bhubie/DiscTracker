@@ -21,8 +21,6 @@ export const DiscSelector: React.SFC<{}> = () => {
             addDiscToBag
           ] = useDiscsFacade();
 
-          console.log(discs)
-
     const handleDiscTypeCheck = (event: any) => {
         setDiscTypeInclusionFilter(event.target.name, event.target.checked);
     } 

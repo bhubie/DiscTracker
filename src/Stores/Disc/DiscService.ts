@@ -25,6 +25,8 @@ export class DiscService {
                 discs
             }));
 
+            this.discStore.setLoading(false);
+
         });
     }
 
