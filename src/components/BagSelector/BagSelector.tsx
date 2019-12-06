@@ -40,13 +40,13 @@ export const BagSelector: React.SFC<{}> = () => {
                 />
             </div>
             <div className="buttons column" >
-                <Button onClick={() => setShowModal([true, 'New'])} size={Size.Small} color={Color.Primary} >
+                <Button onClick={() => setShowModal([true, 'New'])} size={Size.Small} color={Color.Info} >
                     New Bag
                 </Button>
-                <Button onClick={() => setShowModal([true, 'Edit'])} size={Size.Small} color={Color.Primary}>
+                <Button onClick={() => setShowModal([true, 'Edit'])} size={Size.Small} color={Color.Info}>
                     Edit Bag Name
                 </Button>
-                <Button onClick={() => deleteBag(selectedBag!.id)} size={Size.Small} color={Color.Primary}>
+                <Button onClick={() => deleteBag(selectedBag!.id)} size={Size.Small} color={Color.Info}>
                     Delete Bag
                 </Button>
             </div>

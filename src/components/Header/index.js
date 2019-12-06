@@ -50,7 +50,7 @@ const Header = ({ handleGetStartedOnClick }) => (
             Inbounds Disc Golf
           </a>
         </h2>
-        <Button id="btnGetStarted" onClick={handleGetStartedOnClick} color={Color.Primary}>
+        <Button id="btnGetStarted" onClick={handleGetStartedOnClick} color={Color.Info}>
           Get Started
         </Button>
       </div>

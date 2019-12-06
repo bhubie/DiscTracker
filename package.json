@@ -56,8 +56,7 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "jest-canvas-mock": "^1.0.2",
-    "redux-devtools": "^3.4.1"
+    "jest-canvas-mock": "^1.0.2"
   },
   "browserslist": [
     ">0.2%",

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Checkbox from '../Checkbox';
+import Checkbox from '../Checkbox/Checkbox';
 import { useBagSettingsFacade } from '../../Hooks/useBagSettingsFacade';
 
 
@@ -14,7 +14,6 @@ export const BagSettings: React.SFC<IBagSettingsProps> = ({columns, handleVisibl
             const isColumnChecked = column.isHidden === false;
 
             return (
-        // @ts-ignore 
                 <Checkbox
                     id={column.name}
                     key={column.name}

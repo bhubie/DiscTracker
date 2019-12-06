@@ -39,7 +39,6 @@ export const Type: React.SFC<IType> = (props) => {
             key={disc.id}
             name={disc.manufacturer + ' - ' + disc.name }
             selected={disc.selected}
-            weight={disc.weight}
             handleDeleteDisc={(e) => props.deleteDisc(e.target.parentElement.parentElement.parentElement.parentElement.id)}
             handleUpdateDiscSelected={(e) => props.updateDiscEnabled(parseInt(e.target.parentElement
               .parentElement.parentElement.id), e.target.checked)}

@@ -22,7 +22,7 @@ const discWearOptions = [
 const Disc = ({
   name, selected, handleDeleteDisc,
   handleUpdateDiscSelected, discID, handleUpdateDiscColor, discColor, discWear,
-  handleUpdateDiscWear, displayedFields,
+  handleUpdateDiscWear, displayedFields, weight,
 }) => {
   const displayedColumns = displayedFields.map((column) => {
     const cssClass = column.name === 'Name' ? 'styleTableCell sticky-column' : 'styleTableCell';
@@ -104,7 +104,7 @@ const Disc = ({
 Disc.propTypes = {
   name: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
-  // weight: PropTypes.string.isRequired,
+  weight: PropTypes.string.isRequired,
   handleDeleteDisc: PropTypes.func.isRequired,
   handleUpdateDiscSelected: PropTypes.func.isRequired,
   discID: PropTypes.number.isRequired,

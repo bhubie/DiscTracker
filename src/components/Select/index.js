@@ -31,7 +31,7 @@ export default class Select extends React.Component {
       }
 
       let placeHolder;
-      if (showLoadingIndicator && renderedOptions.length < 1 && isLoadingData) {
+      if (showLoadingIndicator && isLoadingData) {
         placeHolder = <option>{loadingMessage}</option>;
       } else if (this.props.showPlaceHolder === true) {
         placeHolder = <option disabled selected value >{this.props.placeHolder}</option>;

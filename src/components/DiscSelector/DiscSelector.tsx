@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Card, CardHeader, CardContents } from '../Card/Card';
 import { Button, Size, Color } from '../FormComponents/FormComponents';
 import Select from '../Select';
-import Checkbox from '../Checkbox';
+import Checkbox from '../Checkbox/Checkbox';
 import { useDiscsFacade } from '../../Hooks/useDiscsFacade';
 
 export const DiscSelector: React.SFC<{}> = () => {
@@ -20,6 +20,8 @@ export const DiscSelector: React.SFC<{}> = () => {
             setSelectedDiscID,
             addDiscToBag
           ] = useDiscsFacade();
+
+          console.log(discs)
 
     const handleDiscTypeCheck = (event: any) => {
         setDiscTypeInclusionFilter(event.target.name, event.target.checked);
@@ -50,7 +52,7 @@ export const DiscSelector: React.SFC<{}> = () => {
                   />
                 </div>
                 <div className="column ">
-                  <Button id="btnAddToBag" isFullWidth onClick={addDiscToBag} disabled={isAddToBagButtonDisabled} size={Size.Normal} color={Color.Primary}>
+                  <Button id="btnAddToBag" isFullWidth onClick={addDiscToBag} disabled={isAddToBagButtonDisabled} size={Size.Normal} color={Color.Info}>
                     Add to Bag
                   </Button>
                 </div>

@@ -1,10 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-for */
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const Checkbox = React.memo(({
-  id, name, label, checked, onChange,
-}) => {
+export interface ICheckbox {
+    id: string
+    name: string
+    label: string
+    checked: boolean
+    onChange: (e: any) => void
+}
+
+const Checkbox: React.FC<ICheckbox>= ({id, checked, onChange, name, label}) => {
   const cssClass = 'is-checkradio is-primary';
   return (
     <div>
@@ -20,14 +25,7 @@ const Checkbox = React.memo(({
       <label htmlFor={id}>{label}</label>
     </div>
   );
-});
-
-Checkbox.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
+
 
 export default Checkbox;
