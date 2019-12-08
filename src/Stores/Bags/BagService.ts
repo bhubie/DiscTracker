@@ -9,16 +9,32 @@ export class BagService {
 
     }
 
-    fetchBags() {
+    async fetchBags() {
         this.bagStore.setLoading(true);
-        from(this.bagRepository.getAll())
-            .subscribe(bags => {
+        
+        try {
+            const bags = await this.bagRepository.getAll();
+
+            if(bags.length > 0) {
                 this.bagStore.update((state: IBagStore) => ({
                     bags,
                     selectedBag: bags[0]
                 }));
-                this.bagStore.setLoading(false);
-            })
+            } else {
+                const b = await  this.bagRepository.add('Default Bag');
+
+                this.bagStore.update((state: IBagStore) => ({
+                    bags: [b],
+                    selectedBag: b
+                }));
+            }
+        }
+        catch(error) {
+
+        }
+        finally {
+            this.bagStore.setLoading(false);
+        }
     }
 
     async addBag(bagName: string) {

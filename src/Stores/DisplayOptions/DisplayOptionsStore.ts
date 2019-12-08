@@ -26,25 +26,27 @@ export interface IDisplayOptionsStore {
     gridLineColor: IColor
 }
 
+export const DEFAULT_DISPLAY_OPTIONS: IDisplayOptionsStore  = {
+    throwingStyle: {
+        value: 'R',
+        label: 'RHBH/LHFH'
+    },
+    gridColor: {
+      r: 37,
+      g: 37,
+      b: 38,
+      a: 1,
+    },
+    gridLineColor: {
+      r: 255,
+      g: 255,
+      b: 255,
+      a: 1,
+    },
+  };
+
 export function createIntialDisplayOptionsStoreState(): IDisplayOptionsStore {
-    return {
-        throwingStyle: {
-            value: 'R',
-            label: 'RHBH/LHFH'
-        },
-        gridColor: {
-          r: 37,
-          g: 37,
-          b: 38,
-          a: 1,
-        },
-        gridLineColor: {
-          r: 255,
-          g: 255,
-          b: 255,
-          a: 1,
-        },
-    };
+    return DEFAULT_DISPLAY_OPTIONS;
 }
 
 @StoreConfig({ name: 'displayOptions' })

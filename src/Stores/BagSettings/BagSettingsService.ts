@@ -1,4 +1,4 @@
-import { BagSettingsStore, bagSettingsStore, IBagSettingsStore } from "./BagSettingsStore";
+import { BagSettingsStore, bagSettingsStore, IBagSettingsStore, DEFAULT_BAG_SETTINGS } from "./BagSettingsStore";
 import { IBagSettingsRepository } from "../../Repositories/BagSettings/BagSettingsRepository";
 import { bagSettingsRepository } from "../../Repositories/BagSettings/BagSettingsRepository";
 import { from } from "rxjs";
@@ -9,18 +9,34 @@ export class BagSettingsService {
     constructor(private bagSettingsStore: BagSettingsStore, private bagSettingsRepository: IBagSettingsRepository) {
 
     }
-
-    fetchBagSettings() {
+    
+    async fetchBagSettings() {
         this.bagSettingsStore.setLoading(true);
 
-        from(this.bagSettingsRepository.getAll())
-            .subscribe(bagSettings => {
+        try {
+            const settings = await this.bagSettingsRepository.getAll();
+
+            if(settings.length > 0) {
                 this.bagSettingsStore.update((state: IBagSettingsStore) => ({
-                    id: bagSettings[0].id,
-                    hiddenColumns: bagSettings[0].hiddenColumns
+                    id: settings[0].id,
+                    hiddenColumns: settings[0].hiddenColumns
                 }));
-                this.bagSettingsStore.setLoading(false);
-            })
+            } else {
+                const s = await this.bagSettingsRepository.add(DEFAULT_BAG_SETTINGS);
+                this.bagSettingsStore.update((state: IBagSettingsStore) => ({
+                    id: s.id,
+                    hiddenColumns: s.hiddenColumns
+                }));
+            }
+        }
+        catch(error) {
+
+        }
+        finally {
+            this.bagSettingsStore.setLoading(false);
+        }
+        
+            
     }
 
     addHiddinColumn(id: number, column: string) {

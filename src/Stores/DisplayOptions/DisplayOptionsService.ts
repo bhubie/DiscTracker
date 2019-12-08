@@ -1,4 +1,4 @@
-import { IDisplayOptionsStore, displayOptionsStore, DisplayOptionsStore, IColor, ThrowingStyle } from "./DisplayOptionsStore";
+import { IDisplayOptionsStore, displayOptionsStore, DisplayOptionsStore, IColor, ThrowingStyle, DEFAULT_DISPLAY_OPTIONS } from "./DisplayOptionsStore";
 import { IDisplayOptionsRepository, displayOptionsRepository } from "../../Repositories/DisplayOptions/DisplayOptionsRepository";
 import { from } from "rxjs";
 
@@ -9,11 +9,24 @@ export class DisplayOptionsService {
 
     }
 
-    fetchDisplayOptions() {
-        from(this.displayOptionsRepository.getAll())
-            .subscribe(displayOptions => {
+    async fetchDisplayOptions() {
+  
+        try {
+            const displayOptions = await this.displayOptionsRepository.getAll();
+
+            if(displayOptions.length > 0) {
                 this.displayOptionsStore.update((state: IDisplayOptionsStore) => (displayOptions[0]));
-            })
+            } else {
+                const d = await this.displayOptionsRepository.add(DEFAULT_DISPLAY_OPTIONS);
+                this.displayOptionsStore.update((state: IDisplayOptionsStore) => (d));
+            }
+        }
+        catch(e) {
+
+        }
+        finally {
+
+        }
     }
 
     updateGridColor(gridColor: IColor) {
