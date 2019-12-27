@@ -1,6 +1,6 @@
-# Disc Tracker
+# Disc Golf Bag Manager
 
-[Golf Disc Flight Path Visualizer](https://disctracker.netlify.com/)
+[Disc Golf Bag Manager](https://dgbagmanager.netlify.com//)
 
 Disc flight path data provided by: [Inbounds Disc Golf](http://www.inboundsdiscgolf.com)
 
