@@ -29,7 +29,7 @@
     "immutability-helper": "^2.6.6",
     "indexeddbshim": "^3.8.0",
     "jest": "^23.6.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^7.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.8.6",
     "react-color": "^2.14.0",
