@@ -23,7 +23,7 @@
     "bulma-switch": "^2.0.0",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
     "classnames": "^2.2.6",
-    "dexie": "^2.0.4",
+    "dexie": "^3.2.2",
     "dexie-relationships": "^1.2.10",
     "fake-indexeddb": "^2.0.4",
     "immutability-helper": "^2.6.6",
